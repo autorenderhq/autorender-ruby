@@ -4,10 +4,6 @@ module Autorender
   module Resources
     # Upload files to your workspace
     class Uploads
-      # Large file uploads via multipart
-      # @return [Autorender::Resources::Uploads::Multipart]
-      attr_reader :multipart
-
       # Upload a file to your AutoRender workspace with optional transformations, tags,
       # and folder organization
       #
@@ -162,7 +158,6 @@ module Autorender
       # @param client [Autorender::Client]
       def initialize(client:)
         @client = client
-        @multipart = Autorender::Resources::Uploads::Multipart.new(client: client)
       end
     end
   end

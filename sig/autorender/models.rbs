@@ -36,6 +36,4 @@ module Autorender
   class UploadData = Autorender::Models::UploadData
 
   class UploadGenerateTokenParams = Autorender::Models::UploadGenerateTokenParams
-
-  module Uploads = Autorender::Models::Uploads
 end
