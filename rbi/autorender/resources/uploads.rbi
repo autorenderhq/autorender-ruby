@@ -4,10 +4,6 @@ module Autorender
   module Resources
     # Upload files to your workspace
     class Uploads
-      # Large file uploads via multipart
-      sig { returns(Autorender::Resources::Uploads::Multipart) }
-      attr_reader :multipart
-
       # Upload a file to your AutoRender workspace with optional transformations, tags,
       # and folder organization
       sig do

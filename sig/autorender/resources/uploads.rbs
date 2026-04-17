@@ -1,8 +1,6 @@
 module Autorender
   module Resources
     class Uploads
-      attr_reader multipart: Autorender::Resources::Uploads::Multipart
-
       def create: (
         file: Autorender::Internal::file_input,
         file_name: String,

@@ -38,6 +38,4 @@ module Autorender
   UploadData = Autorender::Models::UploadData
 
   UploadGenerateTokenParams = Autorender::Models::UploadGenerateTokenParams
-
-  Uploads = Autorender::Models::Uploads
 end
