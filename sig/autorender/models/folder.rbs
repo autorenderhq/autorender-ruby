@@ -1,0 +1,111 @@
+module Autorender
+  module Models
+    type folder =
+      {
+        id: String,
+        created_at: Time,
+        folder_no: String,
+        is_active: bool,
+        is_delete: bool,
+        name: String,
+        parent_folder: String?,
+        path: String,
+        updated_at: Time,
+        workspace: Autorender::Folder::Workspace,
+        workspace_id: String,
+        workspace_no: String
+      }
+
+    class Folder < Autorender::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader folder_no: String?
+
+      def folder_no=: (String) -> String
+
+      attr_reader is_active: bool?
+
+      def is_active=: (bool) -> bool
+
+      attr_reader is_delete: bool?
+
+      def is_delete=: (bool) -> bool
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_accessor parent_folder: String?
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      attr_reader workspace: Autorender::Folder::Workspace?
+
+      def workspace=: (
+        Autorender::Folder::Workspace
+      ) -> Autorender::Folder::Workspace
+
+      attr_reader workspace_id: String?
+
+      def workspace_id=: (String) -> String
+
+      attr_reader workspace_no: String?
+
+      def workspace_no=: (String) -> String
+
+      def initialize: (
+        ?id: String,
+        ?created_at: Time,
+        ?folder_no: String,
+        ?is_active: bool,
+        ?is_delete: bool,
+        ?name: String,
+        ?parent_folder: String?,
+        ?path: String,
+        ?updated_at: Time,
+        ?workspace: Autorender::Folder::Workspace,
+        ?workspace_id: String,
+        ?workspace_no: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        folder_no: String,
+        is_active: bool,
+        is_delete: bool,
+        name: String,
+        parent_folder: String?,
+        path: String,
+        updated_at: Time,
+        workspace: Autorender::Folder::Workspace,
+        workspace_id: String,
+        workspace_no: String
+      }
+
+      type workspace = { workspace_no: String }
+
+      class Workspace < Autorender::Internal::Type::BaseModel
+        attr_reader workspace_no: String?
+
+        def workspace_no=: (String) -> String
+
+        def initialize: (?workspace_no: String) -> void
+
+        def to_hash: -> { workspace_no: String }
+      end
+    end
+  end
+end

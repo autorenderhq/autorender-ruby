@@ -1,0 +1,62 @@
+module Autorender
+  module Models
+    type file_list_response =
+      {
+        files: ::Array[Autorender::FileListItem],
+        meta: Autorender::Models::FileListResponse::Meta
+      }
+
+    class FileListResponse < Autorender::Internal::Type::BaseModel
+      attr_accessor files: ::Array[Autorender::FileListItem]
+
+      attr_accessor meta: Autorender::Models::FileListResponse::Meta
+
+      def initialize: (
+        files: ::Array[Autorender::FileListItem],
+        meta: Autorender::Models::FileListResponse::Meta
+      ) -> void
+
+      def to_hash: -> {
+        files: ::Array[Autorender::FileListItem],
+        meta: Autorender::Models::FileListResponse::Meta
+      }
+
+      type meta =
+        {
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
+        }
+
+      class Meta < Autorender::Internal::Type::BaseModel
+        attr_accessor has_next: bool
+
+        attr_accessor has_prev: bool
+
+        attr_accessor limit: Integer
+
+        attr_accessor page: Integer
+
+        attr_accessor total: Integer
+
+        def initialize: (
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
+        ) -> void
+
+        def to_hash: -> {
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
+        }
+      end
+    end
+  end
+end

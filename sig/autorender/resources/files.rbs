@@ -1,0 +1,43 @@
+module Autorender
+  module Resources
+    class Files
+      def retrieve: (
+        String file_no,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::FileObject
+
+      def update: (
+        String file_no,
+        ?add_tags: ::Array[String],
+        ?metadata: ::Hash[Symbol, top],
+        ?remove_tags: ::Array[String],
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FileUpdateResponse
+
+      def list: (
+        ?folder_no: String,
+        ?limit: Integer,
+        ?name: String,
+        ?page: Integer,
+        ?path: String,
+        ?sort_field: Autorender::Models::FileListParams::sort_field,
+        ?sort_order: Autorender::Models::FileListParams::sort_order,
+        ?tags: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FileListResponse
+
+      def delete: (
+        String file_no,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FileDeleteResponse
+
+      def rename: (
+        String file_no,
+        name: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FileRenameResponse
+
+      def initialize: (client: Autorender::Client) -> void
+    end
+  end
+end

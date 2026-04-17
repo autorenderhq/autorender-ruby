@@ -1,0 +1,95 @@
+module Autorender
+  module Models
+    type file_list_item =
+      {
+        created_at: Time,
+        extension: String,
+        file_no: String,
+        file_size: Integer,
+        format_: String,
+        height: Integer?,
+        name: String,
+        path: String,
+        thumbanil: String,
+        url: String,
+        width: Integer?,
+        workspace_no: String
+      }
+
+    class FileListItem < Autorender::Internal::Type::BaseModel
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader extension: String?
+
+      def extension=: (String) -> String
+
+      attr_reader file_no: String?
+
+      def file_no=: (String) -> String
+
+      attr_reader file_size: Integer?
+
+      def file_size=: (Integer) -> Integer
+
+      attr_reader format_: String?
+
+      def format_=: (String) -> String
+
+      attr_accessor height: Integer?
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader thumbanil: String?
+
+      def thumbanil=: (String) -> String
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      attr_accessor width: Integer?
+
+      attr_reader workspace_no: String?
+
+      def workspace_no=: (String) -> String
+
+      def initialize: (
+        ?created_at: Time,
+        ?extension: String,
+        ?file_no: String,
+        ?file_size: Integer,
+        ?format_: String,
+        ?height: Integer?,
+        ?name: String,
+        ?path: String,
+        ?thumbanil: String,
+        ?url: String,
+        ?width: Integer?,
+        ?workspace_no: String
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        extension: String,
+        file_no: String,
+        file_size: Integer,
+        format_: String,
+        height: Integer?,
+        name: String,
+        path: String,
+        thumbanil: String,
+        url: String,
+        width: Integer?,
+        workspace_no: String
+      }
+    end
+  end
+end

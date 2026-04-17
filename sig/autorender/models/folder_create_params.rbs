@@ -1,0 +1,30 @@
+module Autorender
+  module Models
+    type folder_create_params =
+      { name: String, parent_folder_no: String }
+      & Autorender::Internal::Type::request_parameters
+
+    class FolderCreateParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_reader parent_folder_no: String?
+
+      def parent_folder_no=: (String) -> String
+
+      def initialize: (
+        name: String,
+        ?parent_folder_no: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        parent_folder_no: String,
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end

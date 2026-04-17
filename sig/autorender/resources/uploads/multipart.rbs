@@ -1,0 +1,32 @@
+module Autorender
+  module Resources
+    class Uploads
+      class Multipart
+        def complete: (
+          session_id: String,
+          ?request_options: Autorender::request_opts
+        ) -> Autorender::Upload
+
+        def start: (
+          file_name: String,
+          format_: String,
+          size: Integer,
+          ?custom_id: String,
+          ?folder: String,
+          ?metadata: ::Hash[Symbol, top],
+          ?random_prefix: bool,
+          ?tags: ::Array[String],
+          ?ttl_seconds: Integer,
+          ?request_options: Autorender::request_opts
+        ) -> Autorender::Uploads::Session
+
+        def upload_part: (
+          body: Autorender::Internal::file_input,
+          ?request_options: Autorender::request_opts
+        ) -> nil
+
+        def initialize: (client: Autorender::Client) -> void
+      end
+    end
+  end
+end

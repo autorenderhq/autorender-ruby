@@ -1,0 +1,19 @@
+module Autorender
+  module Models
+    type folder_create_response = { folder_no: String, name: String }
+
+    class FolderCreateResponse < Autorender::Internal::Type::BaseModel
+      attr_reader folder_no: String?
+
+      def folder_no=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (?folder_no: String, ?name: String) -> void
+
+      def to_hash: -> { folder_no: String, name: String }
+    end
+  end
+end

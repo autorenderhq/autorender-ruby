@@ -1,0 +1,34 @@
+module Autorender
+  module Models
+    module Uploads
+      type session =
+        { part_size: Integer, parts: ::Array[String], session_id: String }
+
+      class Session < Autorender::Internal::Type::BaseModel
+        attr_reader part_size: Integer?
+
+        def part_size=: (Integer) -> Integer
+
+        attr_reader parts: ::Array[String]?
+
+        def parts=: (::Array[String]) -> ::Array[String]
+
+        attr_reader session_id: String?
+
+        def session_id=: (String) -> String
+
+        def initialize: (
+          ?part_size: Integer,
+          ?parts: ::Array[String],
+          ?session_id: String
+        ) -> void
+
+        def to_hash: -> {
+          part_size: Integer,
+          parts: ::Array[String],
+          session_id: String
+        }
+      end
+    end
+  end
+end

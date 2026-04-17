@@ -1,0 +1,23 @@
+module Autorender
+  module Models
+    type folder_delete_params =
+      { folder_no: String } & Autorender::Internal::Type::request_parameters
+
+    class FolderDeleteParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_accessor folder_no: String
+
+      def initialize: (
+        folder_no: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        folder_no: String,
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end

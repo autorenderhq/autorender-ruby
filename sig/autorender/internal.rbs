@@ -1,0 +1,9 @@
+module Autorender
+  module Internal
+    extend Autorender::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Autorender::FilePart
+
+    OMIT: Object
+  end
+end

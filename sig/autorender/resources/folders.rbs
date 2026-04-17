@@ -1,0 +1,29 @@
+module Autorender
+  module Resources
+    class Folders
+      def create: (
+        name: String,
+        ?parent_folder_no: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FolderCreateResponse
+
+      def list: (
+        ?parent_folder_no: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FolderListResponse
+
+      def delete: (
+        String folder_no,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FolderDeleteResponse
+
+      def rename: (
+        String folder_no,
+        name: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Folder
+
+      def initialize: (client: Autorender::Client) -> void
+    end
+  end
+end

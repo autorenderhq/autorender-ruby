@@ -1,0 +1,80 @@
+module Autorender
+  module Models
+    type upload_create_params =
+      {
+        file: Autorender::Internal::file_input,
+        file_name: String,
+        custom_id: String,
+        folder: String,
+        metadata: String,
+        random_prefix: String,
+        tags: String,
+        transform: String,
+        webhook_url: String
+      }
+      & Autorender::Internal::Type::request_parameters
+
+    class UploadCreateParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_accessor file: Autorender::Internal::file_input
+
+      attr_accessor file_name: String
+
+      attr_reader custom_id: String?
+
+      def custom_id=: (String) -> String
+
+      attr_reader folder: String?
+
+      def folder=: (String) -> String
+
+      attr_reader metadata: String?
+
+      def metadata=: (String) -> String
+
+      attr_reader random_prefix: String?
+
+      def random_prefix=: (String) -> String
+
+      attr_reader tags: String?
+
+      def tags=: (String) -> String
+
+      attr_reader transform: String?
+
+      def transform=: (String) -> String
+
+      attr_reader webhook_url: String?
+
+      def webhook_url=: (String) -> String
+
+      def initialize: (
+        file: Autorender::Internal::file_input,
+        file_name: String,
+        ?custom_id: String,
+        ?folder: String,
+        ?metadata: String,
+        ?random_prefix: String,
+        ?tags: String,
+        ?transform: String,
+        ?webhook_url: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file: Autorender::Internal::file_input,
+        file_name: String,
+        custom_id: String,
+        folder: String,
+        metadata: String,
+        random_prefix: String,
+        tags: String,
+        transform: String,
+        webhook_url: String,
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end
