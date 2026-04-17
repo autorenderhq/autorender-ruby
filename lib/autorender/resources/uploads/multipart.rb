@@ -74,7 +74,7 @@ module Autorender
         #
         # @overload upload_part(body:, request_options: {})
         #
-        # @param body [Pathname, StringIO, IO, String, Autorender::FilePart] One multipart chunk uploaded to a presigned URL
+        # @param body [Pathname, StringIO, IO, String, Autorender::FilePart] One multipart chunk
         #
         # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
         #

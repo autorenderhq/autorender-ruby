@@ -66,7 +66,7 @@ module Autorender
           ).void
         end
         def upload_part(
-          # One multipart chunk uploaded to a presigned URL
+          # One multipart chunk
           body:,
           request_options: {}
         )
