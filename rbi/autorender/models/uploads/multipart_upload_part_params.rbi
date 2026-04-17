@@ -15,7 +15,7 @@ module Autorender
             )
           end
 
-        # One multipart chunk uploaded to a presigned URL
+        # One multipart chunk
         sig { returns(Autorender::Internal::FileInput) }
         attr_accessor :body
 
@@ -26,7 +26,7 @@ module Autorender
           ).returns(T.attached_class)
         end
         def self.new(
-          # One multipart chunk uploaded to a presigned URL
+          # One multipart chunk
           body:,
           request_options: {}
         )

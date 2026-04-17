@@ -9,13 +9,13 @@ module Autorender
         include Autorender::Internal::Type::RequestParameters
 
         # @!attribute body
-        #   One multipart chunk uploaded to a presigned URL
+        #   One multipart chunk
         #
         #   @return [Pathname, StringIO, IO, String, Autorender::FilePart]
         required :body, Autorender::Internal::Type::FileInput
 
         # @!method initialize(body:, request_options: {})
-        #   @param body [Pathname, StringIO, IO, String, Autorender::FilePart] One multipart chunk uploaded to a presigned URL
+        #   @param body [Pathname, StringIO, IO, String, Autorender::FilePart] One multipart chunk
         #
         #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
       end
