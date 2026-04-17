@@ -11,7 +11,7 @@ module Autorender
           T.any(Autorender::FileListParams, Autorender::Internal::AnyHash)
         end
 
-      # Filter to files in this folder
+      # Restrict results to files in this folder (folder number)
       sig { returns(T.nilable(String)) }
       attr_reader :folder_no
 
@@ -25,7 +25,7 @@ module Autorender
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      # Partial filename match (case-insensitive)
+      # Filter by filename (partial match, if supported)
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
@@ -39,7 +39,7 @@ module Autorender
       sig { params(page: Integer).void }
       attr_writer :page
 
-      # Filter by path prefix (e.g., products/sku123/)
+      # Filter by path prefix (if supported)
       sig { returns(T.nilable(String)) }
       attr_reader :path
 
@@ -68,7 +68,7 @@ module Autorender
       end
       attr_writer :sort_order
 
-      # Comma-separated tags to filter by
+      # Comma-separated tags (if supported)
       sig { returns(T.nilable(String)) }
       attr_reader :tags
 
@@ -89,21 +89,21 @@ module Autorender
         ).returns(T.attached_class)
       end
       def self.new(
-        # Filter to files in this folder
+        # Restrict results to files in this folder (folder number)
         folder_no: nil,
         # Items per page
         limit: nil,
-        # Partial filename match (case-insensitive)
+        # Filter by filename (partial match, if supported)
         name: nil,
         # Page number (1-based)
         page: nil,
-        # Filter by path prefix (e.g., products/sku123/)
+        # Filter by path prefix (if supported)
         path: nil,
         # Field to sort by
         sort_field: nil,
         # Sort direction
         sort_order: nil,
-        # Comma-separated tags to filter by
+        # Comma-separated tags (if supported)
         tags: nil,
         request_options: {}
       )

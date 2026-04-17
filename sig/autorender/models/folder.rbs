@@ -4,12 +4,14 @@ module Autorender
       {
         id: String,
         created_at: Time,
+        created_by: String,
         folder_no: String,
         is_active: bool,
         is_delete: bool,
         name: String,
         parent_folder: String?,
         path: String,
+        source: String,
         updated_at: Time,
         workspace: Autorender::Folder::Workspace,
         workspace_id: String,
@@ -24,6 +26,10 @@ module Autorender
       attr_reader created_at: Time?
 
       def created_at=: (Time) -> Time
+
+      attr_reader created_by: String?
+
+      def created_by=: (String) -> String
 
       attr_reader folder_no: String?
 
@@ -47,6 +53,10 @@ module Autorender
 
       def path=: (String) -> String
 
+      attr_reader source: String?
+
+      def source=: (String) -> String
+
       attr_reader updated_at: Time?
 
       def updated_at=: (Time) -> Time
@@ -68,12 +78,14 @@ module Autorender
       def initialize: (
         ?id: String,
         ?created_at: Time,
+        ?created_by: String,
         ?folder_no: String,
         ?is_active: bool,
         ?is_delete: bool,
         ?name: String,
         ?parent_folder: String?,
         ?path: String,
+        ?source: String,
         ?updated_at: Time,
         ?workspace: Autorender::Folder::Workspace,
         ?workspace_id: String,
@@ -83,12 +95,14 @@ module Autorender
       def to_hash: -> {
         id: String,
         created_at: Time,
+        created_by: String,
         folder_no: String,
         is_active: bool,
         is_delete: bool,
         name: String,
         parent_folder: String?,
         path: String,
+        source: String,
         updated_at: Time,
         workspace: Autorender::Folder::Workspace,
         workspace_id: String,

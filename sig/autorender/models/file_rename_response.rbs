@@ -4,18 +4,27 @@ module Autorender
       {
         id: String,
         created_at: Time,
+        created_by: String,
         extension: String,
         file_no: String,
         file_size: Integer,
         folder_id: String?,
         format_: String,
         height: Integer?,
+        is_active: bool,
+        is_default: bool,
+        is_delete: bool,
         meta_data: ::Hash[Symbol, top],
         name: String,
+        orientation: String?,
+        original_url: String?,
         path: String?,
+        source: String,
+        transform_string: String?,
         updated_at: Time,
         url: String,
         width: Integer?,
+        workspace_id: String,
         workspace_no: String
       }
 
@@ -27,6 +36,10 @@ module Autorender
       attr_reader created_at: Time?
 
       def created_at=: (Time) -> Time
+
+      attr_reader created_by: String?
+
+      def created_by=: (String) -> String
 
       attr_reader extension: String?
 
@@ -48,6 +61,18 @@ module Autorender
 
       attr_accessor height: Integer?
 
+      attr_reader is_active: bool?
+
+      def is_active=: (bool) -> bool
+
+      attr_reader is_default: bool?
+
+      def is_default=: (bool) -> bool
+
+      attr_reader is_delete: bool?
+
+      def is_delete=: (bool) -> bool
+
       attr_reader meta_data: ::Hash[Symbol, top]?
 
       def meta_data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
@@ -56,7 +81,17 @@ module Autorender
 
       def name=: (String) -> String
 
+      attr_accessor orientation: String?
+
+      attr_accessor original_url: String?
+
       attr_accessor path: String?
+
+      attr_reader source: String?
+
+      def source=: (String) -> String
+
+      attr_accessor transform_string: String?
 
       attr_reader updated_at: Time?
 
@@ -68,6 +103,10 @@ module Autorender
 
       attr_accessor width: Integer?
 
+      attr_reader workspace_id: String?
+
+      def workspace_id=: (String) -> String
+
       attr_reader workspace_no: String?
 
       def workspace_no=: (String) -> String
@@ -75,36 +114,54 @@ module Autorender
       def initialize: (
         ?id: String,
         ?created_at: Time,
+        ?created_by: String,
         ?extension: String,
         ?file_no: String,
         ?file_size: Integer,
         ?folder_id: String?,
         ?format_: String,
         ?height: Integer?,
+        ?is_active: bool,
+        ?is_default: bool,
+        ?is_delete: bool,
         ?meta_data: ::Hash[Symbol, top],
         ?name: String,
+        ?orientation: String?,
+        ?original_url: String?,
         ?path: String?,
+        ?source: String,
+        ?transform_string: String?,
         ?updated_at: Time,
         ?url: String,
         ?width: Integer?,
+        ?workspace_id: String,
         ?workspace_no: String
       ) -> void
 
       def to_hash: -> {
         id: String,
         created_at: Time,
+        created_by: String,
         extension: String,
         file_no: String,
         file_size: Integer,
         folder_id: String?,
         format_: String,
         height: Integer?,
+        is_active: bool,
+        is_default: bool,
+        is_delete: bool,
         meta_data: ::Hash[Symbol, top],
         name: String,
+        orientation: String?,
+        original_url: String?,
         path: String?,
+        source: String,
+        transform_string: String?,
         updated_at: Time,
         url: String,
         width: Integer?,
+        workspace_id: String,
         workspace_no: String
       }
     end

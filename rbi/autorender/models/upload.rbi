@@ -14,6 +14,7 @@ module Autorender
       sig { params(data: Autorender::UploadData::OrHash).void }
       attr_writer :data
 
+      # Indicates if the upload was successful
       sig { returns(T::Boolean) }
       attr_accessor :success
 
@@ -23,7 +24,11 @@ module Autorender
           success: T::Boolean
         ).returns(T.attached_class)
       end
-      def self.new(data:, success:)
+      def self.new(
+        data:,
+        # Indicates if the upload was successful
+        success:
+      )
       end
 
       sig do

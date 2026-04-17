@@ -2,13 +2,12 @@
 
 module Autorender
   module Resources
-    # Manage files in your workspace
     class Files
-      # Retrieve detailed information about a specific file by its file number.
+      # Retrieve detailed information about a file by numeric file id (`file_no`).
       #
       # @overload retrieve(file_no, request_options: {})
       #
-      # @param file_no [String] File number identifier
+      # @param file_no [String] File number (numeric id in URL)
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -24,55 +23,26 @@ module Autorender
         )
       end
 
-      # Update a file's tags and/or metadata. Tags are merged — add_tags appends,
-      # remove_tags removes. Metadata is merged with existing values.
-      #
-      # @overload update(file_no, add_tags: nil, metadata: nil, remove_tags: nil, request_options: {})
-      #
-      # @param file_no [String] File number identifier
-      #
-      # @param add_tags [Array<String>] Tags to add
-      #
-      # @param metadata [Hash{Symbol=>Object}] Metadata to merge
-      #
-      # @param remove_tags [Array<String>] Tags to remove
-      #
-      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Autorender::Models::FileUpdateResponse]
-      #
-      # @see Autorender::Models::FileUpdateParams
-      def update(file_no, params = {})
-        parsed, options = Autorender::FileUpdateParams.dump_request(params)
-        @client.request(
-          method: :patch,
-          path: ["api/v1/files/%1$s", file_no],
-          body: parsed,
-          model: Autorender::Models::FileUpdateResponse,
-          options: options
-        )
-      end
-
-      # Paginated list of files in the workspace. Filter by folder, path prefix, name,
-      # or tags. Sort by various fields.
+      # Paginated list of files in the workspace. Filter by folder, sort by field and
+      # order, and page through results.
       #
       # @overload list(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort_field: nil, sort_order: nil, tags: nil, request_options: {})
       #
-      # @param folder_no [String] Filter to files in this folder
+      # @param folder_no [String] Restrict results to files in this folder (folder number)
       #
       # @param limit [Integer] Items per page
       #
-      # @param name [String] Partial filename match (case-insensitive)
+      # @param name [String] Filter by filename (partial match, if supported)
       #
       # @param page [Integer] Page number (1-based)
       #
-      # @param path [String] Filter by path prefix (e.g., products/sku123/)
+      # @param path [String] Filter by path prefix (if supported)
       #
       # @param sort_field [Symbol, Autorender::Models::FileListParams::SortField] Field to sort by
       #
       # @param sort_order [Symbol, Autorender::Models::FileListParams::SortOrder] Sort direction
       #
-      # @param tags [String] Comma-separated tags to filter by
+      # @param tags [String] Comma-separated tags (if supported)
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -91,11 +61,11 @@ module Autorender
         )
       end
 
-      # Permanently delete a file from the workspace.
+      # Permanently delete a file. No request body is required.
       #
       # @overload delete(file_no, request_options: {})
       #
-      # @param file_no [String] File number identifier
+      # @param file_no [String] File number to delete
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -111,14 +81,14 @@ module Autorender
         )
       end
 
-      # Rename a file. The server preserves the file extension (e.g., supplying
-      # "product" renames to "product.jpg").
+      # Rename a file. The API may preserve or normalize the file extension (e.g. `demo`
+      # → `demo.png`).
       #
       # @overload rename(file_no, name:, request_options: {})
       #
-      # @param file_no [String] File number identifier
+      # @param file_no [String] File number
       #
-      # @param name [String] New base name; extension is preserved by the server
+      # @param name [String] New base name; extension may be applied by the server
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #

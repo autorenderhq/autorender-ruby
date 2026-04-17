@@ -18,15 +18,12 @@ module Autorender
     # @return [String, nil]
     attr_reader :api_key
 
-    # Upload files to your workspace
     # @return [Autorender::Resources::Uploads]
     attr_reader :uploads
 
-    # Manage files in your workspace
     # @return [Autorender::Resources::Files]
     attr_reader :files
 
-    # Manage folder structure
     # @return [Autorender::Resources::Folders]
     attr_reader :folders
 

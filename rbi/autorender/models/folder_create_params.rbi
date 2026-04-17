@@ -15,7 +15,7 @@ module Autorender
       sig { returns(String) }
       attr_accessor :name
 
-      # Parent folder number; omit for root level
+      # Parent folder number; omit or null for root
       sig { returns(T.nilable(String)) }
       attr_reader :parent_folder_no
 
@@ -32,7 +32,7 @@ module Autorender
       def self.new(
         # Folder display name
         name:,
-        # Parent folder number; omit for root level
+        # Parent folder number; omit or null for root
         parent_folder_no: nil,
         request_options: {}
       )

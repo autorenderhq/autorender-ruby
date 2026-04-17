@@ -41,16 +41,21 @@ module Autorender
         required :page, Integer
 
         # @!attribute total
+        #   Total matching files
         #
         #   @return [Integer]
         required :total, Integer
 
         # @!method initialize(has_next:, has_prev:, limit:, page:, total:)
         #   @param has_next [Boolean]
+        #
         #   @param has_prev [Boolean]
+        #
         #   @param limit [Integer]
+        #
         #   @param page [Integer]
-        #   @param total [Integer]
+        #
+        #   @param total [Integer] Total matching files
       end
     end
   end

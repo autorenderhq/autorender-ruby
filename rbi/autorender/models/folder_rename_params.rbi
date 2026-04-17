@@ -14,7 +14,6 @@ module Autorender
       sig { returns(String) }
       attr_accessor :folder_no
 
-      # New folder name
       sig { returns(String) }
       attr_accessor :name
 
@@ -25,12 +24,7 @@ module Autorender
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(
-        folder_no:,
-        # New folder name
-        name:,
-        request_options: {}
-      )
+      def self.new(folder_no:, name:, request_options: {})
       end
 
       sig do

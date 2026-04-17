@@ -14,7 +14,7 @@ module Autorender
       required :name, String
 
       # @!attribute parent_folder_no
-      #   Parent folder number; omit for root level
+      #   Parent folder number; omit or null for root
       #
       #   @return [String, nil]
       optional :parent_folder_no, String
@@ -22,7 +22,7 @@ module Autorender
       # @!method initialize(name:, parent_folder_no: nil, request_options: {})
       #   @param name [String] Folder display name
       #
-      #   @param parent_folder_no [String] Parent folder number; omit for root level
+      #   @param parent_folder_no [String] Parent folder number; omit or null for root
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -8,13 +8,13 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute parent_folder_no
-      #   Return only direct children of this folder
+      #   Only return direct children of this folder (folder number)
       #
       #   @return [String, nil]
       optional :parent_folder_no, String
 
       # @!method initialize(parent_folder_no: nil, request_options: {})
-      #   @param parent_folder_no [String] Return only direct children of this folder
+      #   @param parent_folder_no [String] Only return direct children of this folder (folder number)
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

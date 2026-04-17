@@ -21,6 +21,12 @@ module Autorender
       attr_writer :created_at
 
       sig { returns(T.nilable(String)) }
+      attr_reader :created_by
+
+      sig { params(created_by: String).void }
+      attr_writer :created_by
+
+      sig { returns(T.nilable(String)) }
       attr_reader :folder_no
 
       sig { params(folder_no: String).void }
@@ -53,6 +59,12 @@ module Autorender
       sig { params(path: String).void }
       attr_writer :path
 
+      sig { returns(T.nilable(String)) }
+      attr_reader :source
+
+      sig { params(source: String).void }
+      attr_writer :source
+
       sig { returns(T.nilable(Time)) }
       attr_reader :updated_at
 
@@ -81,12 +93,14 @@ module Autorender
         params(
           id: String,
           created_at: Time,
+          created_by: String,
           folder_no: String,
           is_active: T::Boolean,
           is_delete: T::Boolean,
           name: String,
           parent_folder: T.nilable(String),
           path: String,
+          source: String,
           updated_at: Time,
           workspace: Autorender::Folder::Workspace::OrHash,
           workspace_id: String,
@@ -96,12 +110,14 @@ module Autorender
       def self.new(
         id: nil,
         created_at: nil,
+        created_by: nil,
         folder_no: nil,
         is_active: nil,
         is_delete: nil,
         name: nil,
         parent_folder: nil,
         path: nil,
+        source: nil,
         updated_at: nil,
         workspace: nil,
         workspace_id: nil,
@@ -114,12 +130,14 @@ module Autorender
           {
             id: String,
             created_at: Time,
+            created_by: String,
             folder_no: String,
             is_active: T::Boolean,
             is_delete: T::Boolean,
             name: String,
             parent_folder: T.nilable(String),
             path: String,
+            source: String,
             updated_at: Time,
             workspace: Autorender::Folder::Workspace,
             workspace_id: String,

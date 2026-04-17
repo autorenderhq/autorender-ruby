@@ -14,6 +14,7 @@ module Autorender
       sig { params(created_at: Time).void }
       attr_writer :created_at
 
+      # Asset category, e.g. image
       sig { returns(T.nilable(String)) }
       attr_reader :extension
 
@@ -47,18 +48,19 @@ module Autorender
       sig { params(name: String).void }
       attr_writer :name
 
+      # Relative path / display path
       sig { returns(T.nilable(String)) }
       attr_reader :path
 
       sig { params(path: String).void }
       attr_writer :path
 
-      # Thumbnail CDN URL
+      # Thumbnail CDN URL (field name as returned by the API)
       sig { returns(T.nilable(String)) }
-      attr_reader :thumbnail
+      attr_reader :thumbanil
 
-      sig { params(thumbnail: String).void }
-      attr_writer :thumbnail
+      sig { params(thumbanil: String).void }
+      attr_writer :thumbanil
 
       sig { returns(T.nilable(String)) }
       attr_reader :url
@@ -75,6 +77,7 @@ module Autorender
       sig { params(workspace_no: String).void }
       attr_writer :workspace_no
 
+      # File summary row in list responses
       sig do
         params(
           created_at: Time,
@@ -85,7 +88,7 @@ module Autorender
           height: T.nilable(Integer),
           name: String,
           path: String,
-          thumbnail: String,
+          thumbanil: String,
           url: String,
           width: T.nilable(Integer),
           workspace_no: String
@@ -93,15 +96,17 @@ module Autorender
       end
       def self.new(
         created_at: nil,
+        # Asset category, e.g. image
         extension: nil,
         file_no: nil,
         file_size: nil,
         format_: nil,
         height: nil,
         name: nil,
+        # Relative path / display path
         path: nil,
-        # Thumbnail CDN URL
-        thumbnail: nil,
+        # Thumbnail CDN URL (field name as returned by the API)
+        thumbanil: nil,
         url: nil,
         width: nil,
         workspace_no: nil
@@ -119,7 +124,7 @@ module Autorender
             height: T.nilable(Integer),
             name: String,
             path: String,
-            thumbnail: String,
+            thumbanil: String,
             url: String,
             width: T.nilable(Integer),
             workspace_no: String

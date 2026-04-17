@@ -22,25 +22,25 @@ module Autorender
       sig { params(file_no: String).void }
       attr_writer :file_no
 
-      # File size in bytes
+      # File size in bytes (after processing)
       sig { returns(T.nilable(Integer)) }
       attr_reader :file_size
 
       sig { params(file_size: Integer).void }
       attr_writer :file_size
 
-      # File format (e.g., jpeg, png, mp4)
+      # File format/extension (e.g., jpg, png, webp)
       sig { returns(T.nilable(String)) }
       attr_reader :format_
 
       sig { params(format_: String).void }
       attr_writer :format_
 
-      # Image height in pixels
+      # Image height in pixels (null for non-image files)
       sig { returns(T.nilable(Integer)) }
       attr_accessor :height
 
-      # Final filename
+      # Final filename (may include random suffix if requested)
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
@@ -54,14 +54,14 @@ module Autorender
       sig { params(path: String).void }
       attr_writer :path
 
-      # CDN URL to access the file
+      # Full CDN URL to access the uploaded file
       sig { returns(T.nilable(String)) }
       attr_reader :url
 
       sig { params(url: String).void }
       attr_writer :url
 
-      # Image width in pixels
+      # Image width in pixels (null for non-image files)
       sig { returns(T.nilable(Integer)) }
       attr_accessor :width
 
@@ -91,19 +91,19 @@ module Autorender
         id: nil,
         # 10-character file number identifier
         file_no: nil,
-        # File size in bytes
+        # File size in bytes (after processing)
         file_size: nil,
-        # File format (e.g., jpeg, png, mp4)
+        # File format/extension (e.g., jpg, png, webp)
         format_: nil,
-        # Image height in pixels
+        # Image height in pixels (null for non-image files)
         height: nil,
-        # Final filename
+        # Final filename (may include random suffix if requested)
         name: nil,
         # Folder path where the file is stored
         path: nil,
-        # CDN URL to access the file
+        # Full CDN URL to access the uploaded file
         url: nil,
-        # Image width in pixels
+        # Image width in pixels (null for non-image files)
         width: nil,
         # Workspace identifier
         workspace_no: nil

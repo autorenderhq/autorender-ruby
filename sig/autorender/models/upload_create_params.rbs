@@ -9,8 +9,7 @@ module Autorender
         metadata: String,
         random_prefix: String,
         tags: String,
-        transform: String,
-        webhook_url: String
+        transform: String
       }
       & Autorender::Internal::Type::request_parameters
 
@@ -46,10 +45,6 @@ module Autorender
 
       def transform=: (String) -> String
 
-      attr_reader webhook_url: String?
-
-      def webhook_url=: (String) -> String
-
       def initialize: (
         file: Autorender::Internal::file_input,
         file_name: String,
@@ -59,7 +54,6 @@ module Autorender
         ?random_prefix: String,
         ?tags: String,
         ?transform: String,
-        ?webhook_url: String,
         ?request_options: Autorender::request_opts
       ) -> void
 
@@ -72,7 +66,6 @@ module Autorender
         random_prefix: String,
         tags: String,
         transform: String,
-        webhook_url: String,
         request_options: Autorender::RequestOptions
       }
     end

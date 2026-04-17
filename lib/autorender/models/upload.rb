@@ -10,13 +10,15 @@ module Autorender
       required :data, -> { Autorender::UploadData }
 
       # @!attribute success
+      #   Indicates if the upload was successful
       #
       #   @return [Boolean]
       required :success, Autorender::Internal::Type::Boolean
 
       # @!method initialize(data:, success:)
       #   @param data [Autorender::Models::UploadData]
-      #   @param success [Boolean]
+      #
+      #   @param success [Boolean] Indicates if the upload was successful
     end
   end
 end

@@ -26,7 +26,7 @@ module Autorender
           dimensions: Autorender::FileObject::Data::Dimensions,
           extension: String,
           file_no: String,
-          folder: String?,
+          folder: top,
           format_: String,
           name: String,
           path: String?,
@@ -64,7 +64,9 @@ module Autorender
 
         def file_no=: (String) -> String
 
-        attr_accessor folder: String?
+        attr_reader folder: top?
+
+        def folder=: (top) -> top
 
         attr_reader format_: String?
 
@@ -105,7 +107,7 @@ module Autorender
           ?dimensions: Autorender::FileObject::Data::Dimensions,
           ?extension: String,
           ?file_no: String,
-          ?folder: String?,
+          ?folder: top,
           ?format_: String,
           ?name: String,
           ?path: String?,
@@ -123,7 +125,7 @@ module Autorender
           dimensions: Autorender::FileObject::Data::Dimensions,
           extension: String,
           file_no: String,
-          folder: String?,
+          folder: top,
           format_: String,
           name: String,
           path: String?,

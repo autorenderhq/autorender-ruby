@@ -83,8 +83,11 @@ module Autorender
         sig { params(file_no: String).void }
         attr_writer :file_no
 
-        sig { returns(T.nilable(String)) }
-        attr_accessor :folder
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :folder
+
+        sig { params(folder: T.anything).void }
+        attr_writer :folder
 
         sig { returns(T.nilable(String)) }
         attr_reader :format_
@@ -101,6 +104,7 @@ module Autorender
         sig { returns(T.nilable(String)) }
         attr_accessor :path
 
+        # File size in bytes
         sig { returns(T.nilable(Integer)) }
         attr_reader :size
 
@@ -143,7 +147,7 @@ module Autorender
             dimensions: Autorender::FileObject::Data::Dimensions::OrHash,
             extension: String,
             file_no: String,
-            folder: T.nilable(String),
+            folder: T.anything,
             format_: String,
             name: String,
             path: T.nilable(String),
@@ -165,6 +169,7 @@ module Autorender
           format_: nil,
           name: nil,
           path: nil,
+          # File size in bytes
           size: nil,
           uploaded_at: nil,
           uploaded_by: nil,
@@ -182,7 +187,7 @@ module Autorender
               dimensions: Autorender::FileObject::Data::Dimensions,
               extension: String,
               file_no: String,
-              folder: T.nilable(String),
+              folder: T.anything,
               format_: String,
               name: String,
               path: T.nilable(String),

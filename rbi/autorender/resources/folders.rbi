@@ -2,10 +2,8 @@
 
 module Autorender
   module Resources
-    # Manage folder structure
     class Folders
-      # Create a new folder. Optionally nest it under an existing folder by providing
-      # parent_folder_no.
+      # Create a folder under an optional parent.
       sig do
         params(
           name: String,
@@ -16,13 +14,14 @@ module Autorender
       def create(
         # Folder display name
         name:,
-        # Parent folder number; omit for root level
+        # Parent folder number; omit or null for root
         parent_folder_no: nil,
         request_options: {}
       )
       end
 
-      # List folders in the workspace. Omit parent_folder_no to list root-level folders.
+      # List folders under an optional parent. Omit `parent_folder_no` to list
+      # root-level folders.
       sig do
         params(
           parent_folder_no: String,
@@ -30,13 +29,13 @@ module Autorender
         ).returns(Autorender::Models::FolderListResponse)
       end
       def list(
-        # Return only direct children of this folder
+        # Only return direct children of this folder (folder number)
         parent_folder_no: nil,
         request_options: {}
       )
       end
 
-      # Delete a folder by its folder number.
+      # Delete a folder by folder number. No request body required.
       sig do
         params(
           folder_no: String,
@@ -46,7 +45,7 @@ module Autorender
       def delete(folder_no, request_options: {})
       end
 
-      # Rename a folder by its folder number.
+      # Rename a folder by `folder_no`.
       sig do
         params(
           folder_no: String,
@@ -54,12 +53,7 @@ module Autorender
           request_options: Autorender::RequestOptions::OrHash
         ).returns(Autorender::Folder)
       end
-      def rename(
-        folder_no,
-        # New folder name
-        name:,
-        request_options: {}
-      )
+      def rename(folder_no, name:, request_options: {})
       end
 
       # @api private

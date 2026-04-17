@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
   def test_create_required_params
-    response = @autorender.folders.create(name: "name")
+    response = @autorender.folders.create(name: "demo2")
 
     assert_pattern do
       response => Autorender::Models::FolderCreateResponse
@@ -47,7 +47,7 @@ class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
   end
 
   def test_rename_required_params
-    response = @autorender.folders.rename("53855hxPoq", name: "name")
+    response = @autorender.folders.rename("53855hxPoq", name: "demo2")
 
     assert_pattern do
       response => Autorender::Folder
@@ -57,12 +57,14 @@ class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
       response => {
         id: String | nil,
         created_at: Time | nil,
+        created_by: String | nil,
         folder_no: String | nil,
         is_active: Autorender::Internal::Type::Boolean | nil,
         is_delete: Autorender::Internal::Type::Boolean | nil,
         name: String | nil,
         parent_folder: String | nil,
         path: String | nil,
+        source: String | nil,
         updated_at: Time | nil,
         workspace: Autorender::Folder::Workspace | nil,
         workspace_id: String | nil,
