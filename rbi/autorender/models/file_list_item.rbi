@@ -55,10 +55,10 @@ module Autorender
 
       # Thumbnail CDN URL
       sig { returns(T.nilable(String)) }
-      attr_reader :thumbanil
+      attr_reader :thumbnail
 
-      sig { params(thumbanil: String).void }
-      attr_writer :thumbanil
+      sig { params(thumbnail: String).void }
+      attr_writer :thumbnail
 
       sig { returns(T.nilable(String)) }
       attr_reader :url
@@ -85,7 +85,7 @@ module Autorender
           height: T.nilable(Integer),
           name: String,
           path: String,
-          thumbanil: String,
+          thumbnail: String,
           url: String,
           width: T.nilable(Integer),
           workspace_no: String
@@ -101,7 +101,7 @@ module Autorender
         name: nil,
         path: nil,
         # Thumbnail CDN URL
-        thumbanil: nil,
+        thumbnail: nil,
         url: nil,
         width: nil,
         workspace_no: nil
@@ -119,7 +119,7 @@ module Autorender
             height: T.nilable(Integer),
             name: String,
             path: String,
-            thumbanil: String,
+            thumbnail: String,
             url: String,
             width: T.nilable(Integer),
             workspace_no: String
