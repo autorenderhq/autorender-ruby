@@ -1,0 +1,17 @@
+module Autorender
+  module Internal
+    class PagePagination[Elem]
+      include Autorender::Internal::Type::BasePage[Elem]
+
+      attr_accessor data: ::Array[Elem]?
+
+      attr_accessor current_page: Integer
+
+      attr_accessor has_next_page: bool
+
+      attr_accessor total_results: Integer
+
+      def inspect: -> String
+    end
+  end
+end

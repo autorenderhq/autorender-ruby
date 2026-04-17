@@ -1,0 +1,105 @@
+module Autorender
+  module Models
+    type file_list_params =
+      {
+        folder_no: String,
+        limit: Integer,
+        name: String,
+        page: Integer,
+        path: String,
+        sort_field: Autorender::Models::FileListParams::sort_field,
+        sort_order: Autorender::Models::FileListParams::sort_order,
+        tags: String
+      }
+      & Autorender::Internal::Type::request_parameters
+
+    class FileListParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_reader folder_no: String?
+
+      def folder_no=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader sort_field: Autorender::Models::FileListParams::sort_field?
+
+      def sort_field=: (
+        Autorender::Models::FileListParams::sort_field
+      ) -> Autorender::Models::FileListParams::sort_field
+
+      attr_reader sort_order: Autorender::Models::FileListParams::sort_order?
+
+      def sort_order=: (
+        Autorender::Models::FileListParams::sort_order
+      ) -> Autorender::Models::FileListParams::sort_order
+
+      attr_reader tags: String?
+
+      def tags=: (String) -> String
+
+      def initialize: (
+        ?folder_no: String,
+        ?limit: Integer,
+        ?name: String,
+        ?page: Integer,
+        ?path: String,
+        ?sort_field: Autorender::Models::FileListParams::sort_field,
+        ?sort_order: Autorender::Models::FileListParams::sort_order,
+        ?tags: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        folder_no: String,
+        limit: Integer,
+        name: String,
+        page: Integer,
+        path: String,
+        sort_field: Autorender::Models::FileListParams::sort_field,
+        sort_order: Autorender::Models::FileListParams::sort_order,
+        tags: String,
+        request_options: Autorender::RequestOptions
+      }
+
+      type sort_field = :file_size | :name | :created_at | :updated_at
+
+      module SortField
+        extend Autorender::Internal::Type::Enum
+
+        FILE_SIZE: :file_size
+        NAME: :name
+        CREATED_AT: :created_at
+        UPDATED_AT: :updated_at
+
+        def self?.values: -> ::Array[Autorender::Models::FileListParams::sort_field]
+      end
+
+      type sort_order = :asc | :desc
+
+      module SortOrder
+        extend Autorender::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[Autorender::Models::FileListParams::sort_order]
+      end
+    end
+  end
+end

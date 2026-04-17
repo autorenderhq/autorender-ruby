@@ -1,0 +1,26 @@
+module Autorender
+  module Models
+    module Uploads
+      type multipart_upload_part_params =
+        { body: Autorender::Internal::file_input }
+        & Autorender::Internal::Type::request_parameters
+
+      class MultipartUploadPartParams < Autorender::Internal::Type::BaseModel
+        extend Autorender::Internal::Type::RequestParameters::Converter
+        include Autorender::Internal::Type::RequestParameters
+
+        attr_accessor body: Autorender::Internal::file_input
+
+        def initialize: (
+          body: Autorender::Internal::file_input,
+          ?request_options: Autorender::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          body: Autorender::Internal::file_input,
+          request_options: Autorender::RequestOptions
+        }
+      end
+    end
+  end
+end

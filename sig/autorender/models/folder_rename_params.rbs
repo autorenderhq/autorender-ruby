@@ -1,0 +1,28 @@
+module Autorender
+  module Models
+    type folder_rename_params =
+      { folder_no: String, name: String }
+      & Autorender::Internal::Type::request_parameters
+
+    class FolderRenameParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_accessor folder_no: String
+
+      attr_accessor name: String
+
+      def initialize: (
+        folder_no: String,
+        name: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        folder_no: String,
+        name: String,
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end

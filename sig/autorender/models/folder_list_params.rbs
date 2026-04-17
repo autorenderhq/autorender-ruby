@@ -1,0 +1,26 @@
+module Autorender
+  module Models
+    type folder_list_params =
+      { parent_folder_no: String }
+      & Autorender::Internal::Type::request_parameters
+
+    class FolderListParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_reader parent_folder_no: String?
+
+      def parent_folder_no=: (String) -> String
+
+      def initialize: (
+        ?parent_folder_no: String,
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        parent_folder_no: String,
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end

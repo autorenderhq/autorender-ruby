@@ -1,0 +1,3 @@
+module Autorender
+  VERSION: String
+end

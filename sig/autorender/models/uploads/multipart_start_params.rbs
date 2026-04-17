@@ -1,0 +1,80 @@
+module Autorender
+  module Models
+    module Uploads
+      type multipart_start_params =
+        {
+          file_name: String,
+          format_: String,
+          size: Integer,
+          custom_id: String,
+          folder: String,
+          metadata: ::Hash[Symbol, top],
+          random_prefix: bool,
+          tags: ::Array[String],
+          ttl_seconds: Integer
+        }
+        & Autorender::Internal::Type::request_parameters
+
+      class MultipartStartParams < Autorender::Internal::Type::BaseModel
+        extend Autorender::Internal::Type::RequestParameters::Converter
+        include Autorender::Internal::Type::RequestParameters
+
+        attr_accessor file_name: String
+
+        attr_accessor format_: String
+
+        attr_accessor size: Integer
+
+        attr_reader custom_id: String?
+
+        def custom_id=: (String) -> String
+
+        attr_reader folder: String?
+
+        def folder=: (String) -> String
+
+        attr_reader metadata: ::Hash[Symbol, top]?
+
+        def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+        attr_reader random_prefix: bool?
+
+        def random_prefix=: (bool) -> bool
+
+        attr_reader tags: ::Array[String]?
+
+        def tags=: (::Array[String]) -> ::Array[String]
+
+        attr_reader ttl_seconds: Integer?
+
+        def ttl_seconds=: (Integer) -> Integer
+
+        def initialize: (
+          file_name: String,
+          format_: String,
+          size: Integer,
+          ?custom_id: String,
+          ?folder: String,
+          ?metadata: ::Hash[Symbol, top],
+          ?random_prefix: bool,
+          ?tags: ::Array[String],
+          ?ttl_seconds: Integer,
+          ?request_options: Autorender::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          file_name: String,
+          format_: String,
+          size: Integer,
+          custom_id: String,
+          folder: String,
+          metadata: ::Hash[Symbol, top],
+          random_prefix: bool,
+          tags: ::Array[String],
+          ttl_seconds: Integer,
+          request_options: Autorender::RequestOptions
+        }
+      end
+    end
+  end
+end

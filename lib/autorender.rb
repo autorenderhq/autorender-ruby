@@ -1,0 +1,91 @@
+# frozen_string_literal: true
+
+# Standard libraries.
+# rubocop:disable Lint/RedundantRequireStatement
+require "English"
+require "base64"
+require "cgi"
+require "date"
+require "erb"
+require "etc"
+require "json"
+require "net/http"
+require "openssl"
+require "pathname"
+require "rbconfig"
+require "securerandom"
+require "set"
+require "stringio"
+require "time"
+require "uri"
+# rubocop:enable Lint/RedundantRequireStatement
+
+# We already ship the preferred sorbet manifests in the package itself.
+# `tapioca` currently does not offer us a way to opt out of unnecessary compilation.
+if Object.const_defined?(:Tapioca) &&
+   caller.chain([$PROGRAM_NAME]).chain(ARGV).any?(/tapioca/) &&
+   ARGV.none?(/dsl/)
+  return
+end
+
+# Gems.
+require "connection_pool"
+
+# Package files.
+require_relative "autorender/version"
+require_relative "autorender/internal/util"
+require_relative "autorender/internal/type/converter"
+require_relative "autorender/internal/type/unknown"
+require_relative "autorender/internal/type/boolean"
+require_relative "autorender/internal/type/file_input"
+require_relative "autorender/internal/type/enum"
+require_relative "autorender/internal/type/union"
+require_relative "autorender/internal/type/array_of"
+require_relative "autorender/internal/type/hash_of"
+require_relative "autorender/internal/type/base_model"
+require_relative "autorender/internal/type/base_page"
+require_relative "autorender/internal/type/request_parameters"
+require_relative "autorender/internal"
+require_relative "autorender/request_options"
+require_relative "autorender/file_part"
+require_relative "autorender/errors"
+require_relative "autorender/internal/transport/base_client"
+require_relative "autorender/internal/transport/pooled_net_requester"
+require_relative "autorender/client"
+require_relative "autorender/internal/page_pagination"
+require_relative "autorender/models/file_delete_params"
+require_relative "autorender/models/file_delete_response"
+require_relative "autorender/models/file_list_item"
+require_relative "autorender/models/file_list_params"
+require_relative "autorender/models/file_list_response"
+require_relative "autorender/models/file_object"
+require_relative "autorender/models/file_rename_params"
+require_relative "autorender/models/file_rename_response"
+require_relative "autorender/models/file_retrieve_params"
+require_relative "autorender/models/file_update_params"
+require_relative "autorender/models/file_update_response"
+require_relative "autorender/models/folder"
+require_relative "autorender/models/folder_create_params"
+require_relative "autorender/models/folder_create_response"
+require_relative "autorender/models/folder_delete_params"
+require_relative "autorender/models/folder_delete_response"
+require_relative "autorender/models/folder_list_item"
+require_relative "autorender/models/folder_list_params"
+require_relative "autorender/models/folder_list_response"
+require_relative "autorender/models/folder_rename_params"
+require_relative "autorender/models/upload"
+require_relative "autorender/models/upload_create_from_url_params"
+require_relative "autorender/models/upload_create_params"
+require_relative "autorender/models/upload_create_with_token_params"
+require_relative "autorender/models/upload_data"
+require_relative "autorender/models/upload_generate_token_params"
+require_relative "autorender/models/upload_generate_token_response"
+require_relative "autorender/models/uploads/multipart_complete_params"
+require_relative "autorender/models/uploads/multipart_start_params"
+require_relative "autorender/models/uploads/multipart_upload_part_params"
+require_relative "autorender/models/uploads/session"
+require_relative "autorender/models"
+require_relative "autorender/resources/files"
+require_relative "autorender/resources/folders"
+require_relative "autorender/resources/uploads"
+require_relative "autorender/resources/uploads/multipart"
