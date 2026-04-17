@@ -2,16 +2,14 @@
 
 module Autorender
   module Resources
-    # Manage folder structure
     class Folders
-      # Create a new folder. Optionally nest it under an existing folder by providing
-      # parent_folder_no.
+      # Create a folder under an optional parent.
       #
       # @overload create(name:, parent_folder_no: nil, request_options: {})
       #
       # @param name [String] Folder display name
       #
-      # @param parent_folder_no [String] Parent folder number; omit for root level
+      # @param parent_folder_no [String] Parent folder number; omit or null for root
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -29,11 +27,12 @@ module Autorender
         )
       end
 
-      # List folders in the workspace. Omit parent_folder_no to list root-level folders.
+      # List folders under an optional parent. Omit `parent_folder_no` to list
+      # root-level folders.
       #
       # @overload list(parent_folder_no: nil, request_options: {})
       #
-      # @param parent_folder_no [String] Return only direct children of this folder
+      # @param parent_folder_no [String] Only return direct children of this folder (folder number)
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -52,7 +51,7 @@ module Autorender
         )
       end
 
-      # Delete a folder by its folder number.
+      # Delete a folder by folder number. No request body required.
       #
       # @overload delete(folder_no, request_options: {})
       #
@@ -71,14 +70,12 @@ module Autorender
         )
       end
 
-      # Rename a folder by its folder number.
+      # Rename a folder by `folder_no`.
       #
       # @overload rename(folder_no, name:, request_options: {})
       #
       # @param folder_no [String]
-      #
-      # @param name [String] New folder name
-      #
+      # @param name [String]
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Autorender::Models::Folder]

@@ -52,8 +52,8 @@ module Autorender
 
         # @!attribute folder
         #
-        #   @return [String, nil]
-        optional :folder, String, nil?: true
+        #   @return [Object, nil]
+        optional :folder, Autorender::Internal::Type::Unknown
 
         # @!attribute format_
         #
@@ -71,6 +71,7 @@ module Autorender
         optional :path, String, nil?: true
 
         # @!attribute size
+        #   File size in bytes
         #
         #   @return [Integer, nil]
         optional :size, Integer
@@ -97,19 +98,33 @@ module Autorender
 
         # @!method initialize(id: nil, asset_key: nil, asset_url: nil, dimensions: nil, extension: nil, file_no: nil, folder: nil, format_: nil, name: nil, path: nil, size: nil, uploaded_at: nil, uploaded_by: nil, url: nil, workspace: nil)
         #   @param id [String]
+        #
         #   @param asset_key [String]
+        #
         #   @param asset_url [String]
+        #
         #   @param dimensions [Autorender::Models::FileObject::Data::Dimensions]
+        #
         #   @param extension [String]
+        #
         #   @param file_no [String]
-        #   @param folder [String, nil]
+        #
+        #   @param folder [Object]
+        #
         #   @param format_ [String]
+        #
         #   @param name [String]
+        #
         #   @param path [String, nil]
-        #   @param size [Integer]
+        #
+        #   @param size [Integer] File size in bytes
+        #
         #   @param uploaded_at [Time]
+        #
         #   @param uploaded_by [String]
+        #
         #   @param url [String]
+        #
         #   @param workspace [Autorender::Models::FileObject::Data::Workspace]
 
         # @see Autorender::Models::FileObject::Data#dimensions

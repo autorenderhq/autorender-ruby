@@ -14,6 +14,11 @@ module Autorender
       #   @return [Time, nil]
       optional :created_at, Time
 
+      # @!attribute created_by
+      #
+      #   @return [String, nil]
+      optional :created_by, String
+
       # @!attribute folder_no
       #
       #   @return [String, nil]
@@ -44,6 +49,11 @@ module Autorender
       #   @return [String, nil]
       optional :path, String
 
+      # @!attribute source
+      #
+      #   @return [String, nil]
+      optional :source, String
+
       # @!attribute updated_at
       #
       #   @return [Time, nil]
@@ -64,15 +74,17 @@ module Autorender
       #   @return [String, nil]
       optional :workspace_no, String
 
-      # @!method initialize(id: nil, created_at: nil, folder_no: nil, is_active: nil, is_delete: nil, name: nil, parent_folder: nil, path: nil, updated_at: nil, workspace: nil, workspace_id: nil, workspace_no: nil)
+      # @!method initialize(id: nil, created_at: nil, created_by: nil, folder_no: nil, is_active: nil, is_delete: nil, name: nil, parent_folder: nil, path: nil, source: nil, updated_at: nil, workspace: nil, workspace_id: nil, workspace_no: nil)
       #   @param id [String]
       #   @param created_at [Time]
+      #   @param created_by [String]
       #   @param folder_no [String]
       #   @param is_active [Boolean]
       #   @param is_delete [Boolean]
       #   @param name [String]
       #   @param parent_folder [String, nil]
       #   @param path [String]
+      #   @param source [String]
       #   @param updated_at [Time]
       #   @param workspace [Autorender::Models::Folder::Workspace]
       #   @param workspace_id [String]

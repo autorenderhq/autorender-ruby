@@ -10,42 +10,8 @@ module Autorender
         ?random_prefix: String,
         ?tags: String,
         ?transform: String,
-        ?webhook_url: String,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Upload
-
-      def create_from_url: (
-        remote_url: String,
-        ?custom_id: String,
-        ?file_name: String,
-        ?folder: String,
-        ?metadata: String,
-        ?random_prefix: String,
-        ?tags: String,
-        ?transform: String,
-        ?webhook_url: String,
-        ?request_options: Autorender::request_opts
-      ) -> Autorender::Upload
-
-      def create_with_token: (
-        String token,
-        body: Autorender::Internal::file_input,
-        ?request_options: Autorender::request_opts
-      ) -> Autorender::Upload
-
-      def generate_token: (
-        file_name: String,
-        ?allow_override: Autorender::UploadGenerateTokenParams::AllowOverride,
-        ?custom_id: String,
-        ?folder: String,
-        ?max_file_size: Integer,
-        ?metadata: ::Hash[Symbol, top],
-        ?random_prefix: bool,
-        ?tags: ::Array[String],
-        ?transform: String,
-        ?ttl_seconds: Integer,
-        ?request_options: Autorender::request_opts
-      ) -> Autorender::Models::UploadGenerateTokenResponse
 
       def initialize: (client: Autorender::Client) -> void
     end

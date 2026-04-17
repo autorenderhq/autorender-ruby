@@ -63,6 +63,7 @@ module Autorender
         sig { returns(Integer) }
         attr_accessor :page
 
+        # Total matching files
         sig { returns(Integer) }
         attr_accessor :total
 
@@ -75,7 +76,14 @@ module Autorender
             total: Integer
           ).returns(T.attached_class)
         end
-        def self.new(has_next:, has_prev:, limit:, page:, total:)
+        def self.new(
+          has_next:,
+          has_prev:,
+          limit:,
+          page:,
+          # Total matching files
+          total:
+        )
         end
 
         sig do

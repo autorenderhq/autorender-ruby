@@ -13,7 +13,7 @@ module Autorender
       required :file_no, String
 
       # @!attribute name
-      #   New base name; extension is preserved by the server
+      #   New base name; extension may be applied by the server
       #
       #   @return [String]
       required :name, String
@@ -21,7 +21,7 @@ module Autorender
       # @!method initialize(file_no:, name:, request_options: {})
       #   @param file_no [String]
       #
-      #   @param name [String] New base name; extension is preserved by the server
+      #   @param name [String] New base name; extension may be applied by the server
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

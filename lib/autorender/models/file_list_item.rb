@@ -9,6 +9,7 @@ module Autorender
       optional :created_at, Time
 
       # @!attribute extension
+      #   Asset category, e.g. image
       #
       #   @return [String, nil]
       optional :extension, String
@@ -39,15 +40,16 @@ module Autorender
       optional :name, String
 
       # @!attribute path
+      #   Relative path / display path
       #
       #   @return [String, nil]
       optional :path, String
 
-      # @!attribute thumbnail
-      #   Thumbnail CDN URL
+      # @!attribute thumbanil
+      #   Thumbnail CDN URL (field name as returned by the API)
       #
       #   @return [String, nil]
-      optional :thumbnail, String
+      optional :thumbanil, String
 
       # @!attribute url
       #
@@ -64,10 +66,12 @@ module Autorender
       #   @return [String, nil]
       optional :workspace_no, String
 
-      # @!method initialize(created_at: nil, extension: nil, file_no: nil, file_size: nil, format_: nil, height: nil, name: nil, path: nil, thumbnail: nil, url: nil, width: nil, workspace_no: nil)
+      # @!method initialize(created_at: nil, extension: nil, file_no: nil, file_size: nil, format_: nil, height: nil, name: nil, path: nil, thumbanil: nil, url: nil, width: nil, workspace_no: nil)
+      #   File summary row in list responses
+      #
       #   @param created_at [Time]
       #
-      #   @param extension [String]
+      #   @param extension [String] Asset category, e.g. image
       #
       #   @param file_no [String]
       #
@@ -79,9 +83,9 @@ module Autorender
       #
       #   @param name [String]
       #
-      #   @param path [String]
+      #   @param path [String] Relative path / display path
       #
-      #   @param thumbnail [String] Thumbnail CDN URL
+      #   @param thumbanil [String] Thumbnail CDN URL (field name as returned by the API)
       #
       #   @param url [String]
       #

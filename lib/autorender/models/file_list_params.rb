@@ -8,7 +8,7 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute folder_no
-      #   Filter to files in this folder
+      #   Restrict results to files in this folder (folder number)
       #
       #   @return [String, nil]
       optional :folder_no, String
@@ -20,7 +20,7 @@ module Autorender
       optional :limit, Integer
 
       # @!attribute name
-      #   Partial filename match (case-insensitive)
+      #   Filter by filename (partial match, if supported)
       #
       #   @return [String, nil]
       optional :name, String
@@ -32,7 +32,7 @@ module Autorender
       optional :page, Integer
 
       # @!attribute path
-      #   Filter by path prefix (e.g., products/sku123/)
+      #   Filter by path prefix (if supported)
       #
       #   @return [String, nil]
       optional :path, String
@@ -50,27 +50,27 @@ module Autorender
       optional :sort_order, enum: -> { Autorender::FileListParams::SortOrder }
 
       # @!attribute tags
-      #   Comma-separated tags to filter by
+      #   Comma-separated tags (if supported)
       #
       #   @return [String, nil]
       optional :tags, String
 
       # @!method initialize(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort_field: nil, sort_order: nil, tags: nil, request_options: {})
-      #   @param folder_no [String] Filter to files in this folder
+      #   @param folder_no [String] Restrict results to files in this folder (folder number)
       #
       #   @param limit [Integer] Items per page
       #
-      #   @param name [String] Partial filename match (case-insensitive)
+      #   @param name [String] Filter by filename (partial match, if supported)
       #
       #   @param page [Integer] Page number (1-based)
       #
-      #   @param path [String] Filter by path prefix (e.g., products/sku123/)
+      #   @param path [String] Filter by path prefix (if supported)
       #
       #   @param sort_field [Symbol, Autorender::Models::FileListParams::SortField] Field to sort by
       #
       #   @param sort_order [Symbol, Autorender::Models::FileListParams::SortOrder] Sort direction
       #
-      #   @param tags [String] Comma-separated tags to filter by
+      #   @param tags [String] Comma-separated tags (if supported)
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
 

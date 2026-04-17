@@ -11,7 +11,7 @@ module Autorender
           T.any(Autorender::FolderListParams, Autorender::Internal::AnyHash)
         end
 
-      # Return only direct children of this folder
+      # Only return direct children of this folder (folder number)
       sig { returns(T.nilable(String)) }
       attr_reader :parent_folder_no
 
@@ -25,7 +25,7 @@ module Autorender
         ).returns(T.attached_class)
       end
       def self.new(
-        # Return only direct children of this folder
+        # Only return direct children of this folder (folder number)
         parent_folder_no: nil,
         request_options: {}
       )

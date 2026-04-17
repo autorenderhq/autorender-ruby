@@ -16,25 +16,25 @@ module Autorender
       optional :file_no, String
 
       # @!attribute file_size
-      #   File size in bytes
+      #   File size in bytes (after processing)
       #
       #   @return [Integer, nil]
       optional :file_size, Integer
 
       # @!attribute format_
-      #   File format (e.g., jpeg, png, mp4)
+      #   File format/extension (e.g., jpg, png, webp)
       #
       #   @return [String, nil]
       optional :format_, String, api_name: :format
 
       # @!attribute height
-      #   Image height in pixels
+      #   Image height in pixels (null for non-image files)
       #
       #   @return [Integer, nil]
       optional :height, Integer, nil?: true
 
       # @!attribute name
-      #   Final filename
+      #   Final filename (may include random suffix if requested)
       #
       #   @return [String, nil]
       optional :name, String
@@ -46,13 +46,13 @@ module Autorender
       optional :path, String
 
       # @!attribute url
-      #   CDN URL to access the file
+      #   Full CDN URL to access the uploaded file
       #
       #   @return [String, nil]
       optional :url, String
 
       # @!attribute width
-      #   Image width in pixels
+      #   Image width in pixels (null for non-image files)
       #
       #   @return [Integer, nil]
       optional :width, Integer, nil?: true
@@ -68,19 +68,19 @@ module Autorender
       #
       #   @param file_no [String] 10-character file number identifier
       #
-      #   @param file_size [Integer] File size in bytes
+      #   @param file_size [Integer] File size in bytes (after processing)
       #
-      #   @param format_ [String] File format (e.g., jpeg, png, mp4)
+      #   @param format_ [String] File format/extension (e.g., jpg, png, webp)
       #
-      #   @param height [Integer, nil] Image height in pixels
+      #   @param height [Integer, nil] Image height in pixels (null for non-image files)
       #
-      #   @param name [String] Final filename
+      #   @param name [String] Final filename (may include random suffix if requested)
       #
       #   @param path [String] Folder path where the file is stored
       #
-      #   @param url [String] CDN URL to access the file
+      #   @param url [String] Full CDN URL to access the uploaded file
       #
-      #   @param width [Integer, nil] Image width in pixels
+      #   @param width [Integer, nil] Image width in pixels (null for non-image files)
       #
       #   @param workspace_no [String] Workspace identifier
     end

@@ -14,7 +14,7 @@ module Autorender
       sig { returns(String) }
       attr_accessor :file_no
 
-      # New base name; extension is preserved by the server
+      # New base name; extension may be applied by the server
       sig { returns(String) }
       attr_accessor :name
 
@@ -27,7 +27,7 @@ module Autorender
       end
       def self.new(
         file_no:,
-        # New base name; extension is preserved by the server
+        # New base name; extension may be applied by the server
         name:,
         request_options: {}
       )

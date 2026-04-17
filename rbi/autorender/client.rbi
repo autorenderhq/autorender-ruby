@@ -13,15 +13,12 @@ module Autorender
     sig { returns(T.nilable(String)) }
     attr_reader :api_key
 
-    # Upload files to your workspace
     sig { returns(Autorender::Resources::Uploads) }
     attr_reader :uploads
 
-    # Manage files in your workspace
     sig { returns(Autorender::Resources::Files) }
     attr_reader :files
 
-    # Manage folder structure
     sig { returns(Autorender::Resources::Folders) }
     attr_reader :folders
 
