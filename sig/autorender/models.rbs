@@ -25,6 +25,8 @@ module Autorender
 
   class Upload = Autorender::Models::Upload
 
+  class UploadCreateFromURLParams = Autorender::Models::UploadCreateFromURLParams
+
   class UploadCreateParams = Autorender::Models::UploadCreateParams
 
   class UploadData = Autorender::Models::UploadData

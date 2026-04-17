@@ -39,6 +39,41 @@ module Autorender
       )
       end
 
+      # Fetch a file from a remote URL and store it in your AutoRender workspace.
+      sig do
+        params(
+          remote_url: String,
+          custom_id: String,
+          folder: String,
+          metadata: String,
+          random_prefix: String,
+          tags: String,
+          transform: String,
+          webhook_url: String,
+          request_options: Autorender::RequestOptions::OrHash
+        ).returns(Autorender::Upload)
+      end
+      def create_from_url(
+        # The HTTP or HTTPS URL of the image to download
+        remote_url:,
+        # Custom identifier for tracking the upload
+        custom_id: nil,
+        # Folder path where the file should be stored
+        folder: nil,
+        # JSON string containing custom metadata object
+        metadata: nil,
+        # Set to 'true' to generate a random suffix for the filename
+        random_prefix: nil,
+        # Comma-separated list of tags to apply to the file
+        tags: nil,
+        # Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
+        transform: nil,
+        # URL to receive webhook notification when upload completes
+        webhook_url: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Autorender::Client).returns(T.attached_class) }
       def self.new(client:)

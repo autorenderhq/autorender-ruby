@@ -13,6 +13,18 @@ module Autorender
         ?request_options: Autorender::request_opts
       ) -> Autorender::Upload
 
+      def create_from_url: (
+        remote_url: String,
+        ?custom_id: String,
+        ?folder: String,
+        ?metadata: String,
+        ?random_prefix: String,
+        ?tags: String,
+        ?transform: String,
+        ?webhook_url: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Upload
+
       def initialize: (client: Autorender::Client) -> void
     end
   end
