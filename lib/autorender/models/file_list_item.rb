@@ -43,11 +43,11 @@ module Autorender
       #   @return [String, nil]
       optional :path, String
 
-      # @!attribute thumbanil
+      # @!attribute thumbnail
       #   Thumbnail CDN URL
       #
       #   @return [String, nil]
-      optional :thumbanil, String
+      optional :thumbnail, String
 
       # @!attribute url
       #
@@ -64,7 +64,7 @@ module Autorender
       #   @return [String, nil]
       optional :workspace_no, String
 
-      # @!method initialize(created_at: nil, extension: nil, file_no: nil, file_size: nil, format_: nil, height: nil, name: nil, path: nil, thumbanil: nil, url: nil, width: nil, workspace_no: nil)
+      # @!method initialize(created_at: nil, extension: nil, file_no: nil, file_size: nil, format_: nil, height: nil, name: nil, path: nil, thumbnail: nil, url: nil, width: nil, workspace_no: nil)
       #   @param created_at [Time]
       #
       #   @param extension [String]
@@ -81,7 +81,7 @@ module Autorender
       #
       #   @param path [String]
       #
-      #   @param thumbanil [String] Thumbnail CDN URL
+      #   @param thumbnail [String] Thumbnail CDN URL
       #
       #   @param url [String]
       #

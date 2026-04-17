@@ -10,7 +10,7 @@ module Autorender
         height: Integer?,
         name: String,
         path: String,
-        thumbanil: String,
+        thumbnail: String,
         url: String,
         width: Integer?,
         workspace_no: String
@@ -47,9 +47,9 @@ module Autorender
 
       def path=: (String) -> String
 
-      attr_reader thumbanil: String?
+      attr_reader thumbnail: String?
 
-      def thumbanil=: (String) -> String
+      def thumbnail=: (String) -> String
 
       attr_reader url: String?
 
@@ -70,7 +70,7 @@ module Autorender
         ?height: Integer?,
         ?name: String,
         ?path: String,
-        ?thumbanil: String,
+        ?thumbnail: String,
         ?url: String,
         ?width: Integer?,
         ?workspace_no: String
@@ -85,7 +85,7 @@ module Autorender
         height: Integer?,
         name: String,
         path: String,
-        thumbanil: String,
+        thumbnail: String,
         url: String,
         width: Integer?,
         workspace_no: String
