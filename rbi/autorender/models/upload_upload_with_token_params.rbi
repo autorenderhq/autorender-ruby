@@ -19,19 +19,19 @@ module Autorender
 
       # Raw file bytes. Accepts any file type (images, documents, videos, etc.).
       sig { returns(Autorender::Internal::FileInput) }
-      attr_accessor :body
+      attr_accessor :file
 
       sig do
         params(
           token: String,
-          body: Autorender::Internal::FileInput,
+          file: Autorender::Internal::FileInput,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         token:,
         # Raw file bytes. Accepts any file type (images, documents, videos, etc.).
-        body:,
+        file:,
         request_options: {}
       )
       end
@@ -40,7 +40,7 @@ module Autorender
         override.returns(
           {
             token: String,
-            body: Autorender::Internal::FileInput,
+            file: Autorender::Internal::FileInput,
             request_options: Autorender::RequestOptions
           }
         )

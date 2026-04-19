@@ -121,11 +121,11 @@ module Autorender
       # Upload a file directly from the browser using a token from /generate-token. Send
       # the raw file as binary in the request body.
       #
-      # @overload upload_with_token(token, body:, request_options: {})
+      # @overload upload_with_token(token, file:, request_options: {})
       #
       # @param token [String]
       #
-      # @param body [Pathname, StringIO, IO, String, Autorender::FilePart] Raw file bytes. Accepts any file type (images, documents, videos, etc.).
+      # @param file [Pathname, StringIO, IO, String, Autorender::FilePart] Raw file bytes. Accepts any file type (images, documents, videos, etc.).
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -138,7 +138,7 @@ module Autorender
           method: :post,
           path: ["api/v1/uploads/%1$s", token],
           headers: {"content-type" => "application/octet-stream"},
-          body: parsed[:body],
+          body: parsed[:file],
           model: Autorender::Models::UploadUploadWithTokenResponse,
           options: options
         )

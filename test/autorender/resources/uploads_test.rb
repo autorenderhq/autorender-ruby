@@ -89,7 +89,7 @@ class Autorender::Test::Resources::UploadsTest < Autorender::Test::ResourceTest
   end
 
   def test_upload_with_token_required_params
-    response = @autorender.uploads.upload_with_token("token", body: StringIO.new("Example data"))
+    response = @autorender.uploads.upload_with_token("token", file: StringIO.new("Example data"))
 
     assert_pattern do
       response => Autorender::Models::UploadUploadWithTokenResponse

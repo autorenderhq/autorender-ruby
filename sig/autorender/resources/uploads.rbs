@@ -41,7 +41,7 @@ module Autorender
 
       def upload_with_token: (
         String token,
-        body: Autorender::Internal::file_input,
+        file: Autorender::Internal::file_input,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::UploadUploadWithTokenResponse
 

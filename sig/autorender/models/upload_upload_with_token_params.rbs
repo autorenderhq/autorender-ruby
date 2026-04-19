@@ -1,7 +1,7 @@
 module Autorender
   module Models
     type upload_upload_with_token_params =
-      { token: String, body: Autorender::Internal::file_input }
+      { token: String, file: Autorender::Internal::file_input }
       & Autorender::Internal::Type::request_parameters
 
     class UploadUploadWithTokenParams < Autorender::Internal::Type::BaseModel
@@ -10,17 +10,17 @@ module Autorender
 
       attr_accessor token: String
 
-      attr_accessor body: Autorender::Internal::file_input
+      attr_accessor file: Autorender::Internal::file_input
 
       def initialize: (
         token: String,
-        body: Autorender::Internal::file_input,
+        file: Autorender::Internal::file_input,
         ?request_options: Autorender::request_opts
       ) -> void
 
       def to_hash: -> {
         token: String,
-        body: Autorender::Internal::file_input,
+        file: Autorender::Internal::file_input,
         request_options: Autorender::RequestOptions
       }
     end
