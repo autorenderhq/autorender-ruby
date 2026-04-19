@@ -79,6 +79,71 @@ module Autorender
         )
       end
 
+      # Generate a short-lived token for direct browser uploads. No file is created at
+      # this stage.
+      #
+      # @overload generate_token(file_name:, allow_override: nil, custom_id: nil, folder: nil, max_file_size: nil, metadata: nil, random_prefix: nil, tags: nil, ttl_seconds: nil, request_options: {})
+      #
+      # @param file_name [String] File name for the uploaded file (e.g., avatar.jpg)
+      #
+      # @param allow_override [Autorender::Models::UploadGenerateTokenParams::AllowOverride]
+      #
+      # @param custom_id [String]
+      #
+      # @param folder [String] Destination folder path
+      #
+      # @param max_file_size [Integer] Max file size in bytes
+      #
+      # @param metadata [Hash{Symbol=>Object}]
+      #
+      # @param random_prefix [Boolean]
+      #
+      # @param tags [Array<String>]
+      #
+      # @param ttl_seconds [Integer] Token lifetime in seconds. Defaults to 300.
+      #
+      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Autorender::Models::UploadGenerateTokenResponse]
+      #
+      # @see Autorender::Models::UploadGenerateTokenParams
+      def generate_token(params)
+        parsed, options = Autorender::UploadGenerateTokenParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "api/v1/generate-token",
+          body: parsed,
+          model: Autorender::Models::UploadGenerateTokenResponse,
+          options: options
+        )
+      end
+
+      # Upload a file directly from the browser using a token from /generate-token. Send
+      # the raw file as binary in the request body.
+      #
+      # @overload upload_with_token(token, body:, request_options: {})
+      #
+      # @param token [String]
+      #
+      # @param body [Pathname, StringIO, IO, String, Autorender::FilePart] Raw file bytes. Accepts any file type (images, documents, videos, etc.).
+      #
+      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Autorender::Models::UploadUploadWithTokenResponse]
+      #
+      # @see Autorender::Models::UploadUploadWithTokenParams
+      def upload_with_token(token, params)
+        parsed, options = Autorender::UploadUploadWithTokenParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["api/v1/uploads/%1$s", token],
+          headers: {"content-type" => "application/octet-stream"},
+          body: parsed[:body],
+          model: Autorender::Models::UploadUploadWithTokenResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Autorender::Client]

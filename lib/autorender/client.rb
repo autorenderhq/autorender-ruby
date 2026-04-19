@@ -30,6 +30,13 @@ module Autorender
     # @return [Autorender::Resources::Folders]
     attr_reader :folders
 
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def auth_headers
+      {"x-api-key" => @api_key}
+    end
+
     # Creates and returns a new client for interacting with the API.
     #
     # @param api_key [String, nil] Defaults to `ENV["AUTORENDER_API_KEY"]`

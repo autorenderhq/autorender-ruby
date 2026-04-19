@@ -1,0 +1,47 @@
+module Autorender
+  module Models
+    type file_update_params =
+      {
+        file_no: String,
+        add_tags: ::Array[String],
+        metadata: ::Hash[Symbol, top],
+        remove_tags: ::Array[String]
+      }
+      & Autorender::Internal::Type::request_parameters
+
+    class FileUpdateParams < Autorender::Internal::Type::BaseModel
+      extend Autorender::Internal::Type::RequestParameters::Converter
+      include Autorender::Internal::Type::RequestParameters
+
+      attr_accessor file_no: String
+
+      attr_reader add_tags: ::Array[String]?
+
+      def add_tags=: (::Array[String]) -> ::Array[String]
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader remove_tags: ::Array[String]?
+
+      def remove_tags=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        file_no: String,
+        ?add_tags: ::Array[String],
+        ?metadata: ::Hash[Symbol, top],
+        ?remove_tags: ::Array[String],
+        ?request_options: Autorender::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_no: String,
+        add_tags: ::Array[String],
+        metadata: ::Hash[Symbol, top],
+        remove_tags: ::Array[String],
+        request_options: Autorender::RequestOptions
+      }
+    end
+  end
+end

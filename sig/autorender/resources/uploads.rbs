@@ -26,6 +26,25 @@ module Autorender
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::UploadCreateFromURLResponse
 
+      def generate_token: (
+        file_name: String,
+        ?allow_override: Autorender::UploadGenerateTokenParams::AllowOverride,
+        ?custom_id: String,
+        ?folder: String,
+        ?max_file_size: Integer,
+        ?metadata: ::Hash[Symbol, top],
+        ?random_prefix: bool,
+        ?tags: ::Array[String],
+        ?ttl_seconds: Integer,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::UploadGenerateTokenResponse
+
+      def upload_with_token: (
+        String token,
+        body: Autorender::Internal::file_input,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::UploadUploadWithTokenResponse
+
       def initialize: (client: Autorender::Client) -> void
     end
   end

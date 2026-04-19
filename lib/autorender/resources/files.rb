@@ -23,6 +23,34 @@ module Autorender
         )
       end
 
+      # Update file tags/metadata
+      #
+      # @overload update(file_no, add_tags: nil, metadata: nil, remove_tags: nil, request_options: {})
+      #
+      # @param file_no [String]
+      #
+      # @param add_tags [Array<String>] Tags to add to the existing set
+      #
+      # @param metadata [Hash{Symbol=>Object}] Metadata to merge into existing metadata
+      #
+      # @param remove_tags [Array<String>] Tags to remove from the existing set
+      #
+      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Autorender::Models::FileUpdateResponse]
+      #
+      # @see Autorender::Models::FileUpdateParams
+      def update(file_no, params = {})
+        parsed, options = Autorender::FileUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["api/v1/files/%1$s", file_no],
+          body: parsed,
+          model: Autorender::Models::FileUpdateResponse,
+          options: options
+        )
+      end
+
       # List/search files with pagination, filtering, and sorting.
       #
       # @overload list(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort: nil, tags: nil, request_options: {})
