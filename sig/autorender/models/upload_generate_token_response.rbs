@@ -1,0 +1,93 @@
+module Autorender
+  module Models
+    type upload_generate_token_response =
+      {
+        token: String,
+        expire_at: Integer,
+        policy: Autorender::Models::UploadGenerateTokenResponse::Policy,
+        public_key: String,
+        signature: String,
+        workspace_id: String
+      }
+
+    class UploadGenerateTokenResponse < Autorender::Internal::Type::BaseModel
+      attr_accessor token: String
+
+      attr_accessor expire_at: Integer
+
+      attr_accessor policy: Autorender::Models::UploadGenerateTokenResponse::Policy
+
+      attr_accessor public_key: String
+
+      attr_accessor signature: String
+
+      attr_accessor workspace_id: String
+
+      def initialize: (
+        token: String,
+        expire_at: Integer,
+        policy: Autorender::Models::UploadGenerateTokenResponse::Policy,
+        public_key: String,
+        signature: String,
+        workspace_id: String
+      ) -> void
+
+      def to_hash: -> {
+        token: String,
+        expire_at: Integer,
+        policy: Autorender::Models::UploadGenerateTokenResponse::Policy,
+        public_key: String,
+        signature: String,
+        workspace_id: String
+      }
+
+      type policy =
+        {
+          allow_override: Autorender::Models::UploadGenerateTokenResponse::Policy::AllowOverride,
+          folder: String,
+          max_file_size: Integer,
+          tags: ::Array[String]
+        }
+
+      class Policy < Autorender::Internal::Type::BaseModel
+        attr_accessor allow_override: Autorender::Models::UploadGenerateTokenResponse::Policy::AllowOverride
+
+        attr_accessor folder: String
+
+        attr_accessor max_file_size: Integer
+
+        attr_accessor tags: ::Array[String]
+
+        def initialize: (
+          allow_override: Autorender::Models::UploadGenerateTokenResponse::Policy::AllowOverride,
+          folder: String,
+          max_file_size: Integer,
+          tags: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          allow_override: Autorender::Models::UploadGenerateTokenResponse::Policy::AllowOverride,
+          folder: String,
+          max_file_size: Integer,
+          tags: ::Array[String]
+        }
+
+        type allow_override = { folder: bool, tags: bool }
+
+        class AllowOverride < Autorender::Internal::Type::BaseModel
+          attr_reader folder: bool?
+
+          def folder=: (bool) -> bool
+
+          attr_reader tags: bool?
+
+          def tags=: (bool) -> bool
+
+          def initialize: (?folder: bool, ?tags: bool) -> void
+
+          def to_hash: -> { folder: bool, tags: bool }
+        end
+      end
+    end
+  end
+end

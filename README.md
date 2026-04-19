@@ -28,9 +28,11 @@ gem "autorender", "~> 0.0.1"
 require "bundler/setup"
 require "autorender"
 
-autorender = Autorender::Client.new
+autorender = Autorender::Client.new(
+  api_key: ENV["AUTORENDER_API_KEY"] # This is the default and can be omitted
+)
 
-upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
+upload = autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
 
 puts(upload.id)
 ```
@@ -207,17 +209,17 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
+autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
+autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
 
 # You can also splat a full Params class:
-params = Autorender::UploadCreateParams.new(file: StringIO.new("Example data"), file_name: "product.jpg")
+params = Autorender::UploadCreateParams.new(file: StringIO.new("<binary>"), file_name: "photo.jpg")
 autorender.uploads.create(**params)
 ```
 

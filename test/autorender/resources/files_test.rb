@@ -18,6 +18,21 @@ class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
     end
   end
 
+  def test_update
+    response = @autorender.files.update("fileNo")
+
+    assert_pattern do
+      response => Autorender::Models::FileUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Autorender::Models::FileUpdateResponse::Data,
+        success: Autorender::Models::FileUpdateResponse::Success
+      }
+    end
+  end
+
   def test_list
     response = @autorender.files.list
 

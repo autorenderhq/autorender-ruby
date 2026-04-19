@@ -14,6 +14,28 @@ module Autorender
       def retrieve(file_no, request_options: {})
       end
 
+      # Update file tags/metadata
+      sig do
+        params(
+          file_no: String,
+          add_tags: T::Array[String],
+          metadata: T::Hash[Symbol, T.anything],
+          remove_tags: T::Array[String],
+          request_options: Autorender::RequestOptions::OrHash
+        ).returns(Autorender::Models::FileUpdateResponse)
+      end
+      def update(
+        file_no,
+        # Tags to add to the existing set
+        add_tags: nil,
+        # Metadata to merge into existing metadata
+        metadata: nil,
+        # Tags to remove from the existing set
+        remove_tags: nil,
+        request_options: {}
+      )
+      end
+
       # List/search files with pagination, filtering, and sorting.
       sig do
         params(
