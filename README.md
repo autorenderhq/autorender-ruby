@@ -65,7 +65,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
+  upload = autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
 rescue Autorender::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -109,8 +109,8 @@ autorender = Autorender::Client.new(
 
 # Or, configure per-request:
 autorender.uploads.create(
-  file: StringIO.new("Example data"),
-  file_name: "product.jpg",
+  file: StringIO.new("<binary>"),
+  file_name: "photo.jpg",
   request_options: {max_retries: 5}
 )
 ```
@@ -127,8 +127,8 @@ autorender = Autorender::Client.new(
 
 # Or, configure per-request:
 autorender.uploads.create(
-  file: StringIO.new("Example data"),
-  file_name: "product.jpg",
+  file: StringIO.new("<binary>"),
+  file_name: "photo.jpg",
   request_options: {timeout: 5}
 )
 ```
@@ -162,8 +162,8 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 upload =
   autorender.uploads.create(
-    file: StringIO.new("Example data"),
-    file_name: "product.jpg",
+    file: StringIO.new("<binary>"),
+    file_name: "photo.jpg",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},

@@ -12,16 +12,16 @@ module Autorender
       #   @return [String]
       required :token, String
 
-      # @!attribute body
+      # @!attribute file
       #   Raw file bytes. Accepts any file type (images, documents, videos, etc.).
       #
       #   @return [Pathname, StringIO, IO, String, Autorender::FilePart]
-      required :body, Autorender::Internal::Type::FileInput
+      required :file, Autorender::Internal::Type::FileInput
 
-      # @!method initialize(token:, body:, request_options: {})
+      # @!method initialize(token:, file:, request_options: {})
       #   @param token [String]
       #
-      #   @param body [Pathname, StringIO, IO, String, Autorender::FilePart] Raw file bytes. Accepts any file type (images, documents, videos, etc.).
+      #   @param file [Pathname, StringIO, IO, String, Autorender::FilePart] Raw file bytes. Accepts any file type (images, documents, videos, etc.).
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

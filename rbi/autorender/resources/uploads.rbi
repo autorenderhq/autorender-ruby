@@ -115,14 +115,14 @@ module Autorender
       sig do
         params(
           token: String,
-          body: Autorender::Internal::FileInput,
+          file: Autorender::Internal::FileInput,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(Autorender::Models::UploadUploadWithTokenResponse)
       end
       def upload_with_token(
         token,
         # Raw file bytes. Accepts any file type (images, documents, videos, etc.).
-        body:,
+        file:,
         request_options: {}
       )
       end
