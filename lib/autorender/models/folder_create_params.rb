@@ -7,22 +7,22 @@ module Autorender
       extend Autorender::Internal::Type::RequestParameters::Converter
       include Autorender::Internal::Type::RequestParameters
 
-      # @!attribute name
-      #   Folder display name
+      # @!attribute folder_name
+      #   Folder name without slashes
       #
       #   @return [String]
-      required :name, String
+      required :folder_name, String
 
-      # @!attribute parent_folder_no
-      #   Parent folder number; omit or null for root
+      # @!attribute path
+      #   Optional parent path, e.g. products/sku123
       #
       #   @return [String, nil]
-      optional :parent_folder_no, String
+      optional :path, String
 
-      # @!method initialize(name:, parent_folder_no: nil, request_options: {})
-      #   @param name [String] Folder display name
+      # @!method initialize(folder_name:, path: nil, request_options: {})
+      #   @param folder_name [String] Folder name without slashes
       #
-      #   @param parent_folder_no [String] Parent folder number; omit or null for root
+      #   @param path [String] Optional parent path, e.g. products/sku123
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

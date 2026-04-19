@@ -2,58 +2,49 @@
 
 module Autorender
   module Resources
+    # Folder management endpoints (API key required)
     class Folders
-      # Create a folder under an optional parent.
+      # Create folder
       sig do
         params(
-          name: String,
-          parent_folder_no: String,
+          folder_name: String,
+          path: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(Autorender::Models::FolderCreateResponse)
       end
       def create(
-        # Folder display name
-        name:,
-        # Parent folder number; omit or null for root
-        parent_folder_no: nil,
+        # Folder name without slashes
+        folder_name:,
+        # Optional parent path, e.g. products/sku123
+        path: nil,
         request_options: {}
       )
       end
 
-      # List folders under an optional parent. Omit `parent_folder_no` to list
-      # root-level folders.
-      sig do
-        params(
-          parent_folder_no: String,
-          request_options: Autorender::RequestOptions::OrHash
-        ).returns(Autorender::Models::FolderListResponse)
-      end
-      def list(
-        # Only return direct children of this folder (folder number)
-        parent_folder_no: nil,
-        request_options: {}
-      )
-      end
-
-      # Delete a folder by folder number. No request body required.
+      # Delete folder
       sig do
         params(
           folder_no: String,
           request_options: Autorender::RequestOptions::OrHash
-        ).returns(Autorender::Models::FolderDeleteResponse)
+        ).void
       end
       def delete(folder_no, request_options: {})
       end
 
-      # Rename a folder by `folder_no`.
+      # Rename folder
       sig do
         params(
           folder_no: String,
           name: String,
           request_options: Autorender::RequestOptions::OrHash
-        ).returns(Autorender::Folder)
+        ).returns(Autorender::Models::FolderRenameResponse)
       end
-      def rename(folder_no, name:, request_options: {})
+      def rename(
+        folder_no,
+        # New folder name without slashes
+        name:,
+        request_options: {}
+      )
       end
 
       # @api private

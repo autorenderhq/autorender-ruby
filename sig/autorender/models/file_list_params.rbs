@@ -7,8 +7,7 @@ module Autorender
         name: String,
         page: Integer,
         path: String,
-        sort_field: Autorender::Models::FileListParams::sort_field,
-        sort_order: Autorender::Models::FileListParams::sort_order,
+        sort: Autorender::Models::FileListParams::sort,
         tags: String
       }
       & Autorender::Internal::Type::request_parameters
@@ -37,17 +36,11 @@ module Autorender
 
       def path=: (String) -> String
 
-      attr_reader sort_field: Autorender::Models::FileListParams::sort_field?
+      attr_reader sort: Autorender::Models::FileListParams::sort?
 
-      def sort_field=: (
-        Autorender::Models::FileListParams::sort_field
-      ) -> Autorender::Models::FileListParams::sort_field
-
-      attr_reader sort_order: Autorender::Models::FileListParams::sort_order?
-
-      def sort_order=: (
-        Autorender::Models::FileListParams::sort_order
-      ) -> Autorender::Models::FileListParams::sort_order
+      def sort=: (
+        Autorender::Models::FileListParams::sort
+      ) -> Autorender::Models::FileListParams::sort
 
       attr_reader tags: String?
 
@@ -59,8 +52,7 @@ module Autorender
         ?name: String,
         ?page: Integer,
         ?path: String,
-        ?sort_field: Autorender::Models::FileListParams::sort_field,
-        ?sort_order: Autorender::Models::FileListParams::sort_order,
+        ?sort: Autorender::Models::FileListParams::sort,
         ?tags: String,
         ?request_options: Autorender::request_opts
       ) -> void
@@ -71,34 +63,22 @@ module Autorender
         name: String,
         page: Integer,
         path: String,
-        sort_field: Autorender::Models::FileListParams::sort_field,
-        sort_order: Autorender::Models::FileListParams::sort_order,
+        sort: Autorender::Models::FileListParams::sort,
         tags: String,
         request_options: Autorender::RequestOptions
       }
 
-      type sort_field = :file_size | :name | :created_at | :updated_at
+      type sort = :created_at_asc | :created_at_desc | :size_asc | :size_desc
 
-      module SortField
+      module Sort
         extend Autorender::Internal::Type::Enum
 
-        FILE_SIZE: :file_size
-        NAME: :name
-        CREATED_AT: :created_at
-        UPDATED_AT: :updated_at
+        CREATED_AT_ASC: :created_at_asc
+        CREATED_AT_DESC: :created_at_desc
+        SIZE_ASC: :size_asc
+        SIZE_DESC: :size_desc
 
-        def self?.values: -> ::Array[Autorender::Models::FileListParams::sort_field]
-      end
-
-      type sort_order = :asc | :desc
-
-      module SortOrder
-        extend Autorender::Internal::Type::Enum
-
-        ASC: :asc
-        DESC: :desc
-
-        def self?.values: -> ::Array[Autorender::Models::FileListParams::sort_order]
+        def self?.values: -> ::Array[Autorender::Models::FileListParams::sort]
       end
     end
   end

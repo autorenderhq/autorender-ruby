@@ -30,10 +30,10 @@ class AutorenderTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
 
     assert_requested(:any, /./, times: 3)
@@ -42,10 +42,10 @@ class AutorenderTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    autorender = Autorender::Client.new(base_url: "http://localhost", max_retries: 3)
 
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
 
     assert_requested(:any, /./, times: 4)
@@ -54,12 +54,12 @@ class AutorenderTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::InternalServerError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {max_retries: 3}
       )
     end
@@ -70,12 +70,12 @@ class AutorenderTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    autorender = Autorender::Client.new(base_url: "http://localhost", max_retries: 3)
 
     assert_raises(Autorender::Errors::InternalServerError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {max_retries: 4}
       )
     end
@@ -90,10 +90,10 @@ class AutorenderTest < Minitest::Test
       body: {}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    autorender = Autorender::Client.new(base_url: "http://localhost", max_retries: 1)
 
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -109,11 +109,11 @@ class AutorenderTest < Minitest::Test
       body: {}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    autorender = Autorender::Client.new(base_url: "http://localhost", max_retries: 1)
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
     Thread.current.thread_variable_set(:time_now, nil)
 
@@ -128,10 +128,10 @@ class AutorenderTest < Minitest::Test
       body: {}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    autorender = Autorender::Client.new(base_url: "http://localhost", max_retries: 1)
 
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -141,10 +141,10 @@ class AutorenderTest < Minitest::Test
   def test_retry_count_header
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::InternalServerError) do
-      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+      autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
     end
 
     3.times do
@@ -155,12 +155,12 @@ class AutorenderTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::InternalServerError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
     end
@@ -173,12 +173,12 @@ class AutorenderTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 500, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::InternalServerError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
     end
@@ -197,12 +197,12 @@ class AutorenderTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::APIConnectionError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {}}
       )
     end
@@ -230,12 +230,12 @@ class AutorenderTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::APIConnectionError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {}}
       )
     end
@@ -258,12 +258,12 @@ class AutorenderTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::APIConnectionError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -289,12 +289,12 @@ class AutorenderTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
     assert_raises(Autorender::Errors::APIConnectionError) do
       autorender.uploads.create(
         file: StringIO.new("Example data"),
-        file_name: "file_name",
+        file_name: "product.jpg",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -308,9 +308,9 @@ class AutorenderTest < Minitest::Test
   def test_default_headers
     stub_request(:post, "http://localhost/api/v1/uploads").to_return_json(status: 200, body: {})
 
-    autorender = Autorender::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    autorender = Autorender::Client.new(base_url: "http://localhost")
 
-    autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+    autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

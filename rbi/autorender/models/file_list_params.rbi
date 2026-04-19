@@ -11,64 +11,46 @@ module Autorender
           T.any(Autorender::FileListParams, Autorender::Internal::AnyHash)
         end
 
-      # Restrict results to files in this folder (folder number)
+      # Exact folder number
       sig { returns(T.nilable(String)) }
       attr_reader :folder_no
 
       sig { params(folder_no: String).void }
       attr_writer :folder_no
 
-      # Items per page
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
 
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      # Filter by filename (partial match, if supported)
+      # Partial name match (case-insensitive)
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
       sig { params(name: String).void }
       attr_writer :name
 
-      # Page number (1-based)
       sig { returns(T.nilable(Integer)) }
       attr_reader :page
 
       sig { params(page: Integer).void }
       attr_writer :page
 
-      # Filter by path prefix (if supported)
+      # Folder prefix (e.g. products/sku123/)
       sig { returns(T.nilable(String)) }
       attr_reader :path
 
       sig { params(path: String).void }
       attr_writer :path
 
-      # Field to sort by
-      sig do
-        returns(T.nilable(Autorender::FileListParams::SortField::OrSymbol))
-      end
-      attr_reader :sort_field
+      sig { returns(T.nilable(Autorender::FileListParams::Sort::OrSymbol)) }
+      attr_reader :sort
 
-      sig do
-        params(sort_field: Autorender::FileListParams::SortField::OrSymbol).void
-      end
-      attr_writer :sort_field
+      sig { params(sort: Autorender::FileListParams::Sort::OrSymbol).void }
+      attr_writer :sort
 
-      # Sort direction
-      sig do
-        returns(T.nilable(Autorender::FileListParams::SortOrder::OrSymbol))
-      end
-      attr_reader :sort_order
-
-      sig do
-        params(sort_order: Autorender::FileListParams::SortOrder::OrSymbol).void
-      end
-      attr_writer :sort_order
-
-      # Comma-separated tags (if supported)
+      # Comma-separated tags
       sig { returns(T.nilable(String)) }
       attr_reader :tags
 
@@ -82,28 +64,22 @@ module Autorender
           name: String,
           page: Integer,
           path: String,
-          sort_field: Autorender::FileListParams::SortField::OrSymbol,
-          sort_order: Autorender::FileListParams::SortOrder::OrSymbol,
+          sort: Autorender::FileListParams::Sort::OrSymbol,
           tags: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Restrict results to files in this folder (folder number)
+        # Exact folder number
         folder_no: nil,
-        # Items per page
         limit: nil,
-        # Filter by filename (partial match, if supported)
+        # Partial name match (case-insensitive)
         name: nil,
-        # Page number (1-based)
         page: nil,
-        # Filter by path prefix (if supported)
+        # Folder prefix (e.g. products/sku123/)
         path: nil,
-        # Field to sort by
-        sort_field: nil,
-        # Sort direction
-        sort_order: nil,
-        # Comma-separated tags (if supported)
+        sort: nil,
+        # Comma-separated tags
         tags: nil,
         request_options: {}
       )
@@ -117,8 +93,7 @@ module Autorender
             name: String,
             page: Integer,
             path: String,
-            sort_field: Autorender::FileListParams::SortField::OrSymbol,
-            sort_order: Autorender::FileListParams::SortOrder::OrSymbol,
+            sort: Autorender::FileListParams::Sort::OrSymbol,
             tags: String,
             request_options: Autorender::RequestOptions
           }
@@ -127,51 +102,28 @@ module Autorender
       def to_hash
       end
 
-      # Field to sort by
-      module SortField
+      module Sort
         extend Autorender::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Autorender::FileListParams::SortField) }
+          T.type_alias { T.all(Symbol, Autorender::FileListParams::Sort) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        FILE_SIZE =
-          T.let(:file_size, Autorender::FileListParams::SortField::TaggedSymbol)
-        NAME = T.let(:name, Autorender::FileListParams::SortField::TaggedSymbol)
-        CREATED_AT =
+        CREATED_AT_ASC =
+          T.let(:created_at_asc, Autorender::FileListParams::Sort::TaggedSymbol)
+        CREATED_AT_DESC =
           T.let(
-            :created_at,
-            Autorender::FileListParams::SortField::TaggedSymbol
+            :created_at_desc,
+            Autorender::FileListParams::Sort::TaggedSymbol
           )
-        UPDATED_AT =
-          T.let(
-            :updated_at,
-            Autorender::FileListParams::SortField::TaggedSymbol
-          )
+        SIZE_ASC =
+          T.let(:size_asc, Autorender::FileListParams::Sort::TaggedSymbol)
+        SIZE_DESC =
+          T.let(:size_desc, Autorender::FileListParams::Sort::TaggedSymbol)
 
         sig do
           override.returns(
-            T::Array[Autorender::FileListParams::SortField::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # Sort direction
-      module SortOrder
-        extend Autorender::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Autorender::FileListParams::SortOrder) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ASC = T.let(:asc, Autorender::FileListParams::SortOrder::TaggedSymbol)
-        DESC = T.let(:desc, Autorender::FileListParams::SortOrder::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Autorender::FileListParams::SortOrder::TaggedSymbol]
+            T::Array[Autorender::FileListParams::Sort::TaggedSymbol]
           )
         end
         def self.values

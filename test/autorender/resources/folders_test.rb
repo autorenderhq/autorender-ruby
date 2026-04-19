@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
   def test_create_required_params
-    response = @autorender.folders.create(name: "demo2")
+    response = @autorender.folders.create(folder_name: "folder_name")
 
     assert_pattern do
       response => Autorender::Models::FolderCreateResponse
@@ -12,63 +12,41 @@ class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
 
     assert_pattern do
       response => {
-        folder_no: String | nil,
-        name: String | nil
-      }
-    end
-  end
-
-  def test_list
-    response = @autorender.folders.list
-
-    assert_pattern do
-      response => Autorender::Models::FolderListResponse
-    end
-
-    assert_pattern do
-      response => {
-        folders: ^(Autorender::Internal::Type::ArrayOf[Autorender::FolderListItem]) | nil
+        id: String,
+        created_at: Time,
+        folder_no: String,
+        name: String,
+        parent_folder_no: String | nil,
+        path: String,
+        updated_at: Time | nil
       }
     end
   end
 
   def test_delete
-    response = @autorender.folders.delete("my8JeLg4tr")
+    response = @autorender.folders.delete("folderNo")
 
     assert_pattern do
-      response => Autorender::Models::FolderDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        message: String | nil
-      }
+      response => nil
     end
   end
 
   def test_rename_required_params
-    response = @autorender.folders.rename("53855hxPoq", name: "demo2")
+    response = @autorender.folders.rename("folderNo", name: "name")
 
     assert_pattern do
-      response => Autorender::Folder
+      response => Autorender::Models::FolderRenameResponse
     end
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        created_by: String | nil,
-        folder_no: String | nil,
-        is_active: Autorender::Internal::Type::Boolean | nil,
-        is_delete: Autorender::Internal::Type::Boolean | nil,
-        name: String | nil,
-        parent_folder: String | nil,
-        path: String | nil,
-        source: String | nil,
-        updated_at: Time | nil,
-        workspace: Autorender::Folder::Workspace | nil,
-        workspace_id: String | nil,
-        workspace_no: String | nil
+        id: String,
+        created_at: Time,
+        folder_no: String,
+        name: String,
+        parent_folder_no: String | nil,
+        path: String,
+        updated_at: Time | nil
       }
     end
   end

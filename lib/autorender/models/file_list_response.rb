@@ -4,58 +4,152 @@ module Autorender
   module Models
     # @see Autorender::Resources::Files#list
     class FileListResponse < Autorender::Internal::Type::BaseModel
-      # @!attribute files
+      # @!attribute is_page_next
       #
-      #   @return [Array<Autorender::Models::FileListItem>]
-      required :files, -> { Autorender::Internal::Type::ArrayOf[Autorender::FileListItem] }
+      #   @return [Boolean]
+      required :is_page_next, Autorender::Internal::Type::Boolean
 
-      # @!attribute meta
+      # @!attribute items
       #
-      #   @return [Autorender::Models::FileListResponse::Meta]
-      required :meta, -> { Autorender::Models::FileListResponse::Meta }
+      #   @return [Array<Autorender::Models::FileListResponse::Item>]
+      required :items, -> { Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::Item] }
 
-      # @!method initialize(files:, meta:)
-      #   @param files [Array<Autorender::Models::FileListItem>]
-      #   @param meta [Autorender::Models::FileListResponse::Meta]
+      # @!attribute limit
+      #
+      #   @return [Integer]
+      required :limit, Integer
 
-      # @see Autorender::Models::FileListResponse#meta
-      class Meta < Autorender::Internal::Type::BaseModel
-        # @!attribute has_next
+      # @!attribute page
+      #
+      #   @return [Integer]
+      required :page, Integer
+
+      # @!attribute total_count
+      #
+      #   @return [Integer]
+      required :total_count, Integer
+
+      # @!attribute total_pages
+      #
+      #   @return [Integer]
+      required :total_pages, Integer
+
+      # @!method initialize(is_page_next:, items:, limit:, page:, total_count:, total_pages:)
+      #   Files list
+      #
+      #   @param is_page_next [Boolean]
+      #   @param items [Array<Autorender::Models::FileListResponse::Item>]
+      #   @param limit [Integer]
+      #   @param page [Integer]
+      #   @param total_count [Integer]
+      #   @param total_pages [Integer]
+
+      class Item < Autorender::Internal::Type::BaseModel
+        # @!attribute id
         #
-        #   @return [Boolean]
-        required :has_next, Autorender::Internal::Type::Boolean, api_name: :hasNext
+        #   @return [String]
+        required :id, String
 
-        # @!attribute has_prev
+        # @!attribute created_at
         #
-        #   @return [Boolean]
-        required :has_prev, Autorender::Internal::Type::Boolean, api_name: :hasPrev
+        #   @return [Time]
+        required :created_at, Time
 
-        # @!attribute limit
+        # @!attribute file_no
+        #
+        #   @return [String]
+        required :file_no, String
+
+        # @!attribute folder_name
+        #
+        #   @return [String, nil]
+        required :folder_name, String, nil?: true
+
+        # @!attribute folder_no
+        #
+        #   @return [String, nil]
+        required :folder_no, String, nil?: true
+
+        # @!attribute format_
+        #
+        #   @return [String, nil]
+        required :format_, String, api_name: :format, nil?: true
+
+        # @!attribute height
+        #
+        #   @return [Integer, nil]
+        required :height, Integer, nil?: true
+
+        # @!attribute metadata
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata,
+                 Autorender::Internal::Type::HashOf[Autorender::Internal::Type::Unknown],
+                 nil?: true
+
+        # @!attribute mime_type
+        #
+        #   @return [String]
+        required :mime_type, String
+
+        # @!attribute name
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!attribute path
+        #
+        #   @return [String]
+        required :path, String
+
+        # @!attribute size
         #
         #   @return [Integer]
-        required :limit, Integer
+        required :size, Integer
 
-        # @!attribute page
+        # @!attribute source
         #
-        #   @return [Integer]
-        required :page, Integer
+        #   @return [String]
+        required :source, String
 
-        # @!attribute total
-        #   Total matching files
+        # @!attribute tags
         #
-        #   @return [Integer]
-        required :total, Integer
+        #   @return [Array<String>]
+        required :tags, Autorender::Internal::Type::ArrayOf[String]
 
-        # @!method initialize(has_next:, has_prev:, limit:, page:, total:)
-        #   @param has_next [Boolean]
+        # @!attribute updated_at
         #
-        #   @param has_prev [Boolean]
+        #   @return [Time, nil]
+        required :updated_at, Time, nil?: true
+
+        # @!attribute url
         #
-        #   @param limit [Integer]
+        #   @return [String]
+        required :url, String
+
+        # @!attribute width
         #
-        #   @param page [Integer]
-        #
-        #   @param total [Integer] Total matching files
+        #   @return [Integer, nil]
+        required :width, Integer, nil?: true
+
+        # @!method initialize(id:, created_at:, file_no:, folder_name:, folder_no:, format_:, height:, metadata:, mime_type:, name:, path:, size:, source:, tags:, updated_at:, url:, width:)
+        #   @param id [String]
+        #   @param created_at [Time]
+        #   @param file_no [String]
+        #   @param folder_name [String, nil]
+        #   @param folder_no [String, nil]
+        #   @param format_ [String, nil]
+        #   @param height [Integer, nil]
+        #   @param metadata [Hash{Symbol=>Object}, nil]
+        #   @param mime_type [String]
+        #   @param name [String]
+        #   @param path [String]
+        #   @param size [Integer]
+        #   @param source [String]
+        #   @param tags [Array<String>]
+        #   @param updated_at [Time, nil]
+        #   @param url [String]
+        #   @param width [Integer, nil]
       end
     end
   end

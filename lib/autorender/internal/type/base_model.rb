@@ -438,10 +438,11 @@ module Autorender
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `upload` is a `Autorender::Upload`
-        #   upload => {
-        #     data: data,
-        #     success: success
+        #   # `upload_create_response` is a `Autorender::Models::UploadCreateResponse`
+        #   upload_create_response => {
+        #     id: id,
+        #     created_at: created_at,
+        #     custom_id: custom_id
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

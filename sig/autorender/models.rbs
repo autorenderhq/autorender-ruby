@@ -1,33 +1,19 @@
 module Autorender
   class FileDeleteParams = Autorender::Models::FileDeleteParams
 
-  class FileListItem = Autorender::Models::FileListItem
-
   class FileListParams = Autorender::Models::FileListParams
-
-  class FileObject = Autorender::Models::FileObject
 
   class FileRenameParams = Autorender::Models::FileRenameParams
 
   class FileRetrieveParams = Autorender::Models::FileRetrieveParams
 
-  class Folder = Autorender::Models::Folder
-
   class FolderCreateParams = Autorender::Models::FolderCreateParams
 
   class FolderDeleteParams = Autorender::Models::FolderDeleteParams
 
-  class FolderListItem = Autorender::Models::FolderListItem
-
-  class FolderListParams = Autorender::Models::FolderListParams
-
   class FolderRenameParams = Autorender::Models::FolderRenameParams
-
-  class Upload = Autorender::Models::Upload
 
   class UploadCreateFromURLParams = Autorender::Models::UploadCreateFromURLParams
 
   class UploadCreateParams = Autorender::Models::UploadCreateParams
-
-  class UploadData = Autorender::Models::UploadData
 end

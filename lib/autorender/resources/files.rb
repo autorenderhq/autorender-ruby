@@ -2,47 +2,44 @@
 
 module Autorender
   module Resources
+    # File management endpoints (API key required)
     class Files
-      # Retrieve detailed information about a file by numeric file id (`file_no`).
+      # Get file details
       #
       # @overload retrieve(file_no, request_options: {})
       #
-      # @param file_no [String] File number (numeric id in URL)
-      #
+      # @param file_no [String]
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Autorender::Models::FileObject]
+      # @return [Autorender::Models::FileRetrieveResponse]
       #
       # @see Autorender::Models::FileRetrieveParams
       def retrieve(file_no, params = {})
         @client.request(
           method: :get,
           path: ["api/v1/files/%1$s", file_no],
-          model: Autorender::FileObject,
+          model: Autorender::Models::FileRetrieveResponse,
           options: params[:request_options]
         )
       end
 
-      # Paginated list of files in the workspace. Filter by folder, sort by field and
-      # order, and page through results.
+      # List/search files with pagination, filtering, and sorting.
       #
-      # @overload list(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort_field: nil, sort_order: nil, tags: nil, request_options: {})
+      # @overload list(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort: nil, tags: nil, request_options: {})
       #
-      # @param folder_no [String] Restrict results to files in this folder (folder number)
+      # @param folder_no [String] Exact folder number
       #
-      # @param limit [Integer] Items per page
+      # @param limit [Integer]
       #
-      # @param name [String] Filter by filename (partial match, if supported)
+      # @param name [String] Partial name match (case-insensitive)
       #
-      # @param page [Integer] Page number (1-based)
+      # @param page [Integer]
       #
-      # @param path [String] Filter by path prefix (if supported)
+      # @param path [String] Folder prefix (e.g. products/sku123/)
       #
-      # @param sort_field [Symbol, Autorender::Models::FileListParams::SortField] Field to sort by
+      # @param sort [Symbol, Autorender::Models::FileListParams::Sort]
       #
-      # @param sort_order [Symbol, Autorender::Models::FileListParams::SortOrder] Sort direction
-      #
-      # @param tags [String] Comma-separated tags (if supported)
+      # @param tags [String] Comma-separated tags
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -55,40 +52,38 @@ module Autorender
         @client.request(
           method: :get,
           path: "api/v1/files",
-          query: query,
+          query: query.transform_keys(folder_no: "folderNo"),
           model: Autorender::Models::FileListResponse,
           options: options
         )
       end
 
-      # Permanently delete a file. No request body is required.
+      # Delete file
       #
       # @overload delete(file_no, request_options: {})
       #
-      # @param file_no [String] File number to delete
-      #
+      # @param file_no [String]
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Autorender::Models::FileDeleteResponse]
+      # @return [nil]
       #
       # @see Autorender::Models::FileDeleteParams
       def delete(file_no, params = {})
         @client.request(
           method: :delete,
           path: ["api/v1/files/%1$s", file_no],
-          model: Autorender::Models::FileDeleteResponse,
+          model: NilClass,
           options: params[:request_options]
         )
       end
 
-      # Rename a file. The API may preserve or normalize the file extension (e.g. `demo`
-      # → `demo.png`).
+      # Rename file
       #
       # @overload rename(file_no, name:, request_options: {})
       #
-      # @param file_no [String] File number
+      # @param file_no [String]
       #
-      # @param name [String] New base name; extension may be applied by the server
+      # @param name [String] New file name without extension or path separators
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #

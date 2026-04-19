@@ -4,7 +4,7 @@ module Autorender
       def retrieve: (
         String file_no,
         ?request_options: Autorender::request_opts
-      ) -> Autorender::FileObject
+      ) -> Autorender::Models::FileRetrieveResponse
 
       def list: (
         ?folder_no: String,
@@ -12,8 +12,7 @@ module Autorender
         ?name: String,
         ?page: Integer,
         ?path: String,
-        ?sort_field: Autorender::Models::FileListParams::sort_field,
-        ?sort_order: Autorender::Models::FileListParams::sort_order,
+        ?sort: Autorender::Models::FileListParams::sort,
         ?tags: String,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::FileListResponse
@@ -21,7 +20,7 @@ module Autorender
       def delete: (
         String file_no,
         ?request_options: Autorender::request_opts
-      ) -> Autorender::Models::FileDeleteResponse
+      ) -> nil
 
       def rename: (
         String file_no,

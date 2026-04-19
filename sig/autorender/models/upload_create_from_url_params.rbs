@@ -4,11 +4,11 @@ module Autorender
       {
         remote_url: String,
         custom_id: String,
+        file_name: String,
         folder: String,
         metadata: String,
         random_prefix: String,
         tags: String,
-        transform: String,
         webhook_url: String
       }
       & Autorender::Internal::Type::request_parameters
@@ -22,6 +22,10 @@ module Autorender
       attr_reader custom_id: String?
 
       def custom_id=: (String) -> String
+
+      attr_reader file_name: String?
+
+      def file_name=: (String) -> String
 
       attr_reader folder: String?
 
@@ -39,10 +43,6 @@ module Autorender
 
       def tags=: (String) -> String
 
-      attr_reader transform: String?
-
-      def transform=: (String) -> String
-
       attr_reader webhook_url: String?
 
       def webhook_url=: (String) -> String
@@ -50,11 +50,11 @@ module Autorender
       def initialize: (
         remote_url: String,
         ?custom_id: String,
+        ?file_name: String,
         ?folder: String,
         ?metadata: String,
         ?random_prefix: String,
         ?tags: String,
-        ?transform: String,
         ?webhook_url: String,
         ?request_options: Autorender::request_opts
       ) -> void
@@ -62,11 +62,11 @@ module Autorender
       def to_hash: -> {
         remote_url: String,
         custom_id: String,
+        file_name: String,
         folder: String,
         metadata: String,
         random_prefix: String,
         tags: String,
-        transform: String,
         webhook_url: String,
         request_options: Autorender::RequestOptions
       }

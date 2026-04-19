@@ -14,53 +14,51 @@ module Autorender
           )
         end
 
-      # The HTTP or HTTPS URL of the image to download
+      # HTTP/HTTPS URL to fetch
       sig { returns(String) }
       attr_accessor :remote_url
 
-      # Custom identifier for tracking the upload
       sig { returns(T.nilable(String)) }
       attr_reader :custom_id
 
       sig { params(custom_id: String).void }
       attr_writer :custom_id
 
-      # Folder path where the file should be stored
+      # Override file name
+      sig { returns(T.nilable(String)) }
+      attr_reader :file_name
+
+      sig { params(file_name: String).void }
+      attr_writer :file_name
+
+      # Destination folder path
       sig { returns(T.nilable(String)) }
       attr_reader :folder
 
       sig { params(folder: String).void }
       attr_writer :folder
 
-      # JSON string containing custom metadata object
+      # JSON string of metadata object
       sig { returns(T.nilable(String)) }
       attr_reader :metadata
 
       sig { params(metadata: String).void }
       attr_writer :metadata
 
-      # Set to 'true' to generate a random suffix for the filename
+      # true/false to append random suffix
       sig { returns(T.nilable(String)) }
       attr_reader :random_prefix
 
       sig { params(random_prefix: String).void }
       attr_writer :random_prefix
 
-      # Comma-separated list of tags to apply to the file
+      # Comma-separated tags
       sig { returns(T.nilable(String)) }
       attr_reader :tags
 
       sig { params(tags: String).void }
       attr_writer :tags
 
-      # Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
-      sig { returns(T.nilable(String)) }
-      attr_reader :transform
-
-      sig { params(transform: String).void }
-      attr_writer :transform
-
-      # URL to receive webhook notification when upload completes
       sig { returns(T.nilable(String)) }
       attr_reader :webhook_url
 
@@ -71,31 +69,29 @@ module Autorender
         params(
           remote_url: String,
           custom_id: String,
+          file_name: String,
           folder: String,
           metadata: String,
           random_prefix: String,
           tags: String,
-          transform: String,
           webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The HTTP or HTTPS URL of the image to download
+        # HTTP/HTTPS URL to fetch
         remote_url:,
-        # Custom identifier for tracking the upload
         custom_id: nil,
-        # Folder path where the file should be stored
+        # Override file name
+        file_name: nil,
+        # Destination folder path
         folder: nil,
-        # JSON string containing custom metadata object
+        # JSON string of metadata object
         metadata: nil,
-        # Set to 'true' to generate a random suffix for the filename
+        # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated list of tags to apply to the file
+        # Comma-separated tags
         tags: nil,
-        # Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
-        transform: nil,
-        # URL to receive webhook notification when upload completes
         webhook_url: nil,
         request_options: {}
       )
@@ -106,11 +102,11 @@ module Autorender
           {
             remote_url: String,
             custom_id: String,
+            file_name: String,
             folder: String,
             metadata: String,
             random_prefix: String,
             tags: String,
-            transform: String,
             webhook_url: String,
             request_options: Autorender::RequestOptions
           }

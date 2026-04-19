@@ -8,69 +8,77 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute file
-      #   The file to upload (binary data)
+      #   File to upload.
       #
       #   @return [Pathname, StringIO, IO, String, Autorender::FilePart]
       required :file, Autorender::Internal::Type::FileInput
 
       # @!attribute file_name
-      #   File name for the uploaded file (e.g., my-image.jpg)
+      #   File name (e.g. product.jpg)
       #
       #   @return [String]
       required :file_name, String
 
       # @!attribute custom_id
-      #   Custom identifier for the file
+      #   Custom identifier
       #
       #   @return [String, nil]
       optional :custom_id, String
 
       # @!attribute folder
-      #   Folder path where the file will be stored (e.g., uploads/my-folder)
+      #   Optional folder path
       #
       #   @return [String, nil]
       optional :folder, String
 
       # @!attribute metadata
-      #   JSON string for custom metadata (e.g., {"key": "value"})
+      #   JSON string of metadata
       #
       #   @return [String, nil]
       optional :metadata, String
 
       # @!attribute random_prefix
-      #   Set to "true" to add a random suffix to filename
+      #   true/false to append random suffix
       #
       #   @return [String, nil]
       optional :random_prefix, String
 
       # @!attribute tags
-      #   Comma-separated tags (e.g., tag1,tag2,tag3)
+      #   Comma-separated tags
       #
       #   @return [String, nil]
       optional :tags, String
 
       # @!attribute transform
-      #   Image transformation string (e.g., w_800,h_600,q_90)
+      #   Transform string (w_300,h_300,c_crop,...)
       #
       #   @return [String, nil]
       optional :transform, String
 
-      # @!method initialize(file:, file_name:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, request_options: {})
-      #   @param file [Pathname, StringIO, IO, String, Autorender::FilePart] The file to upload (binary data)
+      # @!attribute webhook_url
+      #   URL to notify on success
       #
-      #   @param file_name [String] File name for the uploaded file (e.g., my-image.jpg)
+      #   @return [String, nil]
+      optional :webhook_url, String
+
+      # @!method initialize(file:, file_name:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, webhook_url: nil, request_options: {})
+      #   @param file [Pathname, StringIO, IO, String, Autorender::FilePart] File to upload.
       #
-      #   @param custom_id [String] Custom identifier for the file
+      #   @param file_name [String] File name (e.g. product.jpg)
       #
-      #   @param folder [String] Folder path where the file will be stored (e.g., uploads/my-folder)
+      #   @param custom_id [String] Custom identifier
       #
-      #   @param metadata [String] JSON string for custom metadata (e.g., {"key": "value"})
+      #   @param folder [String] Optional folder path
       #
-      #   @param random_prefix [String] Set to "true" to add a random suffix to filename
+      #   @param metadata [String] JSON string of metadata
       #
-      #   @param tags [String] Comma-separated tags (e.g., tag1,tag2,tag3)
+      #   @param random_prefix [String] true/false to append random suffix
       #
-      #   @param transform [String] Image transformation string (e.g., w_800,h_600,q_90)
+      #   @param tags [String] Comma-separated tags
+      #
+      #   @param transform [String] Transform string (w_300,h_300,c_crop,...)
+      #
+      #   @param webhook_url [String] URL to notify on success
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

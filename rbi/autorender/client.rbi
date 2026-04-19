@@ -13,19 +13,17 @@ module Autorender
     sig { returns(T.nilable(String)) }
     attr_reader :api_key
 
+    # Upload endpoints (API key required)
     sig { returns(Autorender::Resources::Uploads) }
     attr_reader :uploads
 
+    # File management endpoints (API key required)
     sig { returns(Autorender::Resources::Files) }
     attr_reader :files
 
+    # Folder management endpoints (API key required)
     sig { returns(Autorender::Resources::Folders) }
     attr_reader :folders
-
-    # @api private
-    sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers
-    end
 
     # Creates and returns a new client for interacting with the API.
     sig do

@@ -4,16 +4,16 @@ require_relative "../test_helper"
 
 class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
   def test_retrieve
-    response = @autorender.files.retrieve("2353377462")
+    response = @autorender.files.retrieve("fileNo")
 
     assert_pattern do
-      response => Autorender::FileObject
+      response => Autorender::Models::FileRetrieveResponse
     end
 
     assert_pattern do
       response => {
-        data: Autorender::FileObject::Data | nil,
-        success: Autorender::Internal::Type::Boolean | nil
+        data: Autorender::Models::FileRetrieveResponse::Data,
+        success: Autorender::Models::FileRetrieveResponse::Success
       }
     end
   end
@@ -27,28 +27,26 @@ class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
 
     assert_pattern do
       response => {
-        files: ^(Autorender::Internal::Type::ArrayOf[Autorender::FileListItem]),
-        meta: Autorender::Models::FileListResponse::Meta
+        is_page_next: Autorender::Internal::Type::Boolean,
+        items: ^(Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::Item]),
+        limit: Integer,
+        page: Integer,
+        total_count: Integer,
+        total_pages: Integer
       }
     end
   end
 
   def test_delete
-    response = @autorender.files.delete("2338056701")
+    response = @autorender.files.delete("fileNo")
 
     assert_pattern do
-      response => Autorender::Models::FileDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        message: String | nil
-      }
+      response => nil
     end
   end
 
   def test_rename_required_params
-    response = @autorender.files.rename("2338045312", name: "demo")
+    response = @autorender.files.rename("fileNo", name: "name")
 
     assert_pattern do
       response => Autorender::Models::FileRenameResponse
@@ -56,30 +54,8 @@ class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        created_by: String | nil,
-        extension: String | nil,
-        file_no: String | nil,
-        file_size: Integer | nil,
-        folder_id: String | nil,
-        format_: String | nil,
-        height: Integer | nil,
-        is_active: Autorender::Internal::Type::Boolean | nil,
-        is_default: Autorender::Internal::Type::Boolean | nil,
-        is_delete: Autorender::Internal::Type::Boolean | nil,
-        meta_data: ^(Autorender::Internal::Type::HashOf[Autorender::Internal::Type::Unknown]) | nil,
-        name: String | nil,
-        orientation: String | nil,
-        original_url: String | nil,
-        path: String | nil,
-        source: String | nil,
-        transform_string: String | nil,
-        updated_at: Time | nil,
-        url: String | nil,
-        width: Integer | nil,
-        workspace_id: String | nil,
-        workspace_no: String | nil
+        data: Autorender::Models::FileRenameResponse::Data,
+        success: Autorender::Models::FileRenameResponse::Success
       }
     end
   end
