@@ -2,9 +2,9 @@
 
 module Autorender
   module Resources
+    # Upload endpoints (API key required)
     class Uploads
-      # Upload a file to your AutoRender workspace with optional transformations, tags,
-      # and folder organization
+      # Upload a file from your backend server using multipart/form-data.
       sig do
         params(
           file: Autorender::Internal::FileInput,
@@ -15,60 +15,61 @@ module Autorender
           random_prefix: String,
           tags: String,
           transform: String,
+          webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
-        ).returns(Autorender::Upload)
+        ).returns(Autorender::Models::UploadCreateResponse)
       end
       def create(
-        # The file to upload (binary data)
+        # File to upload.
         file:,
-        # File name for the uploaded file (e.g., my-image.jpg)
+        # File name (e.g. product.jpg)
         file_name:,
-        # Custom identifier for the file
+        # Custom identifier
         custom_id: nil,
-        # Folder path where the file will be stored (e.g., uploads/my-folder)
+        # Optional folder path
         folder: nil,
-        # JSON string for custom metadata (e.g., {"key": "value"})
+        # JSON string of metadata
         metadata: nil,
-        # Set to "true" to add a random suffix to filename
+        # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated tags (e.g., tag1,tag2,tag3)
+        # Comma-separated tags
         tags: nil,
-        # Image transformation string (e.g., w_800,h_600,q_90)
+        # Transform string (w_300,h_300,c_crop,...)
         transform: nil,
+        # URL to notify on success
+        webhook_url: nil,
         request_options: {}
       )
       end
 
-      # Fetch a file from a remote URL and store it in your AutoRender workspace.
+      # Download a file from a remote URL and store it in AutoRender.
       sig do
         params(
           remote_url: String,
           custom_id: String,
+          file_name: String,
           folder: String,
           metadata: String,
           random_prefix: String,
           tags: String,
-          transform: String,
           webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
-        ).returns(Autorender::Upload)
+        ).returns(Autorender::Models::UploadCreateFromURLResponse)
       end
       def create_from_url(
-        # The HTTP or HTTPS URL of the image to download
+        # HTTP/HTTPS URL to fetch
         remote_url:,
-        # Custom identifier for tracking the upload
         custom_id: nil,
-        # Folder path where the file should be stored
+        # Override file name
+        file_name: nil,
+        # Destination folder path
         folder: nil,
-        # JSON string containing custom metadata object
+        # JSON string of metadata object
         metadata: nil,
-        # Set to 'true' to generate a random suffix for the filename
+        # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated list of tags to apply to the file
+        # Comma-separated tags
         tags: nil,
-        # Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
-        transform: nil,
-        # URL to receive webhook notification when upload completes
         webhook_url: nil,
         request_options: {}
       )

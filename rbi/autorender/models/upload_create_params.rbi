@@ -11,55 +11,62 @@ module Autorender
           T.any(Autorender::UploadCreateParams, Autorender::Internal::AnyHash)
         end
 
-      # The file to upload (binary data)
+      # File to upload.
       sig { returns(Autorender::Internal::FileInput) }
       attr_accessor :file
 
-      # File name for the uploaded file (e.g., my-image.jpg)
+      # File name (e.g. product.jpg)
       sig { returns(String) }
       attr_accessor :file_name
 
-      # Custom identifier for the file
+      # Custom identifier
       sig { returns(T.nilable(String)) }
       attr_reader :custom_id
 
       sig { params(custom_id: String).void }
       attr_writer :custom_id
 
-      # Folder path where the file will be stored (e.g., uploads/my-folder)
+      # Optional folder path
       sig { returns(T.nilable(String)) }
       attr_reader :folder
 
       sig { params(folder: String).void }
       attr_writer :folder
 
-      # JSON string for custom metadata (e.g., {"key": "value"})
+      # JSON string of metadata
       sig { returns(T.nilable(String)) }
       attr_reader :metadata
 
       sig { params(metadata: String).void }
       attr_writer :metadata
 
-      # Set to "true" to add a random suffix to filename
+      # true/false to append random suffix
       sig { returns(T.nilable(String)) }
       attr_reader :random_prefix
 
       sig { params(random_prefix: String).void }
       attr_writer :random_prefix
 
-      # Comma-separated tags (e.g., tag1,tag2,tag3)
+      # Comma-separated tags
       sig { returns(T.nilable(String)) }
       attr_reader :tags
 
       sig { params(tags: String).void }
       attr_writer :tags
 
-      # Image transformation string (e.g., w_800,h_600,q_90)
+      # Transform string (w_300,h_300,c_crop,...)
       sig { returns(T.nilable(String)) }
       attr_reader :transform
 
       sig { params(transform: String).void }
       attr_writer :transform
+
+      # URL to notify on success
+      sig { returns(T.nilable(String)) }
+      attr_reader :webhook_url
+
+      sig { params(webhook_url: String).void }
+      attr_writer :webhook_url
 
       sig do
         params(
@@ -71,26 +78,29 @@ module Autorender
           random_prefix: String,
           tags: String,
           transform: String,
+          webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The file to upload (binary data)
+        # File to upload.
         file:,
-        # File name for the uploaded file (e.g., my-image.jpg)
+        # File name (e.g. product.jpg)
         file_name:,
-        # Custom identifier for the file
+        # Custom identifier
         custom_id: nil,
-        # Folder path where the file will be stored (e.g., uploads/my-folder)
+        # Optional folder path
         folder: nil,
-        # JSON string for custom metadata (e.g., {"key": "value"})
+        # JSON string of metadata
         metadata: nil,
-        # Set to "true" to add a random suffix to filename
+        # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated tags (e.g., tag1,tag2,tag3)
+        # Comma-separated tags
         tags: nil,
-        # Image transformation string (e.g., w_800,h_600,q_90)
+        # Transform string (w_300,h_300,c_crop,...)
         transform: nil,
+        # URL to notify on success
+        webhook_url: nil,
         request_options: {}
       )
       end
@@ -106,6 +116,7 @@ module Autorender
             random_prefix: String,
             tags: String,
             transform: String,
+            webhook_url: String,
             request_options: Autorender::RequestOptions
           }
         )

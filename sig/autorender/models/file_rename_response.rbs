@@ -2,168 +2,131 @@ module Autorender
   module Models
     type file_rename_response =
       {
-        id: String,
-        created_at: Time,
-        created_by: String,
-        extension: String,
-        file_no: String,
-        file_size: Integer,
-        folder_id: String?,
-        format_: String,
-        height: Integer?,
-        is_active: bool,
-        is_default: bool,
-        is_delete: bool,
-        meta_data: ::Hash[Symbol, top],
-        name: String,
-        orientation: String?,
-        original_url: String?,
-        path: String?,
-        source: String,
-        transform_string: String?,
-        updated_at: Time,
-        url: String,
-        width: Integer?,
-        workspace_id: String,
-        workspace_no: String
+        data: Autorender::Models::FileRenameResponse::Data,
+        success: Autorender::Models::FileRenameResponse::success
       }
 
     class FileRenameResponse < Autorender::Internal::Type::BaseModel
-      attr_reader id: String?
+      attr_accessor data: Autorender::Models::FileRenameResponse::Data
 
-      def id=: (String) -> String
-
-      attr_reader created_at: Time?
-
-      def created_at=: (Time) -> Time
-
-      attr_reader created_by: String?
-
-      def created_by=: (String) -> String
-
-      attr_reader extension: String?
-
-      def extension=: (String) -> String
-
-      attr_reader file_no: String?
-
-      def file_no=: (String) -> String
-
-      attr_reader file_size: Integer?
-
-      def file_size=: (Integer) -> Integer
-
-      attr_accessor folder_id: String?
-
-      attr_reader format_: String?
-
-      def format_=: (String) -> String
-
-      attr_accessor height: Integer?
-
-      attr_reader is_active: bool?
-
-      def is_active=: (bool) -> bool
-
-      attr_reader is_default: bool?
-
-      def is_default=: (bool) -> bool
-
-      attr_reader is_delete: bool?
-
-      def is_delete=: (bool) -> bool
-
-      attr_reader meta_data: ::Hash[Symbol, top]?
-
-      def meta_data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
-
-      attr_reader name: String?
-
-      def name=: (String) -> String
-
-      attr_accessor orientation: String?
-
-      attr_accessor original_url: String?
-
-      attr_accessor path: String?
-
-      attr_reader source: String?
-
-      def source=: (String) -> String
-
-      attr_accessor transform_string: String?
-
-      attr_reader updated_at: Time?
-
-      def updated_at=: (Time) -> Time
-
-      attr_reader url: String?
-
-      def url=: (String) -> String
-
-      attr_accessor width: Integer?
-
-      attr_reader workspace_id: String?
-
-      def workspace_id=: (String) -> String
-
-      attr_reader workspace_no: String?
-
-      def workspace_no=: (String) -> String
+      attr_accessor success: Autorender::Models::FileRenameResponse::success
 
       def initialize: (
-        ?id: String,
-        ?created_at: Time,
-        ?created_by: String,
-        ?extension: String,
-        ?file_no: String,
-        ?file_size: Integer,
-        ?folder_id: String?,
-        ?format_: String,
-        ?height: Integer?,
-        ?is_active: bool,
-        ?is_default: bool,
-        ?is_delete: bool,
-        ?meta_data: ::Hash[Symbol, top],
-        ?name: String,
-        ?orientation: String?,
-        ?original_url: String?,
-        ?path: String?,
-        ?source: String,
-        ?transform_string: String?,
-        ?updated_at: Time,
-        ?url: String,
-        ?width: Integer?,
-        ?workspace_id: String,
-        ?workspace_no: String
+        data: Autorender::Models::FileRenameResponse::Data,
+        success: Autorender::Models::FileRenameResponse::success
       ) -> void
 
       def to_hash: -> {
-        id: String,
-        created_at: Time,
-        created_by: String,
-        extension: String,
-        file_no: String,
-        file_size: Integer,
-        folder_id: String?,
-        format_: String,
-        height: Integer?,
-        is_active: bool,
-        is_default: bool,
-        is_delete: bool,
-        meta_data: ::Hash[Symbol, top],
-        name: String,
-        orientation: String?,
-        original_url: String?,
-        path: String?,
-        source: String,
-        transform_string: String?,
-        updated_at: Time,
-        url: String,
-        width: Integer?,
-        workspace_id: String,
-        workspace_no: String
+        data: Autorender::Models::FileRenameResponse::Data,
+        success: Autorender::Models::FileRenameResponse::success
       }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          file_no: String,
+          folder_name: String?,
+          folder_no: String?,
+          format_: String?,
+          height: Integer?,
+          metadata: ::Hash[Symbol, top]?,
+          mime_type: String,
+          name: String,
+          path: String,
+          size: Integer,
+          source: String,
+          tags: ::Array[String],
+          updated_at: Time?,
+          url: String,
+          width: Integer?
+        }
+
+      class Data < Autorender::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor file_no: String
+
+        attr_accessor folder_name: String?
+
+        attr_accessor folder_no: String?
+
+        attr_accessor format_: String?
+
+        attr_accessor height: Integer?
+
+        attr_accessor metadata: ::Hash[Symbol, top]?
+
+        attr_accessor mime_type: String
+
+        attr_accessor name: String
+
+        attr_accessor path: String
+
+        attr_accessor size: Integer
+
+        attr_accessor source: String
+
+        attr_accessor tags: ::Array[String]
+
+        attr_accessor updated_at: Time?
+
+        attr_accessor url: String
+
+        attr_accessor width: Integer?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          file_no: String,
+          folder_name: String?,
+          folder_no: String?,
+          format_: String?,
+          height: Integer?,
+          metadata: ::Hash[Symbol, top]?,
+          mime_type: String,
+          name: String,
+          path: String,
+          size: Integer,
+          source: String,
+          tags: ::Array[String],
+          updated_at: Time?,
+          url: String,
+          width: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          file_no: String,
+          folder_name: String?,
+          folder_no: String?,
+          format_: String?,
+          height: Integer?,
+          metadata: ::Hash[Symbol, top]?,
+          mime_type: String,
+          name: String,
+          path: String,
+          size: Integer,
+          source: String,
+          tags: ::Array[String],
+          updated_at: Time?,
+          url: String,
+          width: Integer?
+        }
+      end
+
+      type success = true
+
+      module Success
+        extend Autorender::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Autorender::Models::FileRenameResponse::success]
+      end
     end
   end
 end

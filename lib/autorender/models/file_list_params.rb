@@ -8,91 +8,68 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute folder_no
-      #   Restrict results to files in this folder (folder number)
+      #   Exact folder number
       #
       #   @return [String, nil]
       optional :folder_no, String
 
       # @!attribute limit
-      #   Items per page
       #
       #   @return [Integer, nil]
       optional :limit, Integer
 
       # @!attribute name
-      #   Filter by filename (partial match, if supported)
+      #   Partial name match (case-insensitive)
       #
       #   @return [String, nil]
       optional :name, String
 
       # @!attribute page
-      #   Page number (1-based)
       #
       #   @return [Integer, nil]
       optional :page, Integer
 
       # @!attribute path
-      #   Filter by path prefix (if supported)
+      #   Folder prefix (e.g. products/sku123/)
       #
       #   @return [String, nil]
       optional :path, String
 
-      # @!attribute sort_field
-      #   Field to sort by
+      # @!attribute sort
       #
-      #   @return [Symbol, Autorender::Models::FileListParams::SortField, nil]
-      optional :sort_field, enum: -> { Autorender::FileListParams::SortField }
-
-      # @!attribute sort_order
-      #   Sort direction
-      #
-      #   @return [Symbol, Autorender::Models::FileListParams::SortOrder, nil]
-      optional :sort_order, enum: -> { Autorender::FileListParams::SortOrder }
+      #   @return [Symbol, Autorender::Models::FileListParams::Sort, nil]
+      optional :sort, enum: -> { Autorender::FileListParams::Sort }
 
       # @!attribute tags
-      #   Comma-separated tags (if supported)
+      #   Comma-separated tags
       #
       #   @return [String, nil]
       optional :tags, String
 
-      # @!method initialize(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort_field: nil, sort_order: nil, tags: nil, request_options: {})
-      #   @param folder_no [String] Restrict results to files in this folder (folder number)
+      # @!method initialize(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort: nil, tags: nil, request_options: {})
+      #   @param folder_no [String] Exact folder number
       #
-      #   @param limit [Integer] Items per page
+      #   @param limit [Integer]
       #
-      #   @param name [String] Filter by filename (partial match, if supported)
+      #   @param name [String] Partial name match (case-insensitive)
       #
-      #   @param page [Integer] Page number (1-based)
+      #   @param page [Integer]
       #
-      #   @param path [String] Filter by path prefix (if supported)
+      #   @param path [String] Folder prefix (e.g. products/sku123/)
       #
-      #   @param sort_field [Symbol, Autorender::Models::FileListParams::SortField] Field to sort by
+      #   @param sort [Symbol, Autorender::Models::FileListParams::Sort]
       #
-      #   @param sort_order [Symbol, Autorender::Models::FileListParams::SortOrder] Sort direction
-      #
-      #   @param tags [String] Comma-separated tags (if supported)
+      #   @param tags [String] Comma-separated tags
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
 
-      # Field to sort by
-      module SortField
+      module Sort
         extend Autorender::Internal::Type::Enum
 
-        FILE_SIZE = :file_size
-        NAME = :name
-        CREATED_AT = :created_at
-        UPDATED_AT = :updated_at
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # Sort direction
-      module SortOrder
-        extend Autorender::Internal::Type::Enum
-
-        ASC = :asc
-        DESC = :desc
+        CREATED_AT_ASC = :created_at_asc
+        CREATED_AT_DESC = :created_at_desc
+        SIZE_ASC = :size_asc
+        SIZE_DESC = :size_desc
 
         # @!method self.values
         #   @return [Array<Symbol>]

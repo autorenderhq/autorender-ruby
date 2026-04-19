@@ -28,13 +28,11 @@ gem "autorender", "~> 0.0.1"
 require "bundler/setup"
 require "autorender"
 
-autorender = Autorender::Client.new(
-  api_key: ENV["AUTORENDER_API_KEY"] # This is the default and can be omitted
-)
+autorender = Autorender::Client.new
 
-upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
 
-puts(upload.data)
+puts(upload.id)
 ```
 
 ### File uploads
@@ -54,7 +52,7 @@ upload = autorender.uploads.create(file: File.read("/path/to/file"))
 file = Autorender::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
 upload = autorender.uploads.create(file: file)
 
-puts(upload.data)
+puts(upload.id)
 ```
 
 Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
@@ -65,7 +63,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+  upload = autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
 rescue Autorender::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -110,7 +108,7 @@ autorender = Autorender::Client.new(
 # Or, configure per-request:
 autorender.uploads.create(
   file: StringIO.new("Example data"),
-  file_name: "file_name",
+  file_name: "product.jpg",
   request_options: {max_retries: 5}
 )
 ```
@@ -128,7 +126,7 @@ autorender = Autorender::Client.new(
 # Or, configure per-request:
 autorender.uploads.create(
   file: StringIO.new("Example data"),
-  file_name: "file_name",
+  file_name: "product.jpg",
   request_options: {timeout: 5}
 )
 ```
@@ -163,7 +161,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 upload =
   autorender.uploads.create(
     file: StringIO.new("Example data"),
-    file_name: "file_name",
+    file_name: "product.jpg",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -209,17 +207,17 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-autorender.uploads.create(file: StringIO.new("Example data"), file_name: "file_name")
+autorender.uploads.create(file: StringIO.new("Example data"), file_name: "product.jpg")
 
 # You can also splat a full Params class:
-params = Autorender::UploadCreateParams.new(file: StringIO.new("Example data"), file_name: "file_name")
+params = Autorender::UploadCreateParams.new(file: StringIO.new("Example data"), file_name: "product.jpg")
 autorender.uploads.create(**params)
 ```
 
@@ -228,11 +226,11 @@ autorender.uploads.create(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :file_size
-puts(Autorender::FileListParams::SortField::FILE_SIZE)
+# :created_at_asc
+puts(Autorender::FileListParams::Sort::CREATED_AT_ASC)
 
-# Revealed type: `T.all(Autorender::FileListParams::SortField, Symbol)`
-T.reveal_type(Autorender::FileListParams::SortField::FILE_SIZE)
+# Revealed type: `T.all(Autorender::FileListParams::Sort, Symbol)`
+T.reveal_type(Autorender::FileListParams::Sort::CREATED_AT_ASC)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -240,13 +238,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 autorender.files.list(
-  sort_field: Autorender::FileListParams::SortField::FILE_SIZE,
+  sort: Autorender::FileListParams::Sort::CREATED_AT_ASC,
   # …
 )
 
 # Literal values are also permissible:
 autorender.files.list(
-  sort_field: :file_size,
+  sort: :created_at_asc,
   # …
 )
 ```

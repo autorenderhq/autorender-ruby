@@ -2,8 +2,8 @@
 
 module Autorender
   module Models
-    # @see Autorender::Resources::Folders#create
-    class FolderCreateResponse < Autorender::Internal::Type::BaseModel
+    # @see Autorender::Resources::Folders#rename
+    class FolderRenameResponse < Autorender::Internal::Type::BaseModel
       # @!attribute id
       #
       #   @return [String]
@@ -40,7 +40,7 @@ module Autorender
       required :updated_at, Time, nil?: true
 
       # @!method initialize(id:, created_at:, folder_no:, name:, parent_folder_no:, path:, updated_at:)
-      #   Folder created
+      #   Renamed folder
       #
       #   @param id [String]
       #   @param created_at [Time]

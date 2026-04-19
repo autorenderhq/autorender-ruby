@@ -2,25 +2,25 @@
 
 module Autorender
   module Models
-    # @see Autorender::Resources::Files#rename
-    class FileRenameResponse < Autorender::Internal::Type::BaseModel
+    # @see Autorender::Resources::Files#retrieve
+    class FileRetrieveResponse < Autorender::Internal::Type::BaseModel
       # @!attribute data
       #
-      #   @return [Autorender::Models::FileRenameResponse::Data]
-      required :data, -> { Autorender::Models::FileRenameResponse::Data }
+      #   @return [Autorender::Models::FileRetrieveResponse::Data]
+      required :data, -> { Autorender::Models::FileRetrieveResponse::Data }
 
       # @!attribute success
       #
-      #   @return [Boolean, Autorender::Models::FileRenameResponse::Success]
-      required :success, enum: -> { Autorender::Models::FileRenameResponse::Success }
+      #   @return [Boolean, Autorender::Models::FileRetrieveResponse::Success]
+      required :success, enum: -> { Autorender::Models::FileRetrieveResponse::Success }
 
       # @!method initialize(data:, success:)
-      #   Renamed file
+      #   File details
       #
-      #   @param data [Autorender::Models::FileRenameResponse::Data]
-      #   @param success [Boolean, Autorender::Models::FileRenameResponse::Success]
+      #   @param data [Autorender::Models::FileRetrieveResponse::Data]
+      #   @param success [Boolean, Autorender::Models::FileRetrieveResponse::Success]
 
-      # @see Autorender::Models::FileRenameResponse#data
+      # @see Autorender::Models::FileRetrieveResponse#data
       class Data < Autorender::Internal::Type::BaseModel
         # @!attribute id
         #
@@ -129,7 +129,7 @@ module Autorender
         #   @param width [Integer, nil]
       end
 
-      # @see Autorender::Models::FileRenameResponse#success
+      # @see Autorender::Models::FileRetrieveResponse#success
       module Success
         extend Autorender::Internal::Type::Enum
 

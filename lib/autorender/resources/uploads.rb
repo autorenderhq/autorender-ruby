@@ -2,31 +2,33 @@
 
 module Autorender
   module Resources
+    # Upload endpoints (API key required)
     class Uploads
-      # Upload a file to your AutoRender workspace with optional transformations, tags,
-      # and folder organization
+      # Upload a file from your backend server using multipart/form-data.
       #
-      # @overload create(file:, file_name:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, request_options: {})
+      # @overload create(file:, file_name:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, webhook_url: nil, request_options: {})
       #
-      # @param file [Pathname, StringIO, IO, String, Autorender::FilePart] The file to upload (binary data)
+      # @param file [Pathname, StringIO, IO, String, Autorender::FilePart] File to upload.
       #
-      # @param file_name [String] File name for the uploaded file (e.g., my-image.jpg)
+      # @param file_name [String] File name (e.g. product.jpg)
       #
-      # @param custom_id [String] Custom identifier for the file
+      # @param custom_id [String] Custom identifier
       #
-      # @param folder [String] Folder path where the file will be stored (e.g., uploads/my-folder)
+      # @param folder [String] Optional folder path
       #
-      # @param metadata [String] JSON string for custom metadata (e.g., {"key": "value"})
+      # @param metadata [String] JSON string of metadata
       #
-      # @param random_prefix [String] Set to "true" to add a random suffix to filename
+      # @param random_prefix [String] true/false to append random suffix
       #
-      # @param tags [String] Comma-separated tags (e.g., tag1,tag2,tag3)
+      # @param tags [String] Comma-separated tags
       #
-      # @param transform [String] Image transformation string (e.g., w_800,h_600,q_90)
+      # @param transform [String] Transform string (w_300,h_300,c_crop,...)
+      #
+      # @param webhook_url [String] URL to notify on success
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Autorender::Models::Upload]
+      # @return [Autorender::Models::UploadCreateResponse]
       #
       # @see Autorender::Models::UploadCreateParams
       def create(params)
@@ -36,34 +38,34 @@ module Autorender
           path: "api/v1/uploads",
           headers: {"content-type" => "multipart/form-data"},
           body: parsed,
-          model: Autorender::Upload,
+          model: Autorender::Models::UploadCreateResponse,
           options: options
         )
       end
 
-      # Fetch a file from a remote URL and store it in your AutoRender workspace.
+      # Download a file from a remote URL and store it in AutoRender.
       #
-      # @overload create_from_url(remote_url:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, webhook_url: nil, request_options: {})
+      # @overload create_from_url(remote_url:, custom_id: nil, file_name: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, webhook_url: nil, request_options: {})
       #
-      # @param remote_url [String] The HTTP or HTTPS URL of the image to download
+      # @param remote_url [String] HTTP/HTTPS URL to fetch
       #
-      # @param custom_id [String] Custom identifier for tracking the upload
+      # @param custom_id [String]
       #
-      # @param folder [String] Folder path where the file should be stored
+      # @param file_name [String] Override file name
       #
-      # @param metadata [String] JSON string containing custom metadata object
+      # @param folder [String] Destination folder path
       #
-      # @param random_prefix [String] Set to 'true' to generate a random suffix for the filename
+      # @param metadata [String] JSON string of metadata object
       #
-      # @param tags [String] Comma-separated list of tags to apply to the file
+      # @param random_prefix [String] true/false to append random suffix
       #
-      # @param transform [String] Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
+      # @param tags [String] Comma-separated tags
       #
-      # @param webhook_url [String] URL to receive webhook notification when upload completes
+      # @param webhook_url [String]
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Autorender::Models::Upload]
+      # @return [Autorender::Models::UploadCreateFromURLResponse]
       #
       # @see Autorender::Models::UploadCreateFromURLParams
       def create_from_url(params)
@@ -72,7 +74,7 @@ module Autorender
           method: :post,
           path: "api/v1/uploads/remote",
           body: parsed,
-          model: Autorender::Upload,
+          model: Autorender::Models::UploadCreateFromURLResponse,
           options: options
         )
       end

@@ -10,20 +10,21 @@ module Autorender
         ?random_prefix: String,
         ?tags: String,
         ?transform: String,
+        ?webhook_url: String,
         ?request_options: Autorender::request_opts
-      ) -> Autorender::Upload
+      ) -> Autorender::Models::UploadCreateResponse
 
       def create_from_url: (
         remote_url: String,
         ?custom_id: String,
+        ?file_name: String,
         ?folder: String,
         ?metadata: String,
         ?random_prefix: String,
         ?tags: String,
-        ?transform: String,
         ?webhook_url: String,
         ?request_options: Autorender::request_opts
-      ) -> Autorender::Upload
+      ) -> Autorender::Models::UploadCreateFromURLResponse
 
       def initialize: (client: Autorender::Client) -> void
     end

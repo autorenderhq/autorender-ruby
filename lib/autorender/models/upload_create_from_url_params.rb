@@ -8,69 +8,67 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute remote_url
-      #   The HTTP or HTTPS URL of the image to download
+      #   HTTP/HTTPS URL to fetch
       #
       #   @return [String]
       required :remote_url, String
 
       # @!attribute custom_id
-      #   Custom identifier for tracking the upload
       #
       #   @return [String, nil]
       optional :custom_id, String
 
+      # @!attribute file_name
+      #   Override file name
+      #
+      #   @return [String, nil]
+      optional :file_name, String
+
       # @!attribute folder
-      #   Folder path where the file should be stored
+      #   Destination folder path
       #
       #   @return [String, nil]
       optional :folder, String
 
       # @!attribute metadata
-      #   JSON string containing custom metadata object
+      #   JSON string of metadata object
       #
       #   @return [String, nil]
       optional :metadata, String
 
       # @!attribute random_prefix
-      #   Set to 'true' to generate a random suffix for the filename
+      #   true/false to append random suffix
       #
       #   @return [String, nil]
       optional :random_prefix, String
 
       # @!attribute tags
-      #   Comma-separated list of tags to apply to the file
+      #   Comma-separated tags
       #
       #   @return [String, nil]
       optional :tags, String
 
-      # @!attribute transform
-      #   Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
-      #
-      #   @return [String, nil]
-      optional :transform, String
-
       # @!attribute webhook_url
-      #   URL to receive webhook notification when upload completes
       #
       #   @return [String, nil]
       optional :webhook_url, String
 
-      # @!method initialize(remote_url:, custom_id: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, transform: nil, webhook_url: nil, request_options: {})
-      #   @param remote_url [String] The HTTP or HTTPS URL of the image to download
+      # @!method initialize(remote_url:, custom_id: nil, file_name: nil, folder: nil, metadata: nil, random_prefix: nil, tags: nil, webhook_url: nil, request_options: {})
+      #   @param remote_url [String] HTTP/HTTPS URL to fetch
       #
-      #   @param custom_id [String] Custom identifier for tracking the upload
+      #   @param custom_id [String]
       #
-      #   @param folder [String] Folder path where the file should be stored
+      #   @param file_name [String] Override file name
       #
-      #   @param metadata [String] JSON string containing custom metadata object
+      #   @param folder [String] Destination folder path
       #
-      #   @param random_prefix [String] Set to 'true' to generate a random suffix for the filename
+      #   @param metadata [String] JSON string of metadata object
       #
-      #   @param tags [String] Comma-separated list of tags to apply to the file
+      #   @param random_prefix [String] true/false to append random suffix
       #
-      #   @param transform [String] Transformation string to apply during upload (e.g., w_800,h_600,c_crop)
+      #   @param tags [String] Comma-separated tags
       #
-      #   @param webhook_url [String] URL to receive webhook notification when upload completes
+      #   @param webhook_url [String]
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
     end

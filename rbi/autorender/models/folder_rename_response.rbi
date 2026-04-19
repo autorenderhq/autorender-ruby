@@ -2,11 +2,11 @@
 
 module Autorender
   module Models
-    class FolderCreateResponse < Autorender::Internal::Type::BaseModel
+    class FolderRenameResponse < Autorender::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Autorender::Models::FolderCreateResponse,
+            Autorender::Models::FolderRenameResponse,
             Autorender::Internal::AnyHash
           )
         end
@@ -32,7 +32,7 @@ module Autorender
       sig { returns(T.nilable(Time)) }
       attr_accessor :updated_at
 
-      # Folder created
+      # Renamed folder
       sig do
         params(
           id: String,

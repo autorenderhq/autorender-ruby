@@ -1,47 +1,27 @@
 module Autorender
   module Models
-    type file_list_response =
+    type file_retrieve_response =
       {
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        data: Autorender::Models::FileRetrieveResponse::Data,
+        success: Autorender::Models::FileRetrieveResponse::success
       }
 
-    class FileListResponse < Autorender::Internal::Type::BaseModel
-      attr_accessor is_page_next: bool
+    class FileRetrieveResponse < Autorender::Internal::Type::BaseModel
+      attr_accessor data: Autorender::Models::FileRetrieveResponse::Data
 
-      attr_accessor items: ::Array[Autorender::Models::FileListResponse::Item]
-
-      attr_accessor limit: Integer
-
-      attr_accessor page: Integer
-
-      attr_accessor total_count: Integer
-
-      attr_accessor total_pages: Integer
+      attr_accessor success: Autorender::Models::FileRetrieveResponse::success
 
       def initialize: (
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        data: Autorender::Models::FileRetrieveResponse::Data,
+        success: Autorender::Models::FileRetrieveResponse::success
       ) -> void
 
       def to_hash: -> {
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        data: Autorender::Models::FileRetrieveResponse::Data,
+        success: Autorender::Models::FileRetrieveResponse::success
       }
 
-      type item =
+      type data =
         {
           id: String,
           created_at: Time,
@@ -62,7 +42,7 @@ module Autorender
           width: Integer?
         }
 
-      class Item < Autorender::Internal::Type::BaseModel
+      class Data < Autorender::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor created_at: Time
@@ -136,6 +116,16 @@ module Autorender
           url: String,
           width: Integer?
         }
+      end
+
+      type success = true
+
+      module Success
+        extend Autorender::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Autorender::Models::FileRetrieveResponse::success]
       end
     end
   end

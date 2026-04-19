@@ -2,74 +2,59 @@
 
 module Autorender
   module Models
-    class FileListResponse < Autorender::Internal::Type::BaseModel
+    class FileRetrieveResponse < Autorender::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Autorender::Models::FileListResponse,
+            Autorender::Models::FileRetrieveResponse,
             Autorender::Internal::AnyHash
           )
         end
 
-      sig { returns(T::Boolean) }
-      attr_accessor :is_page_next
+      sig { returns(Autorender::Models::FileRetrieveResponse::Data) }
+      attr_reader :data
 
-      sig { returns(T::Array[Autorender::Models::FileListResponse::Item]) }
-      attr_accessor :items
-
-      sig { returns(Integer) }
-      attr_accessor :limit
-
-      sig { returns(Integer) }
-      attr_accessor :page
-
-      sig { returns(Integer) }
-      attr_accessor :total_count
-
-      sig { returns(Integer) }
-      attr_accessor :total_pages
-
-      # Files list
       sig do
         params(
-          is_page_next: T::Boolean,
-          items: T::Array[Autorender::Models::FileListResponse::Item::OrHash],
-          limit: Integer,
-          page: Integer,
-          total_count: Integer,
-          total_pages: Integer
+          data: Autorender::Models::FileRetrieveResponse::Data::OrHash
+        ).void
+      end
+      attr_writer :data
+
+      sig do
+        returns(
+          Autorender::Models::FileRetrieveResponse::Success::TaggedBoolean
+        )
+      end
+      attr_accessor :success
+
+      # File details
+      sig do
+        params(
+          data: Autorender::Models::FileRetrieveResponse::Data::OrHash,
+          success: Autorender::Models::FileRetrieveResponse::Success::OrBoolean
         ).returns(T.attached_class)
       end
-      def self.new(
-        is_page_next:,
-        items:,
-        limit:,
-        page:,
-        total_count:,
-        total_pages:
-      )
+      def self.new(data:, success:)
       end
 
       sig do
         override.returns(
           {
-            is_page_next: T::Boolean,
-            items: T::Array[Autorender::Models::FileListResponse::Item],
-            limit: Integer,
-            page: Integer,
-            total_count: Integer,
-            total_pages: Integer
+            data: Autorender::Models::FileRetrieveResponse::Data,
+            success:
+              Autorender::Models::FileRetrieveResponse::Success::TaggedBoolean
           }
         )
       end
       def to_hash
       end
 
-      class Item < Autorender::Internal::Type::BaseModel
+      class Data < Autorender::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Autorender::Models::FileListResponse::Item,
+              Autorender::Models::FileRetrieveResponse::Data,
               Autorender::Internal::AnyHash
             )
           end
@@ -191,6 +176,32 @@ module Autorender
           )
         end
         def to_hash
+        end
+      end
+
+      module Success
+        extend Autorender::Internal::Type::Enum
+
+        TaggedBoolean =
+          T.type_alias do
+            T.all(T::Boolean, Autorender::Models::FileRetrieveResponse::Success)
+          end
+        OrBoolean = T.type_alias { T::Boolean }
+
+        TRUE =
+          T.let(
+            true,
+            Autorender::Models::FileRetrieveResponse::Success::TaggedBoolean
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Autorender::Models::FileRetrieveResponse::Success::TaggedBoolean
+            ]
+          )
+        end
+        def self.values
         end
       end
     end

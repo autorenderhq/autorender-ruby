@@ -18,23 +18,17 @@ module Autorender
     # @return [String, nil]
     attr_reader :api_key
 
+    # Upload endpoints (API key required)
     # @return [Autorender::Resources::Uploads]
     attr_reader :uploads
 
+    # File management endpoints (API key required)
     # @return [Autorender::Resources::Files]
     attr_reader :files
 
+    # Folder management endpoints (API key required)
     # @return [Autorender::Resources::Folders]
     attr_reader :folders
-
-    # @api private
-    #
-    # @return [Hash{String=>String}]
-    private def auth_headers
-      return {} if @api_key.nil?
-
-      {"authorization" => "Bearer #{@api_key}"}
-    end
 
     # Creates and returns a new client for interacting with the API.
     #
