@@ -61,6 +61,19 @@ module Autorender
     )
       base_url ||= "https://upload.autorender.io"
 
+      headers = {}
+      custom_headers_env = ENV["AUTORENDER_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
       @api_key = api_key&.to_s
 
       super(
@@ -68,7 +81,8 @@ module Autorender
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @uploads = Autorender::Resources::Uploads.new(client: self)
