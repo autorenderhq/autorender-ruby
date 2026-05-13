@@ -203,7 +203,7 @@ end
 class Autorender::Test::UtilFormDataEncodingTest < Minitest::Test
   class FakeCGI < CGI
     def initialize(headers, io)
-      encoded = io.to_a
+      encoded = io.is_a?(String) ? [io] : io.to_a
       @ctype = headers["content-type"]
       # rubocop:disable Lint/EmptyBlock
       @io = Autorender::Internal::Util::ReadIOAdapter.new(encoded.to_enum) {}
