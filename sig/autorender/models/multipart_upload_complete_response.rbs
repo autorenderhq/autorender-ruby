@@ -1,35 +1,39 @@
 module Autorender
   module Models
-    type upload_upload_with_token_response =
+    type multipart_upload_complete_response =
       {
         id: String,
         created_at: Time,
         custom_id: String?,
+        extension: String,
         file_no: String,
         folder_no: String?,
         height: Integer?,
         is_duplicate: bool,
-        is_private: bool,
         metadata: ::Hash[Symbol, top]?,
         mime_type: String,
         name: String,
         path: String,
         size: Integer,
         tags: ::Array[String],
+        thumbnail: String,
         upload_source: String,
         url: String,
         width: Integer?,
         workspace_id: String,
         format_: String,
-        hash_: String
+        hash_: String,
+        is_private: bool
       }
 
-    class UploadUploadWithTokenResponse < Autorender::Internal::Type::BaseModel
+    class MultipartUploadCompleteResponse < Autorender::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
 
       attr_accessor custom_id: String?
+
+      attr_accessor extension: String
 
       attr_accessor file_no: String
 
@@ -38,8 +42,6 @@ module Autorender
       attr_accessor height: Integer?
 
       attr_accessor is_duplicate: bool
-
-      attr_accessor is_private: bool
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
@@ -52,6 +54,8 @@ module Autorender
       attr_accessor size: Integer
 
       attr_accessor tags: ::Array[String]
+
+      attr_accessor thumbnail: String
 
       attr_accessor upload_source: String
 
@@ -69,50 +73,58 @@ module Autorender
 
       def hash_=: (String) -> String
 
+      attr_reader is_private: bool?
+
+      def is_private=: (bool) -> bool
+
       def initialize: (
         id: String,
         created_at: Time,
         custom_id: String?,
+        extension: String,
         file_no: String,
         folder_no: String?,
         height: Integer?,
         is_duplicate: bool,
-        is_private: bool,
         metadata: ::Hash[Symbol, top]?,
         mime_type: String,
         name: String,
         path: String,
         size: Integer,
         tags: ::Array[String],
+        thumbnail: String,
         upload_source: String,
         url: String,
         width: Integer?,
         workspace_id: String,
         ?format_: String,
-        ?hash_: String
+        ?hash_: String,
+        ?is_private: bool
       ) -> void
 
       def to_hash: -> {
         id: String,
         created_at: Time,
         custom_id: String?,
+        extension: String,
         file_no: String,
         folder_no: String?,
         height: Integer?,
         is_duplicate: bool,
-        is_private: bool,
         metadata: ::Hash[Symbol, top]?,
         mime_type: String,
         name: String,
         path: String,
         size: Integer,
         tags: ::Array[String],
+        thumbnail: String,
         upload_source: String,
         url: String,
         width: Integer?,
         workspace_id: String,
         format_: String,
-        hash_: String
+        hash_: String,
+        is_private: bool
       }
     end
   end

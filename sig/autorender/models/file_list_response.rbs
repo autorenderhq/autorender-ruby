@@ -2,46 +2,26 @@ module Autorender
   module Models
     type file_list_response =
       {
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        files: ::Array[Autorender::Models::FileListResponse::File],
+        meta: Autorender::Models::FileListResponse::Meta
       }
 
     class FileListResponse < Autorender::Internal::Type::BaseModel
-      attr_accessor is_page_next: bool
+      attr_accessor files: ::Array[Autorender::Models::FileListResponse::File]
 
-      attr_accessor items: ::Array[Autorender::Models::FileListResponse::Item]
-
-      attr_accessor limit: Integer
-
-      attr_accessor page: Integer
-
-      attr_accessor total_count: Integer
-
-      attr_accessor total_pages: Integer
+      attr_accessor meta: Autorender::Models::FileListResponse::Meta
 
       def initialize: (
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        files: ::Array[Autorender::Models::FileListResponse::File],
+        meta: Autorender::Models::FileListResponse::Meta
       ) -> void
 
       def to_hash: -> {
-        is_page_next: bool,
-        items: ::Array[Autorender::Models::FileListResponse::Item],
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        files: ::Array[Autorender::Models::FileListResponse::File],
+        meta: Autorender::Models::FileListResponse::Meta
       }
 
-      type item =
+      type file =
         {
           id: String,
           created_at: Time,
@@ -62,7 +42,7 @@ module Autorender
           width: Integer?
         }
 
-      class Item < Autorender::Internal::Type::BaseModel
+      class File < Autorender::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor created_at: Time
@@ -135,6 +115,43 @@ module Autorender
           updated_at: Time?,
           url: String,
           width: Integer?
+        }
+      end
+
+      type meta =
+        {
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
+        }
+
+      class Meta < Autorender::Internal::Type::BaseModel
+        attr_accessor has_next: bool
+
+        attr_accessor has_prev: bool
+
+        attr_accessor limit: Integer
+
+        attr_accessor page: Integer
+
+        attr_accessor total: Integer
+
+        def initialize: (
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
+        ) -> void
+
+        def to_hash: -> {
+          has_next: bool,
+          has_prev: bool,
+          limit: Integer,
+          page: Integer,
+          total: Integer
         }
       end
     end

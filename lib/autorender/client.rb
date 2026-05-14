@@ -30,6 +30,10 @@ module Autorender
     # @return [Autorender::Resources::Folders]
     attr_reader :folders
 
+    # Upload endpoints (API key required)
+    # @return [Autorender::Resources::MultipartUploads]
+    attr_reader :multipart_uploads
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -88,6 +92,7 @@ module Autorender
       @uploads = Autorender::Resources::Uploads.new(client: self)
       @files = Autorender::Resources::Files.new(client: self)
       @folders = Autorender::Resources::Folders.new(client: self)
+      @multipart_uploads = Autorender::Resources::MultipartUploads.new(client: self)
     end
   end
 end

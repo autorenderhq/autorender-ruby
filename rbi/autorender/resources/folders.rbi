@@ -7,16 +7,35 @@ module Autorender
       # Create folder
       sig do
         params(
-          folder_name: String,
-          path: String,
+          name: String,
+          parent_folder_no: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(Autorender::Models::FolderCreateResponse)
       end
       def create(
         # Folder name without slashes
-        folder_name:,
-        # Optional parent path, e.g. products/sku123
-        path: nil,
+        name:,
+        # Parent folder number
+        parent_folder_no: nil,
+        request_options: {}
+      )
+      end
+
+      # List folders
+      sig do
+        params(
+          parent_folder_no: String,
+          search: String,
+          sort: Autorender::FolderListParams::Sort::OrSymbol,
+          request_options: Autorender::RequestOptions::OrHash
+        ).returns(Autorender::Models::FolderListResponse)
+      end
+      def list(
+        # Filter by parent folder number
+        parent_folder_no: nil,
+        # Partial name match (case-insensitive)
+        search: nil,
+        sort: nil,
         request_options: {}
       )
       end

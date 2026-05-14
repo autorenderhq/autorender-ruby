@@ -19,6 +19,11 @@ module Autorender
       #   @return [String, nil]
       required :custom_id, String, nil?: true
 
+      # @!attribute extension
+      #
+      #   @return [String]
+      required :extension, String
+
       # @!attribute file_no
       #
       #   @return [String]
@@ -38,11 +43,6 @@ module Autorender
       #
       #   @return [Boolean]
       required :is_duplicate, Autorender::Internal::Type::Boolean
-
-      # @!attribute is_private
-      #
-      #   @return [Boolean]
-      required :is_private, Autorender::Internal::Type::Boolean
 
       # @!attribute metadata
       #
@@ -74,6 +74,11 @@ module Autorender
       #   @return [Array<String>]
       required :tags, Autorender::Internal::Type::ArrayOf[String]
 
+      # @!attribute thumbnail
+      #
+      #   @return [String]
+      required :thumbnail, String
+
       # @!attribute upload_source
       #
       #   @return [String]
@@ -104,29 +109,36 @@ module Autorender
       #   @return [String, nil]
       optional :hash_, String, api_name: :hash
 
-      # @!method initialize(id:, created_at:, custom_id:, file_no:, folder_no:, height:, is_duplicate:, is_private:, metadata:, mime_type:, name:, path:, size:, tags:, upload_source:, url:, width:, workspace_id:, format_: nil, hash_: nil)
+      # @!attribute is_private
+      #
+      #   @return [Boolean, nil]
+      optional :is_private, Autorender::Internal::Type::Boolean
+
+      # @!method initialize(id:, created_at:, custom_id:, extension:, file_no:, folder_no:, height:, is_duplicate:, metadata:, mime_type:, name:, path:, size:, tags:, thumbnail:, upload_source:, url:, width:, workspace_id:, format_: nil, hash_: nil, is_private: nil)
       #   Upload created
       #
       #   @param id [String]
       #   @param created_at [Time]
       #   @param custom_id [String, nil]
+      #   @param extension [String]
       #   @param file_no [String]
       #   @param folder_no [String, nil]
       #   @param height [Integer, nil]
       #   @param is_duplicate [Boolean]
-      #   @param is_private [Boolean]
       #   @param metadata [Hash{Symbol=>Object}, nil]
       #   @param mime_type [String]
       #   @param name [String]
       #   @param path [String]
       #   @param size [Integer]
       #   @param tags [Array<String>]
+      #   @param thumbnail [String]
       #   @param upload_source [String]
       #   @param url [String]
       #   @param width [Integer, nil]
       #   @param workspace_id [String]
       #   @param format_ [String]
       #   @param hash_ [String]
+      #   @param is_private [Boolean]
     end
   end
 end

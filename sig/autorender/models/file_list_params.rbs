@@ -4,11 +4,9 @@ module Autorender
       {
         folder_no: String,
         limit: Integer,
-        name: String,
         page: Integer,
-        path: String,
-        sort: Autorender::Models::FileListParams::sort,
-        tags: String
+        search: String,
+        sort: Autorender::Models::FileListParams::sort
       }
       & Autorender::Internal::Type::request_parameters
 
@@ -24,17 +22,13 @@ module Autorender
 
       def limit=: (Integer) -> Integer
 
-      attr_reader name: String?
-
-      def name=: (String) -> String
-
       attr_reader page: Integer?
 
       def page=: (Integer) -> Integer
 
-      attr_reader path: String?
+      attr_reader search: String?
 
-      def path=: (String) -> String
+      def search=: (String) -> String
 
       attr_reader sort: Autorender::Models::FileListParams::sort?
 
@@ -42,41 +36,41 @@ module Autorender
         Autorender::Models::FileListParams::sort
       ) -> Autorender::Models::FileListParams::sort
 
-      attr_reader tags: String?
-
-      def tags=: (String) -> String
-
       def initialize: (
         ?folder_no: String,
         ?limit: Integer,
-        ?name: String,
         ?page: Integer,
-        ?path: String,
+        ?search: String,
         ?sort: Autorender::Models::FileListParams::sort,
-        ?tags: String,
         ?request_options: Autorender::request_opts
       ) -> void
 
       def to_hash: -> {
         folder_no: String,
         limit: Integer,
-        name: String,
         page: Integer,
-        path: String,
+        search: String,
         sort: Autorender::Models::FileListParams::sort,
-        tags: String,
         request_options: Autorender::RequestOptions
       }
 
-      type sort = :created_at_asc | :created_at_desc | :size_asc | :size_desc
+      type sort =
+        :name_asc
+        | :name_desc
+        | :size_asc
+        | :size_desc
+        | :created_at_asc
+        | :created_at_desc
 
       module Sort
         extend Autorender::Internal::Type::Enum
 
-        CREATED_AT_ASC: :created_at_asc
-        CREATED_AT_DESC: :created_at_desc
+        NAME_ASC: :name_asc
+        NAME_DESC: :name_desc
         SIZE_ASC: :size_asc
         SIZE_DESC: :size_desc
+        CREATED_AT_ASC: :created_at_asc
+        CREATED_AT_DESC: :created_at_desc
 
         def self?.values: -> ::Array[Autorender::Models::FileListParams::sort]
       end

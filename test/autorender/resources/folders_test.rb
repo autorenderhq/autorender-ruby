@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
   def test_create_required_params
-    response = @autorender.folders.create(folder_name: "folder_name")
+    response = @autorender.folders.create(name: "x")
 
     assert_pattern do
       response => Autorender::Models::FolderCreateResponse
@@ -19,6 +19,20 @@ class Autorender::Test::Resources::FoldersTest < Autorender::Test::ResourceTest
         parent_folder_no: String | nil,
         path: String,
         updated_at: Time | nil
+      }
+    end
+  end
+
+  def test_list
+    response = @autorender.folders.list
+
+    assert_pattern do
+      response => Autorender::Models::FolderListResponse
+    end
+
+    assert_pattern do
+      response => {
+        folders: ^(Autorender::Internal::Type::ArrayOf[Autorender::Models::FolderListResponse::Folder])
       }
     end
   end

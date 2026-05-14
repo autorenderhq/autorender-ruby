@@ -7,19 +7,19 @@ module Autorender
 
   class FileRetrieveParams = Autorender::Models::FileRetrieveParams
 
-  class FileUpdateParams = Autorender::Models::FileUpdateParams
-
   class FolderCreateParams = Autorender::Models::FolderCreateParams
 
   class FolderDeleteParams = Autorender::Models::FolderDeleteParams
 
+  class FolderListParams = Autorender::Models::FolderListParams
+
   class FolderRenameParams = Autorender::Models::FolderRenameParams
+
+  class MultipartUploadCompleteParams = Autorender::Models::MultipartUploadCompleteParams
+
+  class MultipartUploadStartParams = Autorender::Models::MultipartUploadStartParams
 
   class UploadCreateFromURLParams = Autorender::Models::UploadCreateFromURLParams
 
   class UploadCreateParams = Autorender::Models::UploadCreateParams
-
-  class UploadGenerateTokenParams = Autorender::Models::UploadGenerateTokenParams
-
-  class UploadUploadWithTokenParams = Autorender::Models::UploadUploadWithTokenParams
 end
