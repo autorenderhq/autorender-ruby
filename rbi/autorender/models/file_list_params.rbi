@@ -11,7 +11,7 @@ module Autorender
           T.any(Autorender::FileListParams, Autorender::Internal::AnyHash)
         end
 
-      # Exact folder number
+      # Filter by folder number
       sig { returns(T.nilable(String)) }
       attr_reader :folder_no
 
@@ -24,25 +24,18 @@ module Autorender
       sig { params(limit: Integer).void }
       attr_writer :limit
 
-      # Partial name match (case-insensitive)
-      sig { returns(T.nilable(String)) }
-      attr_reader :name
-
-      sig { params(name: String).void }
-      attr_writer :name
-
       sig { returns(T.nilable(Integer)) }
       attr_reader :page
 
       sig { params(page: Integer).void }
       attr_writer :page
 
-      # Folder prefix (e.g. products/sku123/)
+      # Partial name match (case-insensitive)
       sig { returns(T.nilable(String)) }
-      attr_reader :path
+      attr_reader :search
 
-      sig { params(path: String).void }
-      attr_writer :path
+      sig { params(search: String).void }
+      attr_writer :search
 
       sig { returns(T.nilable(Autorender::FileListParams::Sort::OrSymbol)) }
       attr_reader :sort
@@ -50,37 +43,24 @@ module Autorender
       sig { params(sort: Autorender::FileListParams::Sort::OrSymbol).void }
       attr_writer :sort
 
-      # Comma-separated tags
-      sig { returns(T.nilable(String)) }
-      attr_reader :tags
-
-      sig { params(tags: String).void }
-      attr_writer :tags
-
       sig do
         params(
           folder_no: String,
           limit: Integer,
-          name: String,
           page: Integer,
-          path: String,
+          search: String,
           sort: Autorender::FileListParams::Sort::OrSymbol,
-          tags: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Exact folder number
+        # Filter by folder number
         folder_no: nil,
         limit: nil,
-        # Partial name match (case-insensitive)
-        name: nil,
         page: nil,
-        # Folder prefix (e.g. products/sku123/)
-        path: nil,
+        # Partial name match (case-insensitive)
+        search: nil,
         sort: nil,
-        # Comma-separated tags
-        tags: nil,
         request_options: {}
       )
       end
@@ -90,11 +70,9 @@ module Autorender
           {
             folder_no: String,
             limit: Integer,
-            name: String,
             page: Integer,
-            path: String,
+            search: String,
             sort: Autorender::FileListParams::Sort::OrSymbol,
-            tags: String,
             request_options: Autorender::RequestOptions
           }
         )
@@ -109,6 +87,14 @@ module Autorender
           T.type_alias { T.all(Symbol, Autorender::FileListParams::Sort) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        NAME_ASC =
+          T.let(:name_asc, Autorender::FileListParams::Sort::TaggedSymbol)
+        NAME_DESC =
+          T.let(:name_desc, Autorender::FileListParams::Sort::TaggedSymbol)
+        SIZE_ASC =
+          T.let(:size_asc, Autorender::FileListParams::Sort::TaggedSymbol)
+        SIZE_DESC =
+          T.let(:size_desc, Autorender::FileListParams::Sort::TaggedSymbol)
         CREATED_AT_ASC =
           T.let(:created_at_asc, Autorender::FileListParams::Sort::TaggedSymbol)
         CREATED_AT_DESC =
@@ -116,10 +102,6 @@ module Autorender
             :created_at_desc,
             Autorender::FileListParams::Sort::TaggedSymbol
           )
-        SIZE_ASC =
-          T.let(:size_asc, Autorender::FileListParams::Sort::TaggedSymbol)
-        SIZE_DESC =
-          T.let(:size_desc, Autorender::FileListParams::Sort::TaggedSymbol)
 
         sig do
           override.returns(

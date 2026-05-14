@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = Autorender::VERSION
   s.summary = "Ruby library to access the Autorender API"
   s.authors = ["Autorender"]
-  s.email = "support@autorender.io"
+  s.email = "engineering@autorender.io"
   s.homepage = "https://gemdocs.org/gems/autorender"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/autorenderhq/autorender-ruby"

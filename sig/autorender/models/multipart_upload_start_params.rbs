@@ -1,30 +1,28 @@
 module Autorender
   module Models
-    type upload_generate_token_params =
+    type multipart_upload_start_params =
       {
         file_name: String,
-        allow_override: Autorender::UploadGenerateTokenParams::AllowOverride,
+        format_: String,
+        size: Integer,
         custom_id: String,
         folder: String,
-        max_file_size: Integer,
         metadata: ::Hash[Symbol, top],
         random_prefix: bool,
-        tags: ::Array[String],
+        tags: Autorender::Models::MultipartUploadStartParams::tags,
         ttl_seconds: Integer
       }
       & Autorender::Internal::Type::request_parameters
 
-    class UploadGenerateTokenParams < Autorender::Internal::Type::BaseModel
+    class MultipartUploadStartParams < Autorender::Internal::Type::BaseModel
       extend Autorender::Internal::Type::RequestParameters::Converter
       include Autorender::Internal::Type::RequestParameters
 
       attr_accessor file_name: String
 
-      attr_reader allow_override: Autorender::UploadGenerateTokenParams::AllowOverride?
+      attr_accessor format_: String
 
-      def allow_override=: (
-        Autorender::UploadGenerateTokenParams::AllowOverride
-      ) -> Autorender::UploadGenerateTokenParams::AllowOverride
+      attr_accessor size: Integer
 
       attr_reader custom_id: String?
 
@@ -34,10 +32,6 @@ module Autorender
 
       def folder=: (String) -> String
 
-      attr_reader max_file_size: Integer?
-
-      def max_file_size=: (Integer) -> Integer
-
       attr_reader metadata: ::Hash[Symbol, top]?
 
       def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
@@ -46,9 +40,11 @@ module Autorender
 
       def random_prefix=: (bool) -> bool
 
-      attr_reader tags: ::Array[String]?
+      attr_reader tags: Autorender::Models::MultipartUploadStartParams::tags?
 
-      def tags=: (::Array[String]) -> ::Array[String]
+      def tags=: (
+        Autorender::Models::MultipartUploadStartParams::tags
+      ) -> Autorender::Models::MultipartUploadStartParams::tags
 
       attr_reader ttl_seconds: Integer?
 
@@ -56,44 +52,38 @@ module Autorender
 
       def initialize: (
         file_name: String,
-        ?allow_override: Autorender::UploadGenerateTokenParams::AllowOverride,
+        format_: String,
+        size: Integer,
         ?custom_id: String,
         ?folder: String,
-        ?max_file_size: Integer,
         ?metadata: ::Hash[Symbol, top],
         ?random_prefix: bool,
-        ?tags: ::Array[String],
+        ?tags: Autorender::Models::MultipartUploadStartParams::tags,
         ?ttl_seconds: Integer,
         ?request_options: Autorender::request_opts
       ) -> void
 
       def to_hash: -> {
         file_name: String,
-        allow_override: Autorender::UploadGenerateTokenParams::AllowOverride,
+        format_: String,
+        size: Integer,
         custom_id: String,
         folder: String,
-        max_file_size: Integer,
         metadata: ::Hash[Symbol, top],
         random_prefix: bool,
-        tags: ::Array[String],
+        tags: Autorender::Models::MultipartUploadStartParams::tags,
         ttl_seconds: Integer,
         request_options: Autorender::RequestOptions
       }
 
-      type allow_override = { folder: bool, tags: bool }
+      type tags = ::Array[String] | String
 
-      class AllowOverride < Autorender::Internal::Type::BaseModel
-        attr_reader folder: bool?
+      module Tags
+        extend Autorender::Internal::Type::Union
 
-        def folder=: (bool) -> bool
+        def self?.variants: -> ::Array[Autorender::Models::MultipartUploadStartParams::tags]
 
-        attr_reader tags: bool?
-
-        def tags=: (bool) -> bool
-
-        def initialize: (?folder: bool, ?tags: bool) -> void
-
-        def to_hash: -> { folder: bool, tags: bool }
+        StringArray: Autorender::Internal::Type::Converter
       end
     end
   end

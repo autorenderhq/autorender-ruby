@@ -1,0 +1,65 @@
+module Autorender
+  module Models
+    type folder_list_response =
+      { folders: ::Array[Autorender::Models::FolderListResponse::Folder] }
+
+    class FolderListResponse < Autorender::Internal::Type::BaseModel
+      attr_accessor folders: ::Array[Autorender::Models::FolderListResponse::Folder]
+
+      def initialize: (
+        folders: ::Array[Autorender::Models::FolderListResponse::Folder]
+      ) -> void
+
+      def to_hash: -> {
+        folders: ::Array[Autorender::Models::FolderListResponse::Folder]
+      }
+
+      type folder =
+        {
+          id: String,
+          created_at: Time,
+          folder_no: String,
+          name: String,
+          parent_folder_no: String?,
+          path: String,
+          updated_at: Time?
+        }
+
+      class Folder < Autorender::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor folder_no: String
+
+        attr_accessor name: String
+
+        attr_accessor parent_folder_no: String?
+
+        attr_accessor path: String
+
+        attr_accessor updated_at: Time?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          folder_no: String,
+          name: String,
+          parent_folder_no: String?,
+          path: String,
+          updated_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          folder_no: String,
+          name: String,
+          parent_folder_no: String?,
+          path: String,
+          updated_at: Time?
+        }
+      end
+    end
+  end
+end

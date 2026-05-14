@@ -2,10 +2,17 @@ module Autorender
   module Resources
     class Folders
       def create: (
-        folder_name: String,
-        ?path: String,
+        name: String,
+        ?parent_folder_no: String,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::FolderCreateResponse
+
+      def list: (
+        ?parent_folder_no: String,
+        ?search: String,
+        ?sort: Autorender::Models::FolderListParams::sort,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::FolderListResponse
 
       def delete: (
         String folder_no,

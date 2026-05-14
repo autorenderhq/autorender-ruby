@@ -13,27 +13,27 @@ module Autorender
 
       # Folder name without slashes
       sig { returns(String) }
-      attr_accessor :folder_name
+      attr_accessor :name
 
-      # Optional parent path, e.g. products/sku123
+      # Parent folder number
       sig { returns(T.nilable(String)) }
-      attr_reader :path
+      attr_reader :parent_folder_no
 
-      sig { params(path: String).void }
-      attr_writer :path
+      sig { params(parent_folder_no: String).void }
+      attr_writer :parent_folder_no
 
       sig do
         params(
-          folder_name: String,
-          path: String,
+          name: String,
+          parent_folder_no: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         # Folder name without slashes
-        folder_name:,
-        # Optional parent path, e.g. products/sku123
-        path: nil,
+        name:,
+        # Parent folder number
+        parent_folder_no: nil,
         request_options: {}
       )
       end
@@ -41,8 +41,8 @@ module Autorender
       sig do
         override.returns(
           {
-            folder_name: String,
-            path: String,
+            name: String,
+            parent_folder_no: String,
             request_options: Autorender::RequestOptions
           }
         )

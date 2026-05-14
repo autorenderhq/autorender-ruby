@@ -11,65 +11,43 @@ module Autorender
           )
         end
 
-      sig { returns(T::Boolean) }
-      attr_accessor :is_page_next
+      sig { returns(T::Array[Autorender::Models::FileListResponse::File]) }
+      attr_accessor :files
 
-      sig { returns(T::Array[Autorender::Models::FileListResponse::Item]) }
-      attr_accessor :items
+      sig { returns(Autorender::Models::FileListResponse::Meta) }
+      attr_reader :meta
 
-      sig { returns(Integer) }
-      attr_accessor :limit
-
-      sig { returns(Integer) }
-      attr_accessor :page
-
-      sig { returns(Integer) }
-      attr_accessor :total_count
-
-      sig { returns(Integer) }
-      attr_accessor :total_pages
+      sig do
+        params(meta: Autorender::Models::FileListResponse::Meta::OrHash).void
+      end
+      attr_writer :meta
 
       # Files list
       sig do
         params(
-          is_page_next: T::Boolean,
-          items: T::Array[Autorender::Models::FileListResponse::Item::OrHash],
-          limit: Integer,
-          page: Integer,
-          total_count: Integer,
-          total_pages: Integer
+          files: T::Array[Autorender::Models::FileListResponse::File::OrHash],
+          meta: Autorender::Models::FileListResponse::Meta::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(
-        is_page_next:,
-        items:,
-        limit:,
-        page:,
-        total_count:,
-        total_pages:
-      )
+      def self.new(files:, meta:)
       end
 
       sig do
         override.returns(
           {
-            is_page_next: T::Boolean,
-            items: T::Array[Autorender::Models::FileListResponse::Item],
-            limit: Integer,
-            page: Integer,
-            total_count: Integer,
-            total_pages: Integer
+            files: T::Array[Autorender::Models::FileListResponse::File],
+            meta: Autorender::Models::FileListResponse::Meta
           }
         )
       end
       def to_hash
       end
 
-      class Item < Autorender::Internal::Type::BaseModel
+      class File < Autorender::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Autorender::Models::FileListResponse::Item,
+              Autorender::Models::FileListResponse::File,
               Autorender::Internal::AnyHash
             )
           end
@@ -187,6 +165,57 @@ module Autorender
               updated_at: T.nilable(Time),
               url: String,
               width: T.nilable(Integer)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Meta < Autorender::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Autorender::Models::FileListResponse::Meta,
+              Autorender::Internal::AnyHash
+            )
+          end
+
+        sig { returns(T::Boolean) }
+        attr_accessor :has_next
+
+        sig { returns(T::Boolean) }
+        attr_accessor :has_prev
+
+        sig { returns(Integer) }
+        attr_accessor :limit
+
+        sig { returns(Integer) }
+        attr_accessor :page
+
+        sig { returns(Integer) }
+        attr_accessor :total
+
+        sig do
+          params(
+            has_next: T::Boolean,
+            has_prev: T::Boolean,
+            limit: Integer,
+            page: Integer,
+            total: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(has_next:, has_prev:, limit:, page:, total:)
+        end
+
+        sig do
+          override.returns(
+            {
+              has_next: T::Boolean,
+              has_prev: T::Boolean,
+              limit: Integer,
+              page: Integer,
+              total: Integer
             }
           )
         end

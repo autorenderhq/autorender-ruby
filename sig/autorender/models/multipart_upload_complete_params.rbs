@@ -1,28 +1,28 @@
 module Autorender
   module Models
-    type folder_create_params =
-      { name: String, parent_folder_no: String }
+    type multipart_upload_complete_params =
+      { session_id: String, uuid: String }
       & Autorender::Internal::Type::request_parameters
 
-    class FolderCreateParams < Autorender::Internal::Type::BaseModel
+    class MultipartUploadCompleteParams < Autorender::Internal::Type::BaseModel
       extend Autorender::Internal::Type::RequestParameters::Converter
       include Autorender::Internal::Type::RequestParameters
 
-      attr_accessor name: String
+      attr_accessor session_id: String
 
-      attr_reader parent_folder_no: String?
+      attr_reader uuid: String?
 
-      def parent_folder_no=: (String) -> String
+      def uuid=: (String) -> String
 
       def initialize: (
-        name: String,
-        ?parent_folder_no: String,
+        session_id: String,
+        ?uuid: String,
         ?request_options: Autorender::request_opts
       ) -> void
 
       def to_hash: -> {
-        name: String,
-        parent_folder_no: String,
+        session_id: String,
+        uuid: String,
         request_options: Autorender::RequestOptions
       }
     end

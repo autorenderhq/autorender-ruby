@@ -8,7 +8,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/autorender).
 
-The REST API documentation can be found on [docs.autorender.io](https://docs.autorender.io).
+The REST API documentation can be found on [autorender.mintlify.app](https://autorender.mintlify.app/).
 
 ## Installation
 
@@ -32,9 +32,9 @@ autorender = Autorender::Client.new(
   api_key: ENV["AUTORENDER_API_KEY"] # This is the default and can be omitted
 )
 
-upload = autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
+files = autorender.files.list(limit: 10)
 
-puts(upload.id)
+puts(files.files)
 ```
 
 ### File uploads
@@ -209,18 +209,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
+autorender.files.list(limit: 10)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-autorender.uploads.create(file: StringIO.new("<binary>"), file_name: "photo.jpg")
+autorender.files.list(limit: 10)
 
 # You can also splat a full Params class:
-params = Autorender::UploadCreateParams.new(file: StringIO.new("<binary>"), file_name: "photo.jpg")
-autorender.uploads.create(**params)
+params = Autorender::FileListParams.new(limit: 10)
+autorender.files.list(**params)
 ```
 
 ### Enums
@@ -228,11 +228,11 @@ autorender.uploads.create(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :created_at_asc
-puts(Autorender::FileListParams::Sort::CREATED_AT_ASC)
+# :name_asc
+puts(Autorender::FileListParams::Sort::NAME_ASC)
 
 # Revealed type: `T.all(Autorender::FileListParams::Sort, Symbol)`
-T.reveal_type(Autorender::FileListParams::Sort::CREATED_AT_ASC)
+T.reveal_type(Autorender::FileListParams::Sort::NAME_ASC)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -240,13 +240,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 autorender.files.list(
-  sort: Autorender::FileListParams::Sort::CREATED_AT_ASC,
+  sort: Autorender::FileListParams::Sort::NAME_ASC,
   # …
 )
 
 # Literal values are also permissible:
 autorender.files.list(
-  sort: :created_at_asc,
+  sort: :name_asc,
   # …
 )
 ```

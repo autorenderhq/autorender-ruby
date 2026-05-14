@@ -8,7 +8,7 @@ module Autorender
       include Autorender::Internal::Type::RequestParameters
 
       # @!attribute folder_no
-      #   Exact folder number
+      #   Filter by folder number
       #
       #   @return [String, nil]
       optional :folder_no, String
@@ -18,58 +18,44 @@ module Autorender
       #   @return [Integer, nil]
       optional :limit, Integer
 
-      # @!attribute name
-      #   Partial name match (case-insensitive)
-      #
-      #   @return [String, nil]
-      optional :name, String
-
       # @!attribute page
       #
       #   @return [Integer, nil]
       optional :page, Integer
 
-      # @!attribute path
-      #   Folder prefix (e.g. products/sku123/)
+      # @!attribute search
+      #   Partial name match (case-insensitive)
       #
       #   @return [String, nil]
-      optional :path, String
+      optional :search, String
 
       # @!attribute sort
       #
       #   @return [Symbol, Autorender::Models::FileListParams::Sort, nil]
       optional :sort, enum: -> { Autorender::FileListParams::Sort }
 
-      # @!attribute tags
-      #   Comma-separated tags
-      #
-      #   @return [String, nil]
-      optional :tags, String
-
-      # @!method initialize(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort: nil, tags: nil, request_options: {})
-      #   @param folder_no [String] Exact folder number
+      # @!method initialize(folder_no: nil, limit: nil, page: nil, search: nil, sort: nil, request_options: {})
+      #   @param folder_no [String] Filter by folder number
       #
       #   @param limit [Integer]
       #
-      #   @param name [String] Partial name match (case-insensitive)
-      #
       #   @param page [Integer]
       #
-      #   @param path [String] Folder prefix (e.g. products/sku123/)
+      #   @param search [String] Partial name match (case-insensitive)
       #
       #   @param sort [Symbol, Autorender::Models::FileListParams::Sort]
-      #
-      #   @param tags [String] Comma-separated tags
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
 
       module Sort
         extend Autorender::Internal::Type::Enum
 
-        CREATED_AT_ASC = :created_at_asc
-        CREATED_AT_DESC = :created_at_desc
+        NAME_ASC = :name_asc
+        NAME_DESC = :name_desc
         SIZE_ASC = :size_asc
         SIZE_DESC = :size_desc
+        CREATED_AT_ASC = :created_at_asc
+        CREATED_AT_DESC = :created_at_desc
 
         # @!method self.values
         #   @return [Array<Symbol>]

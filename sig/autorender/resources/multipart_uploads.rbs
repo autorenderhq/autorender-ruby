@@ -1,0 +1,26 @@
+module Autorender
+  module Resources
+    class MultipartUploads
+      def complete: (
+        session_id: String,
+        ?uuid: String,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::MultipartUploadCompleteResponse
+
+      def start: (
+        file_name: String,
+        format_: String,
+        size: Integer,
+        ?custom_id: String,
+        ?folder: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?random_prefix: bool,
+        ?tags: Autorender::Models::MultipartUploadStartParams::tags,
+        ?ttl_seconds: Integer,
+        ?request_options: Autorender::request_opts
+      ) -> Autorender::Models::MultipartUploadStartResponse
+
+      def initialize: (client: Autorender::Client) -> void
+    end
+  end
+end

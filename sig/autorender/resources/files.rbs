@@ -6,22 +6,12 @@ module Autorender
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::FileRetrieveResponse
 
-      def update: (
-        String file_no,
-        ?add_tags: ::Array[String],
-        ?metadata: ::Hash[Symbol, top],
-        ?remove_tags: ::Array[String],
-        ?request_options: Autorender::request_opts
-      ) -> Autorender::Models::FileUpdateResponse
-
       def list: (
         ?folder_no: String,
         ?limit: Integer,
-        ?name: String,
         ?page: Integer,
-        ?path: String,
+        ?search: String,
         ?sort: Autorender::Models::FileListParams::sort,
-        ?tags: String,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::FileListResponse
 

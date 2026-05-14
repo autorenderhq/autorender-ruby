@@ -6,11 +6,11 @@ module Autorender
     class Folders
       # Create folder
       #
-      # @overload create(folder_name:, path: nil, request_options: {})
+      # @overload create(name:, parent_folder_no: nil, request_options: {})
       #
-      # @param folder_name [String] Folder name without slashes
+      # @param name [String] Folder name without slashes
       #
-      # @param path [String] Optional parent path, e.g. products/sku123
+      # @param parent_folder_no [String] Parent folder number
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -24,6 +24,33 @@ module Autorender
           path: "api/v1/folders",
           body: parsed,
           model: Autorender::Models::FolderCreateResponse,
+          options: options
+        )
+      end
+
+      # List folders
+      #
+      # @overload list(parent_folder_no: nil, search: nil, sort: nil, request_options: {})
+      #
+      # @param parent_folder_no [String] Filter by parent folder number
+      #
+      # @param search [String] Partial name match (case-insensitive)
+      #
+      # @param sort [Symbol, Autorender::Models::FolderListParams::Sort]
+      #
+      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Autorender::Models::FolderListResponse]
+      #
+      # @see Autorender::Models::FolderListParams
+      def list(params = {})
+        parsed, options = Autorender::FolderListParams.dump_request(params)
+        query = Autorender::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "api/v1/folders",
+          query: query,
+          model: Autorender::Models::FolderListResponse,
           options: options
         )
       end

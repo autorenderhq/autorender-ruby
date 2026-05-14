@@ -4,47 +4,23 @@ module Autorender
   module Models
     # @see Autorender::Resources::Files#list
     class FileListResponse < Autorender::Internal::Type::BaseModel
-      # @!attribute is_page_next
+      # @!attribute files
       #
-      #   @return [Boolean]
-      required :is_page_next, Autorender::Internal::Type::Boolean
+      #   @return [Array<Autorender::Models::FileListResponse::File>]
+      required :files, -> { Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::File] }
 
-      # @!attribute items
+      # @!attribute meta
       #
-      #   @return [Array<Autorender::Models::FileListResponse::Item>]
-      required :items, -> { Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::Item] }
+      #   @return [Autorender::Models::FileListResponse::Meta]
+      required :meta, -> { Autorender::Models::FileListResponse::Meta }
 
-      # @!attribute limit
-      #
-      #   @return [Integer]
-      required :limit, Integer
-
-      # @!attribute page
-      #
-      #   @return [Integer]
-      required :page, Integer
-
-      # @!attribute total_count
-      #
-      #   @return [Integer]
-      required :total_count, Integer
-
-      # @!attribute total_pages
-      #
-      #   @return [Integer]
-      required :total_pages, Integer
-
-      # @!method initialize(is_page_next:, items:, limit:, page:, total_count:, total_pages:)
+      # @!method initialize(files:, meta:)
       #   Files list
       #
-      #   @param is_page_next [Boolean]
-      #   @param items [Array<Autorender::Models::FileListResponse::Item>]
-      #   @param limit [Integer]
-      #   @param page [Integer]
-      #   @param total_count [Integer]
-      #   @param total_pages [Integer]
+      #   @param files [Array<Autorender::Models::FileListResponse::File>]
+      #   @param meta [Autorender::Models::FileListResponse::Meta]
 
-      class Item < Autorender::Internal::Type::BaseModel
+      class File < Autorender::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -150,6 +126,41 @@ module Autorender
         #   @param updated_at [Time, nil]
         #   @param url [String]
         #   @param width [Integer, nil]
+      end
+
+      # @see Autorender::Models::FileListResponse#meta
+      class Meta < Autorender::Internal::Type::BaseModel
+        # @!attribute has_next
+        #
+        #   @return [Boolean]
+        required :has_next, Autorender::Internal::Type::Boolean, api_name: :hasNext
+
+        # @!attribute has_prev
+        #
+        #   @return [Boolean]
+        required :has_prev, Autorender::Internal::Type::Boolean, api_name: :hasPrev
+
+        # @!attribute limit
+        #
+        #   @return [Integer]
+        required :limit, Integer
+
+        # @!attribute page
+        #
+        #   @return [Integer]
+        required :page, Integer
+
+        # @!attribute total
+        #
+        #   @return [Integer]
+        required :total, Integer
+
+        # @!method initialize(has_next:, has_prev:, limit:, page:, total:)
+        #   @param has_next [Boolean]
+        #   @param has_prev [Boolean]
+        #   @param limit [Integer]
+        #   @param page [Integer]
+        #   @param total [Integer]
       end
     end
   end

@@ -1,0 +1,92 @@
+module Autorender
+  module Models
+    type multipart_upload_start_response =
+      {
+        expire_at: Integer,
+        min_part_size: Integer,
+        part_size: Integer,
+        parts: ::Array[String],
+        policy: Autorender::Models::MultipartUploadStartResponse::Policy,
+        public_key: String,
+        session_id: String,
+        uuid: String,
+        workspace_id: String
+      }
+
+    class MultipartUploadStartResponse < Autorender::Internal::Type::BaseModel
+      attr_accessor expire_at: Integer
+
+      attr_accessor min_part_size: Integer
+
+      attr_accessor part_size: Integer
+
+      attr_accessor parts: ::Array[String]
+
+      attr_accessor policy: Autorender::Models::MultipartUploadStartResponse::Policy
+
+      attr_accessor public_key: String
+
+      attr_accessor session_id: String
+
+      attr_accessor uuid: String
+
+      attr_accessor workspace_id: String
+
+      def initialize: (
+        expire_at: Integer,
+        min_part_size: Integer,
+        part_size: Integer,
+        parts: ::Array[String],
+        policy: Autorender::Models::MultipartUploadStartResponse::Policy,
+        public_key: String,
+        session_id: String,
+        uuid: String,
+        workspace_id: String
+      ) -> void
+
+      def to_hash: -> {
+        expire_at: Integer,
+        min_part_size: Integer,
+        part_size: Integer,
+        parts: ::Array[String],
+        policy: Autorender::Models::MultipartUploadStartResponse::Policy,
+        public_key: String,
+        session_id: String,
+        uuid: String,
+        workspace_id: String
+      }
+
+      type policy =
+        {
+          folder: String,
+          format_: String,
+          size: Integer,
+          tags: ::Array[String]
+        }
+
+      class Policy < Autorender::Internal::Type::BaseModel
+        attr_accessor folder: String
+
+        attr_accessor format_: String
+
+        attr_accessor size: Integer
+
+        attr_accessor tags: ::Array[String]
+
+        def initialize: (
+          folder: String,
+          format_: String,
+          size: Integer,
+          tags: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          folder: String,
+          format_: String,
+          size: Integer,
+          tags: ::Array[String]
+        }
+      end
+    end
+  end
+end

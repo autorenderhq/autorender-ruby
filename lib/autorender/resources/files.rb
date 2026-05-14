@@ -23,51 +23,19 @@ module Autorender
         )
       end
 
-      # Update file tags/metadata
-      #
-      # @overload update(file_no, add_tags: nil, metadata: nil, remove_tags: nil, request_options: {})
-      #
-      # @param file_no [String]
-      #
-      # @param add_tags [Array<String>] Tags to add to the existing set
-      #
-      # @param metadata [Hash{Symbol=>Object}] Metadata to merge into existing metadata
-      #
-      # @param remove_tags [Array<String>] Tags to remove from the existing set
-      #
-      # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Autorender::Models::FileUpdateResponse]
-      #
-      # @see Autorender::Models::FileUpdateParams
-      def update(file_no, params = {})
-        parsed, options = Autorender::FileUpdateParams.dump_request(params)
-        @client.request(
-          method: :patch,
-          path: ["api/v1/files/%1$s", file_no],
-          body: parsed,
-          model: Autorender::Models::FileUpdateResponse,
-          options: options
-        )
-      end
-
       # List/search files with pagination, filtering, and sorting.
       #
-      # @overload list(folder_no: nil, limit: nil, name: nil, page: nil, path: nil, sort: nil, tags: nil, request_options: {})
+      # @overload list(folder_no: nil, limit: nil, page: nil, search: nil, sort: nil, request_options: {})
       #
-      # @param folder_no [String] Exact folder number
+      # @param folder_no [String] Filter by folder number
       #
       # @param limit [Integer]
       #
-      # @param name [String] Partial name match (case-insensitive)
-      #
       # @param page [Integer]
       #
-      # @param path [String] Folder prefix (e.g. products/sku123/)
+      # @param search [String] Partial name match (case-insensitive)
       #
       # @param sort [Symbol, Autorender::Models::FileListParams::Sort]
-      #
-      # @param tags [String] Comma-separated tags
       #
       # @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -80,7 +48,7 @@ module Autorender
         @client.request(
           method: :get,
           path: "api/v1/files",
-          query: query.transform_keys(folder_no: "folderNo"),
+          query: query,
           model: Autorender::Models::FileListResponse,
           options: options
         )

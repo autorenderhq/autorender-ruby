@@ -16,6 +16,8 @@ module Autorender
 
     attr_reader folders: Autorender::Resources::Folders
 
+    attr_reader multipart_uploads: Autorender::Resources::MultipartUploads
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

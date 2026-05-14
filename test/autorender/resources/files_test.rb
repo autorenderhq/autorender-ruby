@@ -18,21 +18,6 @@ class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
     end
   end
 
-  def test_update
-    response = @autorender.files.update("fileNo")
-
-    assert_pattern do
-      response => Autorender::Models::FileUpdateResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: Autorender::Models::FileUpdateResponse::Data,
-        success: Autorender::Models::FileUpdateResponse::Success
-      }
-    end
-  end
-
   def test_list
     response = @autorender.files.list
 
@@ -42,12 +27,8 @@ class Autorender::Test::Resources::FilesTest < Autorender::Test::ResourceTest
 
     assert_pattern do
       response => {
-        is_page_next: Autorender::Internal::Type::Boolean,
-        items: ^(Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::Item]),
-        limit: Integer,
-        page: Integer,
-        total_count: Integer,
-        total_pages: Integer
+        files: ^(Autorender::Internal::Type::ArrayOf[Autorender::Models::FileListResponse::File]),
+        meta: Autorender::Models::FileListResponse::Meta
       }
     end
   end

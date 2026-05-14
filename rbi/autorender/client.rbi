@@ -25,6 +25,10 @@ module Autorender
     sig { returns(Autorender::Resources::Folders) }
     attr_reader :folders
 
+    # Upload endpoints (API key required)
+    sig { returns(Autorender::Resources::MultipartUploads) }
+    attr_reader :multipart_uploads
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
