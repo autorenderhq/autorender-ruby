@@ -203,12 +203,12 @@ end
 class Autorender::Test::UtilFormDataEncodingTest < Minitest::Test
   class FakeCGI < CGI
     def initialize(headers, io)
-      body = io.is_a?(String) ? io : io.to_a.join
+      encoded = io.to_a
       @ctype = headers["content-type"]
       # rubocop:disable Lint/EmptyBlock
-      @io = Autorender::Internal::Util::ReadIOAdapter.new(body) {}
+      @io = Autorender::Internal::Util::ReadIOAdapter.new(encoded.to_enum) {}
       # rubocop:enable Lint/EmptyBlock
-      @c_len = body.bytesize.to_s
+      @c_len = encoded.join.bytesize.to_s
       super()
     end
 

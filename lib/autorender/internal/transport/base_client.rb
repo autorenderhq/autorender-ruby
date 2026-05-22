@@ -313,7 +313,6 @@ module Autorender
             {**req, path: path, query: query}
           )
           headers, encoded = Autorender::Internal::Util.encode_content(headers, body)
-          headers = headers.except("content-type") if encoded.nil?
           {
             method: method,
             url: url,
