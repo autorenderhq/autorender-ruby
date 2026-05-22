@@ -657,9 +657,7 @@ module Autorender
           in [%r{^multipart/form-data}, Hash | Autorender::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
             headers = {**headers, "content-type" => "#{content_type}; boundary=#{boundary}"}
-            # Buffer eagerly so the body can be replayed on 307/308 redirects and retries.
-            # fused_io is a one-shot Enumerator; joining it here also triggers resource cleanup.
-            [headers, strio.to_a.join]
+            [headers, strio]
           in [_, Symbol | Numeric]
             [headers, body.to_s]
           in [_, StringIO]
