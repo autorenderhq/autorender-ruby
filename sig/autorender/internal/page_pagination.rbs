@@ -7,7 +7,7 @@ module Autorender
 
       attr_accessor current_page: Integer
 
-      attr_accessor has_next_page: bool
+      attr_accessor has_next: bool
 
       attr_accessor total_results: Integer
 
