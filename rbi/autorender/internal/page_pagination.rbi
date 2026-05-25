@@ -14,7 +14,7 @@ module Autorender
       attr_accessor :current_page
 
       sig { returns(T::Boolean) }
-      attr_accessor :has_next_page
+      attr_accessor :has_next
 
       sig { returns(Integer) }
       attr_accessor :total_results
