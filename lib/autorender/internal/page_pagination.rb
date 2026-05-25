@@ -23,7 +23,7 @@ module Autorender
       attr_accessor :current_page
 
       # @return [Boolean]
-      attr_accessor :has_next
+      attr_accessor :has_next_page
 
       # @return [Integer]
       attr_accessor :total_results
@@ -77,7 +77,7 @@ module Autorender
         else
         end
         @current_page = page_data[:current_page]
-        @has_next = page_data[:has_next]
+        @has_next_page = page_data[:has_next_page]
         @total_results = page_data[:total_results]
       end
 
@@ -88,7 +88,7 @@ module Autorender
         # rubocop:disable Layout/LineLength
         model = Autorender::Internal::Type::Converter.inspect(@model, depth: 1)
 
-        "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)} current_page=#{current_page.inspect} has_next=#{has_next.inspect} total_results=#{total_results.inspect}>"
+        "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)} current_page=#{current_page.inspect} has_next_page=#{has_next_page.inspect} total_results=#{total_results.inspect}>"
         # rubocop:enable Layout/LineLength
       end
     end
