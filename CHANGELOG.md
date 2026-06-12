@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.2.0](https://github.com/autorenderhq/autorender-ruby/compare/v0.1.0...v0.2.0) (2026-06-12)
+
+
+### Features
+
+* **java:** enable maven publishing with release-please ([1786303](https://github.com/autorenderhq/autorender-ruby/commit/1786303cbb54cff6672d54e610b9ade78c7c5854))
+* **ruby:** enable rubygems publishing with release-please ([bc8804f](https://github.com/autorenderhq/autorender-ruby/commit/bc8804f6dcb6942d92c55b45da53010aa0f7655a))
+
+
+### Bug Fixes
+
+* preserve production-managed files in release branch ([37f9bd5](https://github.com/autorenderhq/autorender-ruby/commit/37f9bd51d07018eff16ef491dc3fc4f747fc07ec))
+* strip internal workflows from production release branch ([cd8fd3f](https://github.com/autorenderhq/autorender-ruby/commit/cd8fd3f3dce0f1e02440ae92d9f5f6f5bd9fa087))
+* update promote workflow and add back-sync from production ([8604ca6](https://github.com/autorenderhq/autorender-ruby/commit/8604ca61b2b63aa688a5387fc2dd0b741996249d))
+* use blob comparison in overlay; add language-specific version files ([383f0ae](https://github.com/autorenderhq/autorender-ruby/commit/383f0ae3e39903225c4f22aecffb72b1745dba23))
+* use persist-credentials: false in sync workflow ([22a5b7c](https://github.com/autorenderhq/autorender-ruby/commit/22a5b7cd5104fa7addc8d8da5408a8aa53b6d542))
+
+
+### Chores
+
+* preserve production-managed files ([04101d4](https://github.com/autorenderhq/autorender-ruby/commit/04101d4aad8a09a5e00a383c35f9b7fb1bba3481))
+* remove staging-only workflows from production ([446e9ad](https://github.com/autorenderhq/autorender-ruby/commit/446e9ad2ca81b41c7d18f62bb341c2303c0906a5))
+* remove staging-only workflows from production ([79686f1](https://github.com/autorenderhq/autorender-ruby/commit/79686f15b7c6c5f130bc05e00e8fe595c4877236))
+* strip internal workflows; preserve production-managed files ([c2cb80d](https://github.com/autorenderhq/autorender-ruby/commit/c2cb80de0aab1a578c5798c3fd99efc8bf8f4b77))
+
+
+### Documentation
+
+* add auto-generated notice to CONTRIBUTING.md ([802ed52](https://github.com/autorenderhq/autorender-ruby/commit/802ed521f5609bfedbc004c755835a97b060eff0))
+
 ## [0.1.0](https://github.com/autorenderhq/autorender-ruby/compare/v0.0.1...v0.1.0) (2026-05-25)
 
 
