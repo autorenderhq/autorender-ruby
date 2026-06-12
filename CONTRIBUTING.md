@@ -1,3 +1,12 @@
+# Contributing
+
+> **Note:** This SDK is automatically generated from the Autorender API specification.
+> Code pull requests are not accepted — changes to generated code will be overwritten on the next generation cycle.
+>
+> **Bug reports and feature requests are welcome** — please [open an issue](https://github.com/autorenderhq/autorender-ruby/issues).
+
+---
+
 ## Setting up the environment
 
 This repository contains a `.ruby-version` file, which should work with either [rbenv](https://github.com/rbenv/rbenv) or [asdf](https://github.com/asdf-vm/asdf) with the [ruby plugin](https://github.com/asdf-vm/asdf-ruby).
