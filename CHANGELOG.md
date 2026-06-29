@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/autorenderhq/autorender-ruby/compare/v0.2.0...v0.2.1) (2026-06-29)
+
+
+### Chores
+
+* remove Stainless attribution from README and SECURITY ([32ce08b](https://github.com/autorenderhq/autorender-ruby/commit/32ce08b5603dd5e667b5eccccddf94fae9851e84))
+* strip internal workflows; preserve production-managed files ([0a1a663](https://github.com/autorenderhq/autorender-ruby/commit/0a1a663a70d3ac323769ca574a3e86d1c3cbbed4))
+
 ## [0.2.0](https://github.com/autorenderhq/autorender-ruby/compare/v0.1.0...v0.2.0) (2026-06-12)
 
 
