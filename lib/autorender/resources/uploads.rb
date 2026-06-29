@@ -59,7 +59,7 @@ module Autorender
       #
       # @param random_prefix [String] true/false to append random suffix
       #
-      # @param tags [String] Comma-separated tags
+      # @param tags [Array<String>, String] Tags array or comma-separated string
       #
       # @param webhook_url [String]
       #

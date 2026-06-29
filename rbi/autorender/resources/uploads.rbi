@@ -51,7 +51,7 @@ module Autorender
           folder: String,
           metadata: String,
           random_prefix: String,
-          tags: String,
+          tags: Autorender::UploadCreateFromURLParams::Tags::Variants,
           webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(Autorender::Models::UploadCreateFromURLResponse)
@@ -68,7 +68,7 @@ module Autorender
         metadata: nil,
         # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated tags
+        # Tags array or comma-separated string
         tags: nil,
         webhook_url: nil,
         request_options: {}

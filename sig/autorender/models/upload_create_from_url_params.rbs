@@ -8,7 +8,7 @@ module Autorender
         folder: String,
         metadata: String,
         random_prefix: String,
-        tags: String,
+        tags: Autorender::Models::UploadCreateFromURLParams::tags,
         webhook_url: String
       }
       & Autorender::Internal::Type::request_parameters
@@ -39,9 +39,11 @@ module Autorender
 
       def random_prefix=: (String) -> String
 
-      attr_reader tags: String?
+      attr_reader tags: Autorender::Models::UploadCreateFromURLParams::tags?
 
-      def tags=: (String) -> String
+      def tags=: (
+        Autorender::Models::UploadCreateFromURLParams::tags
+      ) -> Autorender::Models::UploadCreateFromURLParams::tags
 
       attr_reader webhook_url: String?
 
@@ -54,7 +56,7 @@ module Autorender
         ?folder: String,
         ?metadata: String,
         ?random_prefix: String,
-        ?tags: String,
+        ?tags: Autorender::Models::UploadCreateFromURLParams::tags,
         ?webhook_url: String,
         ?request_options: Autorender::request_opts
       ) -> void
@@ -66,10 +68,20 @@ module Autorender
         folder: String,
         metadata: String,
         random_prefix: String,
-        tags: String,
+        tags: Autorender::Models::UploadCreateFromURLParams::tags,
         webhook_url: String,
         request_options: Autorender::RequestOptions
       }
+
+      type tags = ::Array[String] | String
+
+      module Tags
+        extend Autorender::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Autorender::Models::UploadCreateFromURLParams::tags]
+
+        StringArray: Autorender::Internal::Type::Converter
+      end
     end
   end
 end

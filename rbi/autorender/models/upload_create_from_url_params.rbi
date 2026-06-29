@@ -52,11 +52,17 @@ module Autorender
       sig { params(random_prefix: String).void }
       attr_writer :random_prefix
 
-      # Comma-separated tags
-      sig { returns(T.nilable(String)) }
+      # Tags array or comma-separated string
+      sig do
+        returns(
+          T.nilable(Autorender::UploadCreateFromURLParams::Tags::Variants)
+        )
+      end
       attr_reader :tags
 
-      sig { params(tags: String).void }
+      sig do
+        params(tags: Autorender::UploadCreateFromURLParams::Tags::Variants).void
+      end
       attr_writer :tags
 
       sig { returns(T.nilable(String)) }
@@ -73,7 +79,7 @@ module Autorender
           folder: String,
           metadata: String,
           random_prefix: String,
-          tags: String,
+          tags: Autorender::UploadCreateFromURLParams::Tags::Variants,
           webhook_url: String,
           request_options: Autorender::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -90,7 +96,7 @@ module Autorender
         metadata: nil,
         # true/false to append random suffix
         random_prefix: nil,
-        # Comma-separated tags
+        # Tags array or comma-separated string
         tags: nil,
         webhook_url: nil,
         request_options: {}
@@ -106,13 +112,34 @@ module Autorender
             folder: String,
             metadata: String,
             random_prefix: String,
-            tags: String,
+            tags: Autorender::UploadCreateFromURLParams::Tags::Variants,
             webhook_url: String,
             request_options: Autorender::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Tags array or comma-separated string
+      module Tags
+        extend Autorender::Internal::Type::Union
+
+        Variants = T.type_alias { T.any(T::Array[String], String) }
+
+        sig do
+          override.returns(
+            T::Array[Autorender::UploadCreateFromURLParams::Tags::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        StringArray =
+          T.let(
+            Autorender::Internal::Type::ArrayOf[String],
+            Autorender::Internal::Type::Converter
+          )
       end
     end
   end

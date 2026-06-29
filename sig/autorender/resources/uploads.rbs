@@ -21,7 +21,7 @@ module Autorender
         ?folder: String,
         ?metadata: String,
         ?random_prefix: String,
-        ?tags: String,
+        ?tags: Autorender::Models::UploadCreateFromURLParams::tags,
         ?webhook_url: String,
         ?request_options: Autorender::request_opts
       ) -> Autorender::Models::UploadCreateFromURLResponse

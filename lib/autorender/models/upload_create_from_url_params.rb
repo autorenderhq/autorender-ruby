@@ -43,10 +43,10 @@ module Autorender
       optional :random_prefix, String
 
       # @!attribute tags
-      #   Comma-separated tags
+      #   Tags array or comma-separated string
       #
-      #   @return [String, nil]
-      optional :tags, String
+      #   @return [Array<String>, String, nil]
+      optional :tags, union: -> { Autorender::UploadCreateFromURLParams::Tags }
 
       # @!attribute webhook_url
       #
@@ -66,11 +66,26 @@ module Autorender
       #
       #   @param random_prefix [String] true/false to append random suffix
       #
-      #   @param tags [String] Comma-separated tags
+      #   @param tags [Array<String>, String] Tags array or comma-separated string
       #
       #   @param webhook_url [String]
       #
       #   @param request_options [Autorender::RequestOptions, Hash{Symbol=>Object}]
+
+      # Tags array or comma-separated string
+      module Tags
+        extend Autorender::Internal::Type::Union
+
+        variant -> { Autorender::Models::UploadCreateFromURLParams::Tags::StringArray }
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Array<String>, String)]
+
+        # @type [Autorender::Internal::Type::Converter]
+        StringArray = Autorender::Internal::Type::ArrayOf[String]
+      end
     end
   end
 end
