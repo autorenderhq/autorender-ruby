@@ -6,7 +6,7 @@ The Autorender Ruby library provides convenient access to the Autorender REST AP
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/autorender).
 
-The REST API documentation can be found on [autorender.mintlify.app](https://autorender.mintlify.app/).
+The REST API documentation can be found on [autorender.io](https://autorender.io/docs).
 
 ## Installation
 
